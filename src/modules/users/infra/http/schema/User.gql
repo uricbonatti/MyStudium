@@ -1,0 +1,65 @@
+input CreateUser {
+  email: String!
+  name: String!
+  description: String
+  password: String!
+  github: String
+  linkedin: String
+}
+input UpdateUser {
+  email: String
+  name: String
+  password: String
+  description: String
+  old_password: String
+  github: String
+  linkedin: String
+  avatar_url: String
+}
+input DeleteUser {
+  email: String!
+}
+input LoginData {
+  email: String!
+  password: String!
+}
+type User {
+  id: String
+  name: String!
+  email: String!
+  description: String
+  avatar_url: String
+  github: String
+  linkedin: String
+  created_at: Date!
+  updated_at: Date!
+  level: Int!
+  exp_percent: Float!
+}
+type AuthenticateUser {
+  token: String!
+  user: User!
+}
+type UserActivity {
+  postsLiked: Int
+  postsCreated: Int
+  commentsLiked: Int
+  commentsCreated: Int
+}
+type UserSummary {
+  all: UserActivity
+  lastMonth: UserActivity
+  lastWeek: UserActivity
+  weekExp: Int
+  lastWeekPosts: [Post]
+}
+type Query {
+  getUser(id: String!): User
+  login(data: LoginData): AuthenticateUser
+  userSummary(id: ID!): UserSummary
+}
+type Mutation {
+  createUser(data: CreateUser): User
+  updateUser(data: UpdateUser): User
+  deleteUser(data: DeleteUser): ID
+}

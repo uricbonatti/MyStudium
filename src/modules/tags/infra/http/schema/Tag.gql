@@ -1,0 +1,22 @@
+input TagFilter {
+  category_id: String
+}
+input CreateTag {
+  name: String!
+  category_id: String!
+}
+input CreatePostTag {
+  tag_id: String!
+}
+type Tag {
+  id: String
+  name: String!
+  category: Category!
+}
+type Query {
+  getTag(id: ID): Tag
+  listTags(filter: TagFilter): [Tag]
+}
+type Mutation {
+  createTag(data: CreateTag): Tag
+}

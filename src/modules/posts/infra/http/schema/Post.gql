@@ -1,0 +1,46 @@
+input PostFilter {
+  category_id: ID
+  part_of_title: String
+  author_id: String
+}
+input CreatePost {
+  title: String!
+  image_url: String
+  body: String!
+  category_id: String!
+  tag_ids: [CreatePostTag]
+}
+input UpdatePost {
+  title: String
+  image_url: String
+  body: String
+  category_id: String
+  tag_id: [String]
+}
+type Author {
+  id: String!
+  nome: String!
+  avatar_url: String
+}
+type Post {
+  id: String
+  author: Author!
+  title: String!
+  image_url: String
+  body: String!
+  category: Category
+  created_at: Date!
+  updated_at: Date!
+  comments: [Comment]
+  tags: [Tag]
+}
+type Query {
+  getPost(id: String): Post!
+  listPosts(filter: PostFilter): [Post]
+}
+type Mutation {
+  likePost(post_id: ID): Int
+  createPost(data: CreatePost): Post!
+  updatePost(id: String, data: UpdatePost): Post
+  deletePost(id: String): String
+}

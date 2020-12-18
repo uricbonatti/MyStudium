@@ -1,0 +1,13 @@
+input CreateCategory {
+  name: String!
+}
+type Category {
+  id: String
+  name: String!
+}
+type Query {
+  listCategories(id: String): [Category]
+}
+type Mutation {
+  createCategory(data: CreateCategory): Category
+}

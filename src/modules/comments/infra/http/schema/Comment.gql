@@ -1,0 +1,22 @@
+input CreateComment {
+  post_id: String!
+  body: String!
+}
+input UpdateComment {
+  comment_id: String!
+  body: String!
+}
+type Comment {
+  id: String
+  author: Author!
+  creation_at: Date!
+  updated_at: Date!
+  body: String!
+  post_id: String!
+}
+type Mutation {
+  likeComment(comment_Id: String): Int
+  createComment(data: CreateComment): Comment!
+  updateComment(id: String, data: UpdateComment): Comment
+  deleteComment(id: String): String
+}
