@@ -35,6 +35,7 @@ type User {
   updated_at: Date!
   level: Int!
   exp_percent: Float!
+  access_level: String!
 }
 type AuthenticateUser {
   token: String!

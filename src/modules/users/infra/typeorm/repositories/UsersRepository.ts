@@ -26,6 +26,7 @@ class UsersRepository implements IUsersRepository {
       linkedin,
       github,
       fullexp: 0,
+      permission: 2,
     });
     await this.odmRepository.save(user);
     return user;

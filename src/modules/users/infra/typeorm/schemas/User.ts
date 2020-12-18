@@ -40,6 +40,9 @@ class User {
   @Column()
   linkedin: string;
 
+  @Column()
+  permission: number;
+
   @CreateDateColumn()
   created_at: Date;
 
@@ -96,6 +99,18 @@ class User {
       aux = base3 + 0;
       base3 = base2 + base3;
       base2 = aux + 0;
+    }
+  }
+
+  @Expose({ name: 'access_level' })
+  getPermission(): 'admin' | 'moderator' | 'user' {
+    switch (this.permission) {
+      case 0:
+        return 'admin';
+      case 1:
+        return 'moderator';
+      default:
+        return 'user';
     }
   }
 }
