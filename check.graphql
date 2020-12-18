@@ -1,0 +1,128 @@
+scalar Date
+input TagFilter {
+  category_id: ID
+}
+
+input PostFilter {
+  category_id: ID
+  part_of_title: String
+  author_id: ID
+}
+input CreateCategory {
+  name: String!
+}
+
+input CreateTag {
+  name: String!
+  category_id: ID!
+}
+
+input CreateComment {
+  post_id: ID!
+  body: String!
+}
+
+input UpdateComment {
+  comment_id: ID!
+  body: String!
+}
+
+input CreatePost {
+  title: String!
+  image_url: String
+  body: String!
+  category_id: String!
+  tag_id: [String!]
+}
+
+input UpdatePost {
+  title: String
+  image_url: String
+  body: String
+  category: Category
+  tags: [Tag]
+}
+
+input CreateUser {
+  email: String!
+  name: String!
+  description: String
+  password: String!
+  github: String
+  linkedin: String
+}
+
+input UpdateUser {
+  email: String
+  name: String
+  password: String
+  description: String
+  old_password: String
+  github: String
+  linkedin: String
+  avatar_url: String
+}
+
+input DeleteUser {
+  email: String!
+}
+input LoginData {
+  email: String!
+  password: String!
+}
+
+type User {
+  id: ID
+  name: String!
+  email: String!
+  description: String
+  github: String
+  linkedin: String
+  created_at: Date!
+  updated_at: Date!
+  level: Int!
+  exp_percent: Int!
+}
+type AuthenticateUser {
+  token: String!
+  user: User!
+}
+type Comment {
+  id: ID
+  author: User!
+  creation_at: Date!
+  updated_at: Date!
+  body: String!
+  post: Post!
+}
+
+type Tag {
+  id: ID
+  name: String!
+  category: Category!
+}
+type Category {
+  id: ID
+  name: String!
+}
+type Post {
+  id: ID
+  author: User!
+  title: String!
+  image_url: String
+  body: String!
+  category: Category
+  created_at: Date!
+  updated_at: Date!
+  comments: [Comment]
+  tags: [Tag]
+}
+
+ type Query {
+    getUser(id: ID): User
+    getPost(id: ID): Post!
+    listPosts(filter: PostFilter): [Post]
+    listCategories(): [Category]
+    listTags(filter: TagFilter): [Tag]
+  }
+
