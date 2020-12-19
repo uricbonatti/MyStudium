@@ -3,7 +3,7 @@ import IPostsRepository from '@modules/posts/repositories/IPostsRepository';
 import { MongoRepository, getMongoRepository, Like, MoreThan } from 'typeorm';
 import { ObjectId } from 'mongodb';
 import IPostLikeDTO from '@modules/posts/dtos/IPostLikeDTO';
-import { isAfter } from 'date-fns';
+
 import Post from '../schemas/Post';
 
 class PostsRepository implements IPostsRepository {
