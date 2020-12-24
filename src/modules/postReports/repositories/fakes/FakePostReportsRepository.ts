@@ -9,7 +9,7 @@ class FakePostReportsRepository implements IPostReportsRepository {
 
   public async create(data: ICreatePostReportDTO): Promise<PostReport> {
     const report = new PostReport();
-    Object.assign(report, { id: new ObjectId() }, data);
+    Object.assign(report, { id: new ObjectId(), closed: false }, data);
     this.reports.push(report);
     return report;
   }

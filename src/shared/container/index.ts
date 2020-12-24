@@ -19,6 +19,9 @@ import CategoriesRepository from '@modules/categories/infra/typeorm/repositories
 import ITagsRepository from '@modules/tags/repositories/ITagsRepository';
 import TagsRepository from '@modules/tags/infra/typeorm/repositories/TagsRepository';
 
+import IPostReportsRepository from '@modules/postReports/repositories/IPostReportsRepository';
+import PostReportsRepository from '@modules/postReports/infra/typeorm/repositories/PostReportsRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -44,4 +47,9 @@ container.registerSingleton<IPostsRepository>(
 container.registerSingleton<ICommentsRepository>(
   'CommentsRepository',
   CommentsRepository,
+);
+
+container.registerSingleton<IPostReportsRepository>(
+  'PostReportsRepository',
+  PostReportsRepository,
 );

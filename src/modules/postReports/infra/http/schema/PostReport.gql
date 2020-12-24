@@ -1,0 +1,38 @@
+input OpenPostReport {
+  post_id: String!
+  body: String
+  title: String!
+}
+input ClosePostReport {
+  id: String!
+  feedback: String
+  action: String!
+}
+type NewPostReport {
+  id: String
+  post_id: String
+  title: String
+  body: String
+  closed: Boolean
+  created_at: Date
+}
+type PostReport {
+  id: String
+  post_id: String
+  title: String
+  body: String
+  closed: Boolean
+  feedback: String
+  action: String!
+  created_at: Date
+  updated_at: Date
+}
+type Query{
+  userPostReports():[PostReport]
+  openPostReports():[PostReport]
+  showPostReport(id: String):
+  }
+type Mutation {
+  createPostReport(data: OpenPostReport): NewPostReport
+  closePostReport(data: ClosePostReport): PostReport
+}
