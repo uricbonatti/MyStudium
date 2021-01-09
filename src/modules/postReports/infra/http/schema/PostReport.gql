@@ -27,11 +27,11 @@ type PostReport {
   created_at: Date
   updated_at: Date
 }
-type Query{
-  userPostReports():[PostReport]
-  openPostReports():[PostReport]
-  showPostReport(id: String):
-  }
+type Query {
+  userPostReports: [PostReport]
+  openPostReports: [PostReport]
+  showPostReport(id: String): PostReport
+}
 type Mutation {
   createPostReport(data: OpenPostReport): NewPostReport
   closePostReport(data: ClosePostReport): PostReport
