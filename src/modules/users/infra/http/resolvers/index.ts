@@ -3,14 +3,14 @@ import {
   deleteUser,
   getUser,
   updateUser,
-  userSummary,
-} from './UsersResolver';
-import { login } from './SessionResolver';
+  userSummary
+} from './UsersResolver'
+import { login } from './SessionResolver'
 
 export const UserQuery = {
   getUser,
   login,
-  userSummary,
-};
+  userSummary
+}
 
-export const UserMutation = { createUser, deleteUser, updateUser };
+export const UserMutation = { createUser, deleteUser, updateUser }

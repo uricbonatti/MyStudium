@@ -3,16 +3,16 @@ import {
   deletePost,
   getPost,
   listPosts,
-  updatePost,
-} from './PostsResolver';
+  updatePost
+} from './PostsResolver'
 
 export const PostQuerys = {
   getPost,
-  listPosts,
-};
+  listPosts
+}
 
 export const PostMutations = {
   createPost,
   deletePost,
-  updatePost,
-};
+  updatePost
+}

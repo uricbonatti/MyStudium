@@ -1,2 +1,3 @@
+NODE_ENV = development
 NODE = development
 API_DEV = http://localhost:3000

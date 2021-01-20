@@ -1,9 +1,9 @@
-import { createCategory, listCategories } from './CategoriesResolver';
+import { createCategory, listCategories } from './CategoriesResolver'
 
 export const CategoriesQuerys = {
-  listCategories,
-};
+  listCategories
+}
 
 export const CategoriesMutations = {
-  createCategory,
-};
+  createCategory
+}

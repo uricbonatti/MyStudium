@@ -1,10 +1,10 @@
-import { createTag, listTags, getTag } from './TagsResolver';
+import { createTag, listTags, getTag } from './TagsResolver'
 
 export const TagsQuerys = {
   listTags,
-  getTag,
-};
+  getTag
+}
 
 export const TagsMutations = {
-  createTag,
-};
+  createTag
+}

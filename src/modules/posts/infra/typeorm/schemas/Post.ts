@@ -4,13 +4,13 @@ import {
   ObjectID,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { ObjectId as MongoObjectID } from 'mongodb';
-import Tag from '@modules/tags/infra/typeorm/schemas/Tag';
-import Category from '@modules/categories/infra/typeorm/schemas/Category';
-import { OmitedUser } from '@shared/utils/interfaces';
-import { Expose } from 'class-transformer';
+  UpdateDateColumn
+} from 'typeorm'
+import { ObjectId as MongoObjectID } from 'mongodb'
+import Tag from '@modules/tags/infra/typeorm/schemas/Tag'
+import Category from '@modules/categories/infra/typeorm/schemas/Category'
+import { OmitedUser } from '@shared/utils/interfaces'
+import { Expose } from 'class-transformer'
 
 @Entity('posts')
 class Post {
@@ -48,13 +48,13 @@ class Post {
   updated_at: Date;
 
   @Expose({ name: 'likes' })
-  getLikes(): number {
+  getLikes (): number {
     if (this.users_liked && this.users_liked.length > 0) {
-      console.log(this.users_liked.length);
-      return this.users_liked.length;
+      console.log(this.users_liked.length)
+      return this.users_liked.length
     }
-    return 0;
+    return 0
   }
 }
 
-export default Post;
+export default Post

@@ -1,8 +1,8 @@
-import { injectable, inject } from 'tsyringe';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import { ApolloError } from 'apollo-server';
-import ICategoriesRepository from '../repositories/ICategoriesRepository';
-import Category from '../infra/typeorm/schemas/Category';
+import { injectable, inject } from 'tsyringe'
+import IUsersRepository from '@modules/users/repositories/IUsersRepository'
+import { ApolloError } from 'apollo-server'
+import ICategoriesRepository from '../repositories/ICategoriesRepository'
+import Category from '../infra/typeorm/schemas/Category'
 
 interface ICreateCategory {
   name: string;
@@ -11,27 +11,27 @@ interface ICreateCategory {
 
 @injectable()
 class CreateCategoryService {
-  constructor(
+  constructor (
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
     @inject('CategoriesRepository')
-    private categoriesRepository: ICategoriesRepository,
+    private categoriesRepository: ICategoriesRepository
   ) {}
 
-  public async execute({ name, user_id }: ICreateCategory): Promise<Category> {
-    const user = await this.usersRepository.findById(user_id);
+  public async execute ({ name, user_id }: ICreateCategory): Promise<Category> {
+    const user = await this.usersRepository.findById(user_id)
     if (!user) {
-      throw new ApolloError('User not found.', '400');
+      throw new ApolloError('User not found.', '400')
     }
     const checkCategoryExists = await this.categoriesRepository.findByName({
-      name,
-    });
+      name
+    })
     if (checkCategoryExists) {
-      throw new ApolloError('Category already exist', '400');
+      throw new ApolloError('Category already exist', '400')
     }
-    const category = await this.categoriesRepository.create({ name });
-    return category;
+    const category = await this.categoriesRepository.create({ name })
+    return category
   }
 }
-export default CreateCategoryService;
+export default CreateCategoryService

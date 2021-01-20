@@ -4,9 +4,9 @@ import {
   ObjectID,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-import { ObjectId as MongoObjectID } from 'mongodb';
+  UpdateDateColumn
+} from 'typeorm'
+import { ObjectId as MongoObjectID } from 'mongodb'
 
 @Entity('post_reports')
 class PostReport {
@@ -44,4 +44,4 @@ class PostReport {
   updated_at: Date;
 }
 
-export default PostReport;
+export default PostReport

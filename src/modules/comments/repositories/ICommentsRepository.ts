@@ -1,7 +1,7 @@
-import { ObjectId } from 'mongodb';
-import ICommentLikeDTO from '../dtos/ICommentLikeDTO';
-import ICreateCommentDTO from '../dtos/ICreateCommentDTO';
-import Comment from '../infra/typeorm/schemas/Comment';
+import { ObjectId } from 'mongodb'
+import ICommentLikeDTO from '../dtos/ICommentLikeDTO'
+import ICreateCommentDTO from '../dtos/ICreateCommentDTO'
+import Comment from '../infra/typeorm/schemas/Comment'
 
 export default interface ICommentsRepository {
   create(data: ICreateCommentDTO): Promise<Comment>;

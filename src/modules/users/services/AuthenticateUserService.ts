@@ -1,13 +1,13 @@
-import 'reflect-metadata';
-import { sign } from 'jsonwebtoken';
-import { injectable, inject } from 'tsyringe';
+import 'reflect-metadata'
+import { sign } from 'jsonwebtoken'
+import { injectable, inject } from 'tsyringe'
 
-import authConfig from '@config/auth';
-import { ApolloError } from 'apollo-server';
-import User from '../infra/typeorm/schemas/User';
-import IUsersRepository from '../repositories/IUsersRepository';
-import IHashProvider from '../providers/HashProvider/models/IHashProvider';
-import IAuthDTO from '../dtos/IAuthDTO';
+import authConfig from '@config/auth'
+import { ApolloError } from 'apollo-server'
+import User from '../infra/typeorm/schemas/User'
+import IUsersRepository from '../repositories/IUsersRepository'
+import IHashProvider from '../providers/HashProvider/models/IHashProvider'
+import IAuthDTO from '../dtos/IAuthDTO'
 
 interface IResponse {
   user: User;
@@ -16,32 +16,32 @@ interface IResponse {
 
 @injectable()
 class AuthenticateUserService {
-  constructor(
+  constructor (
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    private hashProvider: IHashProvider
   ) {}
 
-  public async execute({ email, password }: IAuthDTO): Promise<IResponse> {
-    const user = await this.usersRepository.findByEmail(email);
+  public async execute ({ email, password }: IAuthDTO): Promise<IResponse> {
+    const user = await this.usersRepository.findByEmail(email)
     if (!user) {
-      throw new ApolloError('Incorrect email/password combination.', '401');
+      throw new ApolloError('Incorrect email/password combination.', '401')
     }
     const passwordMatched = await this.hashProvider.compareHash(
       password,
-      user.password,
-    );
+      user.password
+    )
     if (!passwordMatched) {
-      throw new ApolloError('Incorrect email/password combination.', '401');
+      throw new ApolloError('Incorrect email/password combination.', '401')
     }
-    const { secret, expiresIn } = authConfig.jwt;
+    const { secret, expiresIn } = authConfig.jwt
     const token = sign({}, secret, {
       subject: user.id.toString(),
-      expiresIn,
-    });
-    return { user, token };
+      expiresIn
+    })
+    return { user, token }
   }
 }
-export default AuthenticateUserService;
+export default AuthenticateUserService

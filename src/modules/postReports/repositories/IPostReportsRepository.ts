@@ -1,5 +1,5 @@
-import ICreatePostReportDTO from '../dtos/ICreatePostReportDTO';
-import PostReport from '../infra/typeorm/schemas/PostReport';
+import ICreatePostReportDTO from '../dtos/ICreatePostReportDTO'
+import PostReport from '../infra/typeorm/schemas/PostReport'
 
 export default interface IPostReportsRepository {
   create(data: ICreatePostReportDTO): Promise<PostReport>;

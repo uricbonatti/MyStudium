@@ -2,14 +2,14 @@ import {
   createComment,
   likeComment,
   deleteComment,
-  updateComment,
-} from './CommentsResolver';
+  updateComment
+} from './CommentsResolver'
 
-export const CommentsQuerys = {};
+export const CommentsQuerys = {}
 
 export const CommentsMutations = {
   createComment,
   likeComment,
   deleteComment,
-  updateComment,
-};
+  updateComment
+}

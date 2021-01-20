@@ -5,9 +5,9 @@ import {
   UpdateDateColumn,
   Generated,
   ObjectIdColumn,
-  ObjectID,
-} from 'typeorm';
-import { ObjectID as MongoObjectId } from 'mongodb';
+  ObjectID
+} from 'typeorm'
+import { ObjectID as MongoObjectId } from 'mongodb'
 
 @Entity('user_tokens')
 class UserToken {
@@ -27,4 +27,4 @@ class UserToken {
   @UpdateDateColumn()
   updated_at: Date;
 }
-export default UserToken;
+export default UserToken

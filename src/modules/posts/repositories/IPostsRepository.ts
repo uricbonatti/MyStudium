@@ -1,8 +1,8 @@
-import { ObjectId } from 'mongodb';
+import { ObjectId } from 'mongodb'
 
-import ICreatePostDTO from '../dtos/ICreatePostDTO';
-import IPostLikeDTO from '../dtos/IPostLikeDTO';
-import Post from '../infra/typeorm/schemas/Post';
+import ICreatePostDTO from '../dtos/ICreatePostDTO'
+import IPostLikeDTO from '../dtos/IPostLikeDTO'
+import Post from '../infra/typeorm/schemas/Post'
 
 export default interface IPostsRepository {
   create(data: ICreatePostDTO): Promise<Post>;

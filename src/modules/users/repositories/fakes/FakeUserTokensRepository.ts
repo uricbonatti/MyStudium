@@ -1,31 +1,31 @@
-import { ObjectID } from 'mongodb';
-import { v4 } from 'uuid';
+import { ObjectID } from 'mongodb'
+import { v4 } from 'uuid'
 
-import IUserTokensRpository from '@modules/users/repositories/IUserTokensRepository';
-import UserToken from '@modules/users/infra/typeorm/schemas/UserToken';
+import IUserTokensRpository from '@modules/users/repositories/IUserTokensRepository'
+import UserToken from '@modules/users/infra/typeorm/schemas/UserToken'
 
 class FakeUserTokensRepository implements IUserTokensRpository {
   private userTokens: UserToken[] = [];
 
-  public async generate(user_id: string): Promise<UserToken> {
-    const userToken = new UserToken();
+  public async generate (user_id: string): Promise<UserToken> {
+    const userToken = new UserToken()
     Object.assign(userToken, {
       id: new ObjectID(),
       token: v4(),
       user_id: new ObjectID(),
       created_at: new Date(),
-      updated_at: new Date(),
-    });
-    this.userTokens.push(userToken);
-    return userToken;
+      updated_at: new Date()
+    })
+    this.userTokens.push(userToken)
+    return userToken
   }
 
-  public async findByToken(token: string): Promise<UserToken | undefined> {
+  public async findByToken (token: string): Promise<UserToken | undefined> {
     const userToken = this.userTokens.find(
-      findToken => findToken.token === token,
-    );
-    return userToken;
+      (findToken) => findToken.token === token
+    )
+    return userToken
   }
 }
 
-export default FakeUserTokensRepository;
+export default FakeUserTokensRepository

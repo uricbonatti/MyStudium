@@ -1,24 +1,24 @@
-import { injectable, inject } from 'tsyringe';
-import { ApolloError } from 'apollo-server';
-import IUsersRepository from '../repositories/IUsersRepository';
-import User from '../infra/typeorm/schemas/User';
+import { injectable, inject } from 'tsyringe'
+import { ApolloError } from 'apollo-server'
+import IUsersRepository from '../repositories/IUsersRepository'
+import User from '../infra/typeorm/schemas/User'
 
 interface IRequest {
   id: string;
 }
 @injectable()
 class ShowProfileService {
-  constructor(
+  constructor (
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
+    private usersRepository: IUsersRepository
   ) {}
 
-  public async execute({ id }: IRequest): Promise<User> {
-    const user = await this.usersRepository.findById(id);
+  public async execute ({ id }: IRequest): Promise<User> {
+    const user = await this.usersRepository.findById(id)
     if (!user) {
-      throw new ApolloError('User not found');
+      throw new ApolloError('User not found')
     }
-    return user;
+    return user
   }
 }
-export default ShowProfileService;
+export default ShowProfileService

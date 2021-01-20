@@ -3,8 +3,8 @@ import {
   ObjectIdColumn,
   ObjectID,
   Column,
-  CreateDateColumn,
-} from 'typeorm';
+  CreateDateColumn
+} from 'typeorm'
 
 @Entity('categories')
 class Category {
@@ -17,4 +17,4 @@ class Category {
   @CreateDateColumn()
   created_at: Date;
 }
-export default Category;
+export default Category
