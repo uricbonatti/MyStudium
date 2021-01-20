@@ -2,6 +2,7 @@ import { MongoRepository, getMongoRepository } from 'typeorm'
 
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository'
 import UserToken from '../schemas/UserToken'
+import { ObjectId } from 'mongodb';
 
 class UserTokensRepository implements IUserTokensRepository {
   private odmRepository: MongoRepository<UserToken>;
@@ -9,9 +10,10 @@ class UserTokensRepository implements IUserTokensRepository {
   constructor () {
     this.odmRepository = getMongoRepository(UserToken)
   }
+  
 
   public async generate (user_id: string): Promise<UserToken> {
-    const userToken = this.odmRepository.create({ user_id })
+    const userToken = this.odmRepository.create()
     await this.odmRepository.save(userToken)
 
     return userToken

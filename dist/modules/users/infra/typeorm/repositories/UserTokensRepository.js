@@ -10,7 +10,7 @@ class UserTokensRepository {
         this.odmRepository = typeorm_1.getMongoRepository(UserToken_1.default);
     }
     async generate(user_id) {
-        const userToken = this.odmRepository.create({ user_id });
+        const userToken = this.odmRepository.create();
         await this.odmRepository.save(userToken);
         return userToken;
     }

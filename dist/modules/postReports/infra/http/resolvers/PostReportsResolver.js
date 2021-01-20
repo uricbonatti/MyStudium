@@ -37,14 +37,14 @@ async function closePostReport(_, { data }, { token }) {
     return report;
 }
 exports.closePostReport = closePostReport;
-async function userPostReports(_, _, { token }) {
+async function userPostReports(_, { token }) {
     const user_id = tokenValidation_1.default(token);
     const listUserPostReports = tsyringe_1.container.resolve(ListUserPostReportsService_1.default);
     const reports = await listUserPostReports.execute({ user_id });
     return reports;
 }
 exports.userPostReports = userPostReports;
-async function openPostReports(_, _, { token }) {
+async function openPostReports(_, { token }) {
     const user_id = tokenValidation_1.default(token);
     const listOpenPostReports = tsyringe_1.container.resolve(ListOpenPostReportsService_1.default);
     const reports = await listOpenPostReports.execute({ user_id });

@@ -60,13 +60,13 @@ export async function closePostReport (
   })
   return report
 }
-export async function userPostReports (_, _, { token }: IContext) {
+export async function userPostReports (_, { token }: IContext) {
   const user_id = verifyToken(token)
   const listUserPostReports = container.resolve(ListUserPostReportsService)
   const reports = await listUserPostReports.execute({ user_id })
   return reports
 }
-export async function openPostReports (_, _, { token }: IContext) {
+export async function openPostReports ( _, { token }: IContext) {
   const user_id = verifyToken(token)
   const listOpenPostReports = container.resolve(ListOpenPostReportsService)
   const reports = await listOpenPostReports.execute({ user_id })
