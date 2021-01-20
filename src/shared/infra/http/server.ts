@@ -1,5 +1,4 @@
-require('dotenv').config();
-
+import dotenv from 'dotenv';
 import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server';
 import apolloConfig from '@config/apollo';
@@ -8,6 +7,8 @@ import Schema from './schema';
 import resolvers from './resolvers';
 import '@shared/infra/typeorm';
 import '@shared/container';
+
+dotenv.config();
 
 const server = new ApolloServer({
   typeDefs: Schema,

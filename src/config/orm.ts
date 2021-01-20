@@ -8,7 +8,7 @@ const localConfig = {
   entities: [
     path.resolve(
       __dirname,
-      process.env.NODE === 'development' ? 'src' : 'dist',
+      process.env.NODE_ENV === 'development' ? 'src' : 'dist',
       'modules',
       '**',
       'infra',
@@ -29,7 +29,7 @@ const webConfig = {
   entities: [
     path.resolve(
       __dirname,
-      process.env.NODE === 'development' ? 'src' : 'dist',
+      process.env.NODE_ENV === 'development' ? 'src' : 'dist',
       'modules',
       '**',
       'infra',
