@@ -6,10 +6,10 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && tscpaths -p tsconfig.build.json -s ./src -o ./dist",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
-    "start": "ts-node -r tsconfig-paths/register src/shared/infra/http/server.ts",
+    "ts:start": "ts-node -r tsconfig-paths/register src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "jest",
-    "prod:server": "node dist/shared/infra/http/server.js",
+    "start": "node dist/shared/infra/http/server.js",
     "prod:test": "node --trace-warnings dist/shared/infra/http/server.js"
   },
   "dependencies": {
