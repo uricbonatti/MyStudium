@@ -5,7 +5,7 @@ export default {
     if (err.message) {
       return new ApolloError(
         err.message,
-        err.extensions && err.extensions.code === 'INTERNAL_SERVER_ERROR'
+        err.extensions?.code && err.extensions.code === 'INTERNAL_SERVER_ERROR'
           ? '400'
           : err.extensions?.code,
       );
