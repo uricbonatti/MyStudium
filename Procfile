@@ -1,1 +1,1 @@
-web: "npm build && npm prod:server"
+web: npm start
