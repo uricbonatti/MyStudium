@@ -1,13 +1,25 @@
+import path from 'path';
 import { ConnectionOptions } from 'typeorm';
+
+// process.env.NODE === 'development'
+// ? './src/modules/**/infra/typeorm/schemas/*.ts'
+//   : './dist/modules/**/infra/typeorm/schemas/*.js',
 
 const baseConfig = {
   name: 'default',
   type: 'mongodb',
   useUnifiedTopology: true,
   entities: [
-    process.env.NODE === 'development'
-      ? './src/modules/**/infra/typeorm/schemas/*.ts'
-      : './dist/modules/**/infra/typeorm/schemas/*.js',
+    path.resolve(
+      __dirname,
+      process.env.NODE === 'development' ? 'src' : 'dist',
+      'modules',
+      '**',
+      'infra',
+      'typeorm',
+      'schemas',
+      '*.ts',
+    ),
   ],
 } as ConnectionOptions;
 
