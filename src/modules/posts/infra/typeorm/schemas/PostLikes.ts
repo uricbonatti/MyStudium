@@ -1,9 +1,7 @@
-import { Expose } from 'class-transformer'
-import {
-  Entity, ObjectIdColumn, ObjectID, Column
-} from 'typeorm'
+import { Expose } from 'class-transformer';
+import { Entity, ObjectIdColumn, ObjectID, Column } from 'typeorm';
 
-import { ObjectId as MongoObjectID } from 'mongodb'
+import { ObjectId as MongoObjectID } from 'mongodb';
 
 @Entity('post_likes')
 class PostLikes {
@@ -17,8 +15,8 @@ class PostLikes {
   user_liked: MongoObjectID[];
 
   @Expose({ name: 'likes' })
-  getLikes (): number {
-    return this.user_liked.length
+  getLikes(): number {
+    return this.user_liked.length;
   }
 }
-export default PostLikes
+export default PostLikes;

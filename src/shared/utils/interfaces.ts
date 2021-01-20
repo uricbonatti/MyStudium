@@ -1,6 +1,6 @@
-import Post from '@modules/posts/infra/typeorm/schemas/Post'
-import Comment from '@modules/comments/infra/typeorm/schemas/Comment'
-import { ObjectId } from 'mongodb'
+import Post from '@modules/posts/infra/typeorm/schemas/Post';
+import Comment from '@modules/comments/infra/typeorm/schemas/Comment';
+import { ObjectId } from 'mongodb';
 
 export interface IContext {
   token: string;

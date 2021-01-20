@@ -1,8 +1,8 @@
-import IUsersRepository from '@modules/users/repositories/IUsersRepository'
-import { ApolloError } from 'apollo-server'
-import { inject, injectable } from 'tsyringe'
-import PostReport from '../infra/typeorm/schemas/PostReport'
-import IPostReportsRepository from '../repositories/IPostReportsRepository'
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import { ApolloError } from 'apollo-server';
+import { inject, injectable } from 'tsyringe';
+import PostReport from '../infra/typeorm/schemas/PostReport';
+import IPostReportsRepository from '../repositories/IPostReportsRepository';
 
 interface IRequest {
   user_id: string;
@@ -10,23 +10,23 @@ interface IRequest {
 
 @injectable()
 class ListOpenPostReportsService {
-  constructor (
+  constructor(
     @inject('UsersReppository')
     private usersRepository: IUsersRepository,
     @inject('PostReportsRepository')
-    private reportsRepository: IPostReportsRepository
+    private reportsRepository: IPostReportsRepository,
   ) {}
 
-  public async execute ({ user_id }: IRequest): Promise<PostReport[]> {
-    const user = await this.usersRepository.findById(user_id)
+  public async execute({ user_id }: IRequest): Promise<PostReport[]> {
+    const user = await this.usersRepository.findById(user_id);
     if (!user) {
-      throw new ApolloError('User not found', '400')
+      throw new ApolloError('User not found', '400');
     }
     if (user.permission === 2) {
-      throw new ApolloError('User without permission', '401')
+      throw new ApolloError('User without permission', '401');
     }
-    const reports = await this.reportsRepository.findOpenReports()
-    return reports
+    const reports = await this.reportsRepository.findOpenReports();
+    return reports;
   }
 }
-export default ListOpenPostReportsService
+export default ListOpenPostReportsService;

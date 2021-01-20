@@ -6,11 +6,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BeforeInsert,
-  BeforeUpdate
-} from 'typeorm'
-import { ObjectId as MongoObjectID } from 'mongodb'
-import { OmitedUser } from '@shared/utils/interfaces'
-import { Expose } from 'class-transformer'
+  BeforeUpdate,
+} from 'typeorm';
+import { ObjectId as MongoObjectID } from 'mongodb';
+import { OmitedUser } from '@shared/utils/interfaces';
+import { Expose } from 'class-transformer';
 
 @Entity('comments')
 class Comment {
@@ -36,24 +36,24 @@ class Comment {
   updated_at: Date;
 
   @Expose({ name: 'likes' })
-  getLikes (): number {
+  getLikes(): number {
     if (this.users_liked && this.users_liked.length > 0) {
-      console.log(this.users_liked.length)
-      return this.users_liked.length
+      console.log(this.users_liked.length);
+      return this.users_liked.length;
     }
-    return 0
+    return 0;
   }
 
   @BeforeInsert()
-  solveBinaryBug () {
-    this.post_id = new MongoObjectID(this.post_id)
-    this.users_liked = []
+  solveBinaryBug() {
+    this.post_id = new MongoObjectID(this.post_id);
+    this.users_liked = [];
   }
 
   @BeforeUpdate()
-  solvBinaryBugAgain () {
-    this.post_id = new MongoObjectID(this.post_id)
+  solvBinaryBugAgain() {
+    this.post_id = new MongoObjectID(this.post_id);
   }
 }
 
-export default Comment
+export default Comment;

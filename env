@@ -1,3 +1,6 @@
-NODE_ENV = development
 NODE = development
 API_DEV = http://localhost:3000
+ENVIRONMENT = web
+DB_URL = "mongodb+srv://dbUser:iOWWpuwCT00D8Oic@cluster0.oyw5v.mongodb.net/Studium?retryWrites=true"
+# ENVIRONMENT = web | web
+# NODE = production | development

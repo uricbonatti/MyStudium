@@ -1,23 +1,23 @@
-import { ApolloError, Config } from 'apollo-server'
+import { ApolloError, Config } from 'apollo-server';
 
 export default {
-  formatError: (err) => {
+  formatError: err => {
     if (err.message) {
       return new ApolloError(
         err.message,
-        err.extensions.code === 'INTERNAL_SERVER_ERROR'
+        err.extensions && err.extensions.code === 'INTERNAL_SERVER_ERROR'
           ? '400'
-          : err.extensions?.code
-      )
+          : err.extensions?.code,
+      );
     }
-    return new ApolloError('Internal Server Error', '500')
+    return new ApolloError('Internal Server Error', '500');
   },
   context: ({ req }) => {
-    const authHeader = req.headers.authorization
+    const authHeader = req.headers.authorization;
     if (!authHeader) {
-      return { token: '' }
+      return { token: '' };
     }
-    const [, token] = authHeader.split(' ')
-    return { token }
-  }
-} as Config
+    const [, token] = authHeader.split(' ');
+    return { token };
+  },
+} as Config;

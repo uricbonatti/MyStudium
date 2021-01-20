@@ -1,5 +1,5 @@
-import ICreateTagDTO from '../dtos/ICreateTagDTO'
-import Tag from '../infra/typeorm/schemas/Tag'
+import ICreateTagDTO from '../dtos/ICreateTagDTO';
+import Tag from '../infra/typeorm/schemas/Tag';
 
 export default interface ITagsRepository {
   create(data: ICreateTagDTO): Promise<Tag>;

@@ -3,9 +3,9 @@ import {
   ObjectIdColumn,
   ObjectID,
   Column,
-  CreateDateColumn
-} from 'typeorm'
-import Category from '@modules/categories/infra/typeorm/schemas/Category'
+  CreateDateColumn,
+} from 'typeorm';
+import Category from '@modules/categories/infra/typeorm/schemas/Category';
 
 @Entity('tags')
 class Tag {
@@ -21,4 +21,4 @@ class Tag {
   @CreateDateColumn()
   created_at: Date;
 }
-export default Tag
+export default Tag;

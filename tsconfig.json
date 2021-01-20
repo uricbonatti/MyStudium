@@ -1,34 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es2017",                          
-    "module": "commonjs",                     
-    "lib": ["es6"],      
-                           
-    "allowJs": true,                       
-    "outDir": "./dist",                        
-    "rootDir": "./src",                       
-    "removeComments": true,                
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types"
-    ],                          
-    "esModuleInterop": true,                  
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,        
-    "emitDecoratorMetadata": true,         
-    "skipLibCheck": true,                     
-    "forceConsistentCasingInFileNames": true,
+    "target": "es2020",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "allowJs": true,
+    "strictPropertyInitialization": false,
     "baseUrl": "./src",
     "paths": {
-      "@models/*": ["models/*"],
-      "@views/*": ["views/*"],
-      "@controllers/*": ["controllers/*"],
+      "@modules/*": ["modules/*"],
       "@shared/*": ["shared/*"],
-      "@config/*": ["config/*"],
-      "@modules/*": ["modules/*"]
-    }
-  },
-  "include": [
-    "src/**/*"
-  ]
+      "@config/*": ["config/*"]
+    },
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "forceConsistentCasingInFileNames": true
+  }
 }

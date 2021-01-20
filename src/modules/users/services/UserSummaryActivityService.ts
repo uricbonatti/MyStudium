@@ -1,12 +1,12 @@
-import { inject, injectable } from 'tsyringe'
-import { ObjectId } from 'mongodb'
-import { ApolloError } from 'apollo-server'
-import { differenceInCalendarDays, subDays } from 'date-fns'
-import IPostsRepository from '@modules/posts/repositories/IPostsRepository'
-import ICommentsRepository from '@modules/comments/repositories/ICommentsRepository'
-import Post from '@modules/posts/infra/typeorm/schemas/Post'
-import { calcWeekExp } from '@shared/utils/expTable'
-import IUsersRepository from '../repositories/IUsersRepository'
+import { inject, injectable } from 'tsyringe';
+import { ObjectId } from 'mongodb';
+import { ApolloError } from 'apollo-server';
+import { differenceInCalendarDays, subDays } from 'date-fns';
+import IPostsRepository from '@modules/posts/repositories/IPostsRepository';
+import ICommentsRepository from '@modules/comments/repositories/ICommentsRepository';
+import Post from '@modules/posts/infra/typeorm/schemas/Post';
+import { calcWeekExp } from '@shared/utils/expTable';
+import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IGenerateSummary {
   user_id: string;
@@ -27,97 +27,97 @@ export interface ISummary {
 }
 @injectable()
 class UserSummaryActivityService {
-  constructor (
+  constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
     @inject('PostsRepository')
     private postsRepository: IPostsRepository,
     @inject('CommentsRepository')
-    private commentsRepository: ICommentsRepository
+    private commentsRepository: ICommentsRepository,
   ) {}
 
-  public async execute ({ user_id }: IGenerateSummary): Promise<ISummary> {
+  public async execute({ user_id }: IGenerateSummary): Promise<ISummary> {
     if (!ObjectId.isValid(user_id)) {
-      throw new ApolloError('Invalid User ID', '400')
+      throw new ApolloError('Invalid User ID', '400');
     }
-    const user = await this.usersRepository.findById(user_id)
+    const user = await this.usersRepository.findById(user_id);
     if (!user) {
-      throw new ApolloError('User not found', '400')
+      throw new ApolloError('User not found', '400');
     }
-    const userPosts = await this.postsRepository.findByAuthor(user.id)
-    const userComments = await this.commentsRepository.findByAuthorId(user.id)
+    const userPosts = await this.postsRepository.findByAuthor(user.id);
+    const userComments = await this.commentsRepository.findByAuthorId(user.id);
     const monthPosts = userPosts.filter(
-      (post) => differenceInCalendarDays(Date.now(), post.created_at) < 30
-    )
+      post => differenceInCalendarDays(Date.now(), post.created_at) < 30,
+    );
     const weekPosts = monthPosts.filter(
-      (post) => differenceInCalendarDays(Date.now(), post.created_at) < 7
-    )
+      post => differenceInCalendarDays(Date.now(), post.created_at) < 7,
+    );
     const monthComments = userComments.filter(
-      (comment) => differenceInCalendarDays(Date.now(), comment.created_at) < 30
-    )
+      comment => differenceInCalendarDays(Date.now(), comment.created_at) < 30,
+    );
     const weekComments = monthComments.filter(
-      (comment) => differenceInCalendarDays(Date.now(), comment.created_at) < 7
-    )
-    const countAllPosts = userPosts.length
-    const countAllComments = userComments.length
-    const countMonthPosts = monthPosts.length
-    const countMonthComments = monthPosts.length
-    const countWeekPosts = weekPosts.length
-    const countWeekComments = weekComments.length
+      comment => differenceInCalendarDays(Date.now(), comment.created_at) < 7,
+    );
+    const countAllPosts = userPosts.length;
+    const countAllComments = userComments.length;
+    const countMonthPosts = monthPosts.length;
+    const countMonthComments = monthPosts.length;
+    const countWeekPosts = weekPosts.length;
+    const countWeekComments = weekComments.length;
     const postLiked = await this.postsRepository.countPostsLikedByUser(
       user.id,
-      user.created_at
-    )
+      user.created_at,
+    );
     const monthPostLiked = await this.postsRepository.countPostsLikedByUser(
       user.id,
-      subDays(Date.now(), 30)
-    )
+      subDays(Date.now(), 30),
+    );
     const weekPostLiked = await this.postsRepository.countPostsLikedByUser(
       user.id,
-      subDays(Date.now(), 7)
-    )
+      subDays(Date.now(), 7),
+    );
     const commentLiked = await this.commentsRepository.countCommentsLikedByUser(
       user.id,
-      user.created_at
-    )
+      user.created_at,
+    );
     const monthCommentLiked = await this.commentsRepository.countCommentsLikedByUser(
       user.id,
-      subDays(Date.now(), 30)
-    )
+      subDays(Date.now(), 30),
+    );
     const weekCommentLiked = await this.commentsRepository.countCommentsLikedByUser(
       user.id,
-      subDays(Date.now(), 7)
-    )
+      subDays(Date.now(), 7),
+    );
     const weekExp = calcWeekExp({
       num_comments: countWeekComments,
       num_liked_comments: weekCommentLiked,
       num_posts: countWeekPosts,
-      num_liked_posts: weekPostLiked
-    })
+      num_liked_posts: weekPostLiked,
+    });
     const summary: ISummary = {
       all: {
         commentsCreated: countAllComments,
         postsCreated: countAllPosts,
         commentsLiked: commentLiked,
-        postsLiked: postLiked
+        postsLiked: postLiked,
       },
       lastMonth: {
         commentsCreated: countMonthComments,
         postsCreated: countMonthPosts,
         postsLiked: monthPostLiked,
-        commentsLiked: monthCommentLiked
+        commentsLiked: monthCommentLiked,
       },
       lastWeek: {
         commentsCreated: countWeekComments,
         postsCreated: countWeekPosts,
         postsLiked: weekPostLiked,
-        commentsLiked: weekCommentLiked
+        commentsLiked: weekCommentLiked,
       },
       lastWeekPosts: weekPosts,
-      weekExp
-    }
-    console.table(summary)
-    return summary
+      weekExp,
+    };
+    console.table(summary);
+    return summary;
   }
 }
-export default UserSummaryActivityService
+export default UserSummaryActivityService;

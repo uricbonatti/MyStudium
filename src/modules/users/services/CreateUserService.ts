@@ -1,43 +1,43 @@
-import { injectable, inject } from 'tsyringe'
-import { ApolloError } from 'apollo-server'
-import IUsersRepository from '../repositories/IUsersRepository'
-import User from '../infra/typeorm/schemas/User'
-import IHashProvider from '../providers/HashProvider/models/IHashProvider'
-import ICreateUserDTO from '../dtos/ICreateUserDTO'
+import { injectable, inject } from 'tsyringe';
+import { ApolloError } from 'apollo-server';
+import IUsersRepository from '../repositories/IUsersRepository';
+import User from '../infra/typeorm/schemas/User';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+import ICreateUserDTO from '../dtos/ICreateUserDTO';
 
 @injectable()
 class CreateUserService {
-  constructor (
+  constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
     @inject('HashProvider')
-    private hashProvider: IHashProvider
+    private hashProvider: IHashProvider,
   ) {}
 
-  public async execute ({
+  public async execute({
     email,
     name,
     password,
     description,
     github,
-    linkedin
+    linkedin,
   }: ICreateUserDTO): Promise<User> {
-    const checkUserExists = await this.usersRepository.findByEmail(email)
+    const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {
-      throw new ApolloError('Email address already used.', '400')
+      throw new ApolloError('Email address already used.', '400');
     }
-    const hashedPassword = await this.hashProvider.generateHash(password)
+    const hashedPassword = await this.hashProvider.generateHash(password);
     const user = await this.usersRepository.create({
       email,
       password: hashedPassword,
       name,
       description,
       github,
-      linkedin
-    })
-    return user
+      linkedin,
+    });
+    return user;
   }
 }
 
-export default CreateUserService
+export default CreateUserService;

@@ -1,4 +1,4 @@
-import { ObjectId } from 'mongodb'
+import { ObjectId } from 'mongodb';
 
 export default interface IPostLikeDTO {
   post_id: ObjectId;

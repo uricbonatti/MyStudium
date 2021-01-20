@@ -1,4 +1,4 @@
-import { CorsOptions } from 'apollo-server'
+import { CorsOptions } from 'apollo-server';
 
 export default {
   credentials: true,
@@ -9,6 +9,6 @@ export default {
     'Origin',
     'Access-Control-Allow-Headers',
     'Content-Type',
-    'Authorization'
-  ]
-} as CorsOptions
+    'Authorization',
+  ],
+} as CorsOptions;

@@ -1,8 +1,8 @@
-import { inject, injectable } from 'tsyringe'
-import IUsersRepository from '@modules/users/repositories/IUsersRepository'
-import IPostReportsRepository from '@modules/postReports/repositories/IPostReportsRepository'
-import { ApolloError } from 'apollo-server'
-import PostReport from '../infra/typeorm/schemas/PostReport'
+import { inject, injectable } from 'tsyringe';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IPostReportsRepository from '@modules/postReports/repositories/IPostReportsRepository';
+import { ApolloError } from 'apollo-server';
+import PostReport from '../infra/typeorm/schemas/PostReport';
 
 interface IRequest {
   id: string;
@@ -13,34 +13,34 @@ interface IRequest {
 
 @injectable()
 class ClosePostReportService {
-  constructor (
+  constructor(
     @inject('UsersReppository')
     private usersRepository: IUsersRepository,
     @inject('PostReportsRepository')
-    private reportsRepository: IPostReportsRepository
+    private reportsRepository: IPostReportsRepository,
   ) {}
 
-  public async execute ({
+  public async execute({
     id,
     action,
     feedback,
-    user_id
+    user_id,
   }: IRequest): Promise<PostReport> {
-    const user = await this.usersRepository.findById(user_id)
+    const user = await this.usersRepository.findById(user_id);
     if (!user) {
-      throw new ApolloError('User not found', '400')
+      throw new ApolloError('User not found', '400');
     }
     if (user.permission === 2) {
-      throw new ApolloError('User without permission', '401')
+      throw new ApolloError('User without permission', '401');
     }
-    const report = await this.reportsRepository.findById(id)
+    const report = await this.reportsRepository.findById(id);
     if (!report) {
-      throw new ApolloError('Report not found', '400')
+      throw new ApolloError('Report not found', '400');
     }
-    report.feedback = feedback
-    report.action = action
-    report.moderator_id = user.id
-    return this.reportsRepository.close(report)
+    report.feedback = feedback;
+    report.action = action;
+    report.moderator_id = user.id;
+    return this.reportsRepository.close(report);
   }
 }
-export default ClosePostReportService
+export default ClosePostReportService;
