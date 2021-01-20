@@ -3,12 +3,13 @@ import { ApolloError, Config } from 'apollo-server';
 export default {
   formatError: err => {
     if (err.message) {
-      return new ApolloError(
-        err.message,
-        err.extensions?.code && err.extensions.code === 'INTERNAL_SERVER_ERROR'
-          ? '400'
-          : err.extensions?.code,
-      );
+      let code = '400';
+      if (err.extensions && err.extensions.code) {
+        if (err.extensions.code === 'INTERNAL_SERVER_ERROR') {
+          return new ApolloError(err.message, '400');
+        }
+        return new ApolloError(err.message, err.extensions.code);
+      }
     }
     return new ApolloError('Internal Server Error', '500');
   },
