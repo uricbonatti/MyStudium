@@ -1,11 +1,7 @@
 import path from 'path';
 import { ConnectionOptions } from 'typeorm';
 
-// process.env.NODE === 'development'
-// ? './src/modules/**/infra/typeorm/schemas/*.ts'
-//   : './dist/modules/**/infra/typeorm/schemas/*.js',
-
-const baseConfig = {
+const localConfig = {
   name: 'default',
   type: 'mongodb',
   useUnifiedTopology: true,
@@ -21,15 +17,27 @@ const baseConfig = {
       '*.ts',
     ),
   ],
-} as ConnectionOptions;
-
-const localConfig = {
   host: 'localhost',
   port: 27017,
   database: 'studium',
 } as ConnectionOptions;
 
-const webCongig = {
+const webConfig = {
+  name: 'default',
+  type: 'mongodb',
+  useUnifiedTopology: true,
+  entities: [
+    path.resolve(
+      __dirname,
+      process.env.NODE === 'development' ? 'src' : 'dist',
+      'modules',
+      '**',
+      'infra',
+      'typeorm',
+      'schemas',
+      '*.ts',
+    ),
+  ],
   url: process.env.DB_URL,
   synchronize: true,
   w: 'majority',
@@ -37,9 +45,4 @@ const webCongig = {
   useNewUrlParser: true,
 } as ConnectionOptions;
 
-export default [
-  {
-    ...baseConfig,
-    ...(process.env.ENVIRONMENT === 'web' ? webCongig : localConfig),
-  },
-] as ConnectionOptions[];
+export default [process.env.LOCAL === 'web' ? webConfig : localConfig];

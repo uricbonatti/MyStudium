@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server';
 import apolloConfig from '@config/apollo';
