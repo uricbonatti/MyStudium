@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es2017",                          
     "module": "commonjs",                     
-    "lib": ["es6"],                             
+    "lib": ["es6"],      
+    "moduleResolution": "node",                       
     "allowJs": true,                       
     "outDir": "./dist",                        
     "rootDir": "./src",                       
@@ -25,8 +26,7 @@
       "@shared/*": ["shared/*"],
       "@config/*": ["config/*"],
       "@modules/*": ["modules/*"]
-    },
-    "noImplicitAny": false
+    }
   },
   "include": [
     "src/**/*"
