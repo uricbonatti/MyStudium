@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import 'reflect-metadata';
+import path from 'path';
 import { ApolloServer } from 'apollo-server';
 import apolloConfig from '@config/apollo';
 import corsConfig from '@config/cors';
@@ -14,7 +15,11 @@ const server = new ApolloServer({
   typeDefs: Schema,
   cors: corsConfig,
   resolvers,
-  playground: true,
+  introspection: true,
+  playground: {
+    title: 'Studium Backend',
+    faviconUrl: path.resolve(__dirname, '..', '..', '..', '..', 'favicon.ico'),
+  },
   context: apolloConfig.context,
   formatError: apolloConfig.formatError,
 });
