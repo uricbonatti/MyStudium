@@ -34,12 +34,18 @@ export default class MailGunMailProvider implements IEmailProvider {
     from,
   }: ISendMailDTO): Promise<void> {
     try {
+      let nameFrom: string | undefined;
+      let emailFrom: string | undefined;
+      if (from) {
+        nameFrom = from.name;
+        emailFrom = from.email;
+      }
       const { email, name } = mailConfig.defaults.from;
 
       await this.client.sendMail({
         from: {
-          name: from?.name || name,
-          address: from?.email || email,
+          name: nameFrom || name,
+          address: emailFrom || email,
         },
         to: { name: to.name, address: to.email },
         subject,
