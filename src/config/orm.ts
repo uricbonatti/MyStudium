@@ -2,41 +2,52 @@ import path from 'path';
 import { ConnectionOptions } from 'typeorm';
 
 const localConfig = {
-  name: 'default',
   type: 'mongodb',
   useUnifiedTopology: true,
   entities: [
-    path.resolve(
-      __dirname,
-      process.env.NODE_ENV === 'development' ? 'src' : 'dist',
-      'modules',
-      '**',
-      'infra',
-      'typeorm',
-      'schemas',
-      '*.ts',
-    ),
+    process.env.LOCAL_SYSTEM === 'win'
+      ? `${
+          process.env.NODE_ENV === 'development' ? 'src' : 'dist'
+        }/modules/**/infra/typeorm/schemas/*.${
+          process.env.NODE_ENV === 'development' ? 'ts' : 'js'
+        }`
+      : path.resolve(
+          __dirname,
+          process.env.NODE_ENV === 'development' ? 'src' : 'dist',
+          'modules',
+          '**',
+          'infra',
+          'typeorm',
+          'schemas',
+          process.env.NODE_ENV === 'development' ? '*.ts' : '*.js',
+        ),
   ],
   host: 'localhost',
   port: 27017,
-  database: 'studium',
+  synchronize: true,
+  database: 'Studium',
 } as ConnectionOptions;
 
 const webConfig = {
-  name: 'default',
   type: 'mongodb',
   useUnifiedTopology: true,
   entities: [
-    path.resolve(
-      __dirname,
-      process.env.NODE_ENV === 'development' ? 'src' : 'dist',
-      'modules',
-      '**',
-      'infra',
-      'typeorm',
-      'schemas',
-      '*.ts',
-    ),
+    process.env.LOCAL_SYSTEM === 'win'
+      ? `${
+          process.env.NODE_ENV === 'development' ? 'src' : 'dist'
+        }/modules/**/infra/typeorm/schemas/*.${
+          process.env.NODE_ENV === 'development' ? 'ts' : 'js'
+        }`
+      : path.resolve(
+          __dirname,
+          process.env.NODE_ENV === 'development' ? 'src' : 'dist',
+          'modules',
+          '**',
+          'infra',
+          'typeorm',
+          'schemas',
+          process.env.NODE_ENV === 'development' ? '*.ts' : '*.js',
+        ),
   ],
   url: process.env.DB_URL,
   synchronize: true,

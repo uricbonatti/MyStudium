@@ -16,6 +16,7 @@ class FakeCommentsRepository implements ICommentsRepository {
       {
         users_liked: [],
         id: new ObjectId(),
+        created_at: new Date(),
       },
       data,
     );

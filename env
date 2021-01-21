@@ -4,3 +4,5 @@ ENVIRONMENT = web
 DB_URL = "mongodb+srv://dbUser:iOWWpuwCT00D8Oic@cluster0.oyw5v.mongodb.net/Studium?retryWrites=true"
 # ENVIRONMENT = web | web
 # NODE = production | development
+
+DB_URL = mongodb+srv://dbUser:iOWWpuwCT00D8Oic@cluster0.oyw5v.mongodb.net/Studium?retryWrites=true

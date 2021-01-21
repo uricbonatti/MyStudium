@@ -61,7 +61,7 @@ class UserSummaryActivityService {
     const countAllPosts = userPosts.length;
     const countAllComments = userComments.length;
     const countMonthPosts = monthPosts.length;
-    const countMonthComments = monthPosts.length;
+    const countMonthComments = monthComments.length;
     const countWeekPosts = weekPosts.length;
     const countWeekComments = weekComments.length;
     const postLiked = await this.postsRepository.countPostsLikedByUser(
@@ -116,7 +116,6 @@ class UserSummaryActivityService {
       lastWeekPosts: weekPosts,
       weekExp,
     };
-    console.table(summary);
     return summary;
   }
 }

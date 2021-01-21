@@ -19,6 +19,7 @@ class FakePostsRepository implements IPostsRepository {
         title,
         slug: removeAccents(title).toLowerCase().replace(/\s/g, '-'),
         users_liked: [],
+        created_at: new Date(),
       },
       rest,
     );

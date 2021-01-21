@@ -29,10 +29,18 @@ describe('UpdateProfile', () => {
       id: user.id.toHexString(),
       name: 'John Joe',
       email: 'johnjoe@example.com',
+      description: 'description',
+      avatar_url: 'url',
+      github: 'github',
+      linkedin: 'linkedin',
     });
 
     expect(updatedUser.name).toBe('John Joe');
     expect(updatedUser.email).toBe('johnjoe@example.com');
+    expect(updatedUser.description).toBe('description');
+    expect(updatedUser.avatar_url).toBe('url');
+    expect(updatedUser.github).toBe('github');
+    expect(updatedUser.linkedin).toBe('linkedin');
   });
 
   it('should not be able to change to another user email ', async () => {

@@ -5,6 +5,7 @@ import {
   updateUser,
   userSummary,
 } from './UsersResolver';
+import { forgotPassword, resetPassword } from './PasswordResolver';
 import { login } from './SessionResolver';
 
 export const UserQuery = {
@@ -13,4 +14,10 @@ export const UserQuery = {
   userSummary,
 };
 
-export const UserMutation = { createUser, deleteUser, updateUser };
+export const UserMutation = {
+  createUser,
+  deleteUser,
+  updateUser,
+  forgotPassword,
+  resetPassword,
+};

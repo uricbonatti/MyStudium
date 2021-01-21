@@ -23,6 +23,12 @@ input LoginData {
   email: String!
   password: String!
 }
+input ResetPassword {
+  token: String!
+  password: String!
+  password_confirmation: String!
+}
+
 type User {
   id: String
   name: String!
@@ -59,8 +65,13 @@ type Query {
   login(data: LoginData): AuthenticateUser
   userSummary(id: ID!): UserSummary
 }
+input EmailInput {
+  email: String! @constraint(format: "email")
+}
 type Mutation {
   createUser(data: CreateUser): User
   updateUser(data: UpdateUser): User
   deleteUser(data: DeleteUser): ID
+  forgotPassword(data: EmailInput): Boolean
+  resetPassword(data: ResetPassword): Boolean
 }

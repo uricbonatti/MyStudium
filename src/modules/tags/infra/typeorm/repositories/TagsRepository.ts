@@ -4,6 +4,7 @@ import ICreateTagDTO from '@modules/tags/dtos/ICreateTagDTO';
 import ITagsRepository from '@modules/tags/repositories/ITagsRepository';
 import { MongoRepository, getMongoRepository } from 'typeorm';
 import Tag from '../schemas/Tag';
+import { ApolloError } from 'apollo-server';
 
 class TagsRepository implements ITagsRepository {
   private odmRepository: MongoRepository<Tag>;
@@ -13,41 +14,65 @@ class TagsRepository implements ITagsRepository {
   }
 
   public async create({ name, category }: ICreateTagDTO): Promise<Tag> {
-    const tag = this.odmRepository.create({
-      name,
-      category,
-    });
+    try {
+      const tag = this.odmRepository.create({
+        name,
+        category,
+      });
 
-    await this.odmRepository.save(tag);
-    return tag;
+      await this.odmRepository.save(tag);
+      return tag;
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 
   public async findById(tag_id: string): Promise<Tag | undefined> {
-    const tag = await this.odmRepository.findOne(tag_id);
-    return tag;
+    try {
+      const tag = await this.odmRepository.findOne(tag_id);
+      return tag;
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 
   public async findByCategory(category_id: string): Promise<Tag[]> {
-    const tags = await this.odmRepository.find({
-      where: {
-        'category.id': ObjectId.createFromHexString(category_id),
-      },
-    });
-    return tags;
+    try {
+      const tags = await this.odmRepository.find({
+        where: {
+          'category.id': ObjectId.createFromHexString(category_id),
+        },
+      });
+      return tags;
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 
   public async findByName(name: string): Promise<Tag | undefined> {
-    const tag = await this.odmRepository.findOne({ name });
-    return tag;
+    try {
+      const tag = await this.odmRepository.findOne({ name });
+      return tag;
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 
   public async findAll(): Promise<Tag[]> {
-    const tags = await this.odmRepository.find();
-    return tags;
+    try {
+      const tags = await this.odmRepository.find();
+      return tags;
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 
   public async delete(tag_id: string): Promise<void> {
-    await this.odmRepository.delete(tag_id);
+    try {
+      await this.odmRepository.delete(tag_id);
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 }
 export default TagsRepository;

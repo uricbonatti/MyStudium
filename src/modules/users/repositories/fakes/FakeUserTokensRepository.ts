@@ -7,12 +7,12 @@ import UserToken from '@modules/users/infra/typeorm/schemas/UserToken';
 class FakeUserTokensRepository implements IUserTokensRpository {
   private userTokens: UserToken[] = [];
 
-  public async generate(user_id: string): Promise<UserToken> {
+  public async generate(user_id: ObjectID): Promise<UserToken> {
     const userToken = new UserToken();
     Object.assign(userToken, {
       id: new ObjectID(),
       token: v4(),
-      user_id: new ObjectID(),
+      user_id,
       created_at: new Date(),
       updated_at: new Date(),
     });

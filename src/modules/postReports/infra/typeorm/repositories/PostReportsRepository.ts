@@ -1,5 +1,6 @@
 import ICreatePostReportDTO from '@modules/postReports/dtos/ICreatePostReportDTO';
 import IPostReportsRepository from '@modules/postReports/repositories/IPostReportsRepository';
+import { ApolloError } from 'apollo-server';
 import { ObjectId } from 'mongodb';
 import { MongoRepository, getMongoRepository } from 'typeorm';
 import PostReport from '../schemas/PostReport';
@@ -17,45 +18,65 @@ class PostReportsRepository implements IPostReportsRepository {
     title,
     user_id,
   }: ICreatePostReportDTO): Promise<PostReport> {
-    const report = this.odmRepository.create({
-      body,
-      post_id,
-      title,
-      user_id,
-      closed: false,
-    });
-    await this.odmRepository.save(report);
-    return report;
+    try {
+      const report = this.odmRepository.create({
+        body,
+        post_id,
+        title,
+        user_id,
+        closed: false,
+      });
+      await this.odmRepository.save(report);
+      return report;
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 
   public async close(report: PostReport): Promise<PostReport> {
-    // eslint-disable-next-line no-param-reassign
-    report.closed = true;
-    return this.odmRepository.save(report);
+    try {
+      // eslint-disable-next-line no-param-reassign
+      report.closed = true;
+      return this.odmRepository.save(report);
+    } catch {
+      throw new ApolloError('Database Timeout');
+    }
   }
 
   public async findById(id: string): Promise<PostReport | undefined> {
-    const report = await this.odmRepository.findOne(id);
-    return report;
+    try {
+      const report = await this.odmRepository.findOne(id);
+      return report;
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 
   public async findByUserId(id: string): Promise<PostReport[]> {
-    const user_id = new ObjectId(id);
-    const reports = await this.odmRepository.find({
-      where: {
-        user_id,
-      },
-    });
-    return reports;
+    try {
+      const user_id = new ObjectId(id);
+      const reports = await this.odmRepository.find({
+        where: {
+          user_id,
+        },
+      });
+      return reports;
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 
   public async findOpenReports(): Promise<PostReport[]> {
-    const reports = await this.odmRepository.find({
-      where: {
-        closed: false,
-      },
-    });
-    return reports;
+    try {
+      const reports = await this.odmRepository.find({
+        where: {
+          closed: false,
+        },
+      });
+      return reports;
+    } catch (err) {
+      throw new ApolloError('Database Timeout');
+    }
   }
 }
 export default PostReportsRepository;

@@ -4,6 +4,7 @@ import Category from '@modules/categories/infra/typeorm/schemas/Category';
 import Post from '../infra/typeorm/schemas/Post';
 import FakePostsRepository from '../repositories/fakes/FakePostsRepository';
 import SearchPostService from './SearchPostService';
+import { ApolloError } from 'apollo-server';
 
 let fakePostsRepository: FakePostsRepository;
 let searchPostService: SearchPostService;
@@ -103,5 +104,20 @@ describe('Search Post', () => {
       title: 'One',
     });
     expect(posts).toEqual([]);
+  });
+
+  it('should not be able to search a post with non-valid author post ', async () => {
+    await expect(
+      searchPostService.execute({
+        author_id: 'non-valid',
+      }),
+    ).rejects.toBeInstanceOf(ApolloError);
+  });
+  it('should not be able to search a post with non-valid category post ', async () => {
+    await expect(
+      searchPostService.execute({
+        category_id: 'non-valid',
+      }),
+    ).rejects.toBeInstanceOf(ApolloError);
   });
 });

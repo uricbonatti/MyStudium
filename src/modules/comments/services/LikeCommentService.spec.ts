@@ -84,4 +84,12 @@ describe('Like Comment', () => {
       }),
     ).rejects.toBeInstanceOf(ApolloError);
   });
+  it('should not be able to like a non-valid comment ', async () => {
+    await expect(
+      likeCommentService.execute({
+        user_id: user.id.toHexString(),
+        comment_id: 'non-valid',
+      }),
+    ).rejects.toBeInstanceOf(ApolloError);
+  });
 });
