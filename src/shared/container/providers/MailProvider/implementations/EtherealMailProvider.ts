@@ -33,10 +33,16 @@ export default class EtherealMailProvider implements IEmailProvider {
     from,
     templateData,
   }: ISendMailDTO): Promise<void> {
+    let name: string | undefined;
+    let email: string | undefined;
+    if (from) {
+      name = from.name;
+      email = from.email;
+    }
     const message = await this.client.sendMail({
       from: {
-        name: from?.name || 'Equipe GoBarber',
-        address: from?.email || 'equipe@gobarber.com.br',
+        name: name || 'Equipe Studium',
+        address: email || 'suporte@studium.blog.br',
       },
       to: { name: to.name, address: to.email },
       subject,
