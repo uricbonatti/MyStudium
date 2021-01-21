@@ -12,7 +12,6 @@ const localConfig = {
           process.env.NODE_ENV === 'development' ? 'ts' : 'js'
         }`
       : path.resolve(
-          __dirname,
           process.env.NODE_ENV === 'development' ? 'src' : 'dist',
           'modules',
           '**',
@@ -39,7 +38,6 @@ const webConfig = {
           process.env.NODE_ENV === 'development' ? 'ts' : 'js'
         }`
       : path.resolve(
-          __dirname,
           process.env.NODE_ENV === 'development' ? 'src' : 'dist',
           'modules',
           '**',
