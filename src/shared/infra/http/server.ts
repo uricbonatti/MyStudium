@@ -14,6 +14,7 @@ const server = new ApolloServer({
   typeDefs: Schema,
   cors: corsConfig,
   resolvers,
+  playground: true,
   context: apolloConfig.context,
   formatError: apolloConfig.formatError,
 });
