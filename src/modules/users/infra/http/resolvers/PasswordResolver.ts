@@ -19,7 +19,6 @@ export async function forgotPassword(
   { data }: IForgotPassword,
 ): Promise<boolean> {
   const { email } = data;
-  console.table(data);
   const sendForgotPasswordEmailService = container.resolve(
     SendForgotPasswordEmailService,
   );

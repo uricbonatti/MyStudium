@@ -1,5 +1,5 @@
 interface IMailConfig {
-  driver: 'ethereal' | 'mailgun';
+  driver: 'ethereal' | 'mailgun' | 'ses';
   defaults: {
     from: {
       email: string;
@@ -12,7 +12,7 @@ export default {
   driver: process.env.MAIL_DRIVER || 'ethereal',
   defaults: {
     from: {
-      email: 'suporte@studium-platform.com.br',
+      email: 'suporte@studium.blog.br',
       name: 'Suporte Studium',
     },
   },

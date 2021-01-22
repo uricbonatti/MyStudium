@@ -18,13 +18,12 @@ export default class MailGunMailProvider implements IEmailProvider {
   ) {
     const authOptions = {
       auth: {
-        apiKey: `${process.env.MAILGUN_API_KEY}`,
-        domain: process.env.MAILGUN_DOMAIN || '',
+        apiKey: process.env.MAILGUN_API_KEY || 'default',
+        domain: process.env.MAILGUN_DOMAIN || 'default',
       },
-      port: process.env.MAILGUN_SMTP_PORT,
     };
 
-    this.client = nodemailer.createTransport(MailGun(authOptions as Options));
+    this.client = nodemailer.createTransport(MailGun(authOptions));
   }
 
   public async sendMail({

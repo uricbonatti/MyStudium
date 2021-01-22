@@ -9,7 +9,7 @@ input UpdateComment {
 type Comment {
   id: String
   author: Author!
-  creation_at: Date!
+  created_at: Date!
   updated_at: Date!
   body: String!
   post_id: String!

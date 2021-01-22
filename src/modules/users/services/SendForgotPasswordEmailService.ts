@@ -30,9 +30,15 @@ class SendForgotPasswordEmailService {
     const forgotPasswordTemplate =
       process.env.LOCAL_SYSTEM === 'win'
         ? 'src/modules/users/views/forgot_password.hbs'
-        : path.resolve(__dirname, '..', 'views', 'forgot_password.hbs');
+        : path.resolve(
+            'src',
+            'modules',
+            'users',
+            'views',
+            'forgot_password.hbs',
+          );
 
-    this.mailProvider.sendMail({
+    await this.mailProvider.sendMail({
       to: { name: user.name, email: user.email },
       subject: '[Studium] Recuperação de senha',
 
