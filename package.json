@@ -4,6 +4,7 @@
   "main": "server.ts",
   "license": "MIT",
   "scripts": {
+    "start:v2": "node -r tsconfig-paths/register  src/index.js",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "start": "ts-node -r tsconfig-paths/register src/shared/infra/http/server.ts",
     "dev:start": "ts-node  -r tsconfig-paths/register src/shared/infra/http/server.ts",
