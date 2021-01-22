@@ -1,5 +1,5 @@
 input CreateUser {
-  email: String!
+  email: EmailAddress!
   name: String!
   description: String
   password: String!
@@ -7,34 +7,34 @@ input CreateUser {
   linkedin: String
 }
 input UpdateUser {
-  email: String
+  email: EmailAddress!
   name: String
   password: String
   description: String
   old_password: String
   github: String
   linkedin: String
-  avatar_url: String
+  avatar_url: URL
 }
 input DeleteUser {
-  email: String!
+  email: EmailAddress!
 }
 input LoginData {
-  email: String!
+  email: EmailAddress!
   password: String!
 }
 input ResetPassword {
-  token: String!
+  token: UUID!
   password: String!
   password_confirmation: String!
 }
 
 type User {
-  id: String
+  id: ObjectID
   name: String!
-  email: String!
+  email: EmailAddress!
   description: String
-  avatar_url: String
+  avatar_url: URL
   github: String
   linkedin: String
   created_at: Date!
@@ -44,7 +44,7 @@ type User {
   access_level: String!
 }
 type AuthenticateUser {
-  token: String!
+  token: ID!
   user: User!
 }
 type UserActivity {
@@ -61,17 +61,17 @@ type UserSummary {
   lastWeekPosts: [Post]
 }
 type Query {
-  getUser(id: String!): User
+  getUser(id: ObjectID!): User
   login(data: LoginData): AuthenticateUser
-  userSummary(id: ID!): UserSummary
+  userSummary(id: ObjectID!): UserSummary
 }
 input EmailInput {
-  email: String! @constraint(format: "email")
+  email: EmailAddress!
 }
 type Mutation {
   createUser(data: CreateUser): User
   updateUser(data: UpdateUser): User
-  deleteUser(data: DeleteUser): ID
-  forgotPassword(data: EmailInput): Boolean
-  resetPassword(data: ResetPassword): Boolean
+  deleteUser(data: DeleteUser): Void
+  forgotPassword(data: EmailInput): Void
+  resetPassword(data: ResetPassword): Void
 }

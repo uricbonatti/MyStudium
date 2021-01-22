@@ -1,32 +1,32 @@
 input PostFilter {
-  category_id: ID
+  category_id: ObjectID
   part_of_title: String
-  author_id: String
+  author_id: ObjectID
 }
 input CreatePost {
   title: String!
-  image_url: String
+  image_url: URL
   body: String!
-  category_id: String!
+  category_id: ObjectID!
   tag_ids: [CreatePostTag]
 }
 input UpdatePost {
   title: String
-  image_url: String
+  image_url: URL
   body: String
-  category_id: String
+  category_id: ObjectID
   tag_id: [String]
 }
 type Author {
-  id: String!
-  nome: String!
-  avatar_url: String
+  id: ObjectID!
+  name: String!
+  avatar_url: URL
 }
 type Post {
   id: String
   author: Author!
   title: String!
-  image_url: String
+  image_url: URL
   body: String!
   category: Category
   created_at: Date!
@@ -35,11 +35,11 @@ type Post {
   tags: [Tag]
 }
 type Query {
-  getPost(id: String): Post!
+  getPost(id: ObjectID): Post!
   listPosts(filter: PostFilter): [Post]
 }
 type Mutation {
-  likePost(post_id: ID): Int
+  likePost(post_id: ObjectID): Int
   createPost(data: CreatePost): Post!
   updatePost(id: String, data: UpdatePost): Post
   deletePost(id: String): String

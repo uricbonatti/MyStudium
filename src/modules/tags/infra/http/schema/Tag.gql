@@ -1,12 +1,12 @@
 input TagFilter {
-  category_id: String
+  category_id: ObjectID
 }
 input CreateTag {
   name: String!
-  category_id: String!
+  category_id: ObjectID!
 }
 input CreatePostTag {
-  tag_id: String!
+  tag_id: ObjectID!
 }
 type Tag {
   id: String
@@ -14,7 +14,7 @@ type Tag {
   category: Category!
 }
 type Query {
-  getTag(id: ID): Tag
+  getTag(id: ObjectID): Tag
   listTags(filter: TagFilter): [Tag]
 }
 type Mutation {

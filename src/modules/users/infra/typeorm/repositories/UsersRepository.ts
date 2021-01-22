@@ -19,56 +19,39 @@ class UsersRepository implements IUsersRepository {
     linkedin,
     github,
   }: ICreateUserDTO): Promise<User> {
-    try {
-      const user = this.odmRepository.create({
-        name,
-        email,
-        password,
-        description,
-        linkedin,
-        github,
-        fullexp: 0,
-        permission: 2,
-      });
-      await this.odmRepository.save(user);
-      return user;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    const user = this.odmRepository.create({
+      name,
+      email,
+      password,
+      description,
+      linkedin,
+      github,
+      fullexp: 0,
+      permission: 2,
+    });
+    await this.odmRepository.save(user);
+    return user;
   }
 
   public async findById(id: string): Promise<User | undefined> {
-    try {
-      const findUser = await this.odmRepository.findOne(id);
-      return findUser;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    const findUser = await this.odmRepository.findOne(id);
+
+    return findUser;
   }
 
-  public async findByEmail(email: string): Promise<User | undefined> {
-    try {
-      const findUser = await this.odmRepository.findOne({ where: { email } });
-      return findUser;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+  public async findByEmail(userMail: string): Promise<User | undefined> {
+    const findUser = await this.odmRepository.findOne({
+      email: `${userMail}`,
+    });
+    return findUser;
   }
 
   public async save(user: User): Promise<User> {
-    try {
-      return this.odmRepository.save(user);
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmRepository.save(user);
   }
 
   public async delete(id: string): Promise<void> {
-    try {
-      await this.odmRepository.delete(id);
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    await this.odmRepository.delete(id);
   }
 }
 

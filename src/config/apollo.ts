@@ -1,8 +1,6 @@
-import ConstraintDirective from '@shared/utils/gqlConstraints';
 import { ApolloError, Config } from 'apollo-server';
 
 export default {
-  schemaDirectives: { constraint: ConstraintDirective },
   formatError: err => {
     if (err.message) {
       let code = '400';

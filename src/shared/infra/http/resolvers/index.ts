@@ -1,3 +1,5 @@
+import ScalarResolver from './ScalarResolver';
+
 import { UserMutation, UserQuery } from '@modules/users/infra/http/resolvers';
 import { PostMutations, PostQuerys } from '@modules/posts/infra/http/resolvers';
 import {
@@ -26,6 +28,7 @@ const Mutation = {
 };
 
 export default {
+  ...ScalarResolver,
   Query,
   Mutation,
 };

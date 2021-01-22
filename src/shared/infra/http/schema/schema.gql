@@ -1,21 +1,12 @@
 scalar Date
-scalar ValidateString
-scalar ValidateNumber
-
-directive @constraint(
-  # String constraints
-  minLength: Int
-  maxLength: Int
-  startsWith: String
-  endsWith: String
-  notContains: String
-  pattern: String
-  format: String
-
-  # Number constraints
-  min: Int
-  max: Int
-  exclusiveMin: Int
-  exclusiveMax: Int
-  multipleOf: Int
-) on INPUT_FIELD_DEFINITION
+scalar Time
+scalar DateTime
+scalar EmailAddress
+scalar PhoneNumber
+scalar URL
+scalar ObjectID
+scalar UUID
+scalar GUID
+scalar Port
+scalar Currency
+scalar Void

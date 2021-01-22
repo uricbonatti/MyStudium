@@ -5,6 +5,7 @@ import {
   UpdateDateColumn,
   ObjectIdColumn,
   ObjectID,
+  Unique,
 } from 'typeorm';
 
 import { Exclude, Expose } from 'class-transformer';
@@ -17,7 +18,7 @@ class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()

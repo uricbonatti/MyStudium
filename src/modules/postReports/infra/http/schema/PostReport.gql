@@ -1,24 +1,24 @@
 input OpenPostReport {
-  post_id: String!
+  post_id: ObjectID!
   body: String
   title: String!
 }
 input ClosePostReport {
-  id: String!
+  id: ObjectID!
   feedback: String
   action: String!
 }
 type NewPostReport {
-  id: String
-  post_id: String
+  id: ObjectID
+  post_id: ObjectID
   title: String
   body: String
   closed: Boolean
   created_at: Date
 }
 type PostReport {
-  id: String
-  post_id: String
+  id: ObjectID
+  post_id: ObjectID
   title: String
   body: String
   closed: Boolean
