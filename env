@@ -1,10 +1,28 @@
-NODE = development
+NODE_ENV = production
+
+ENTITIES_LANGUAGE = js
+LOCAL_SYSTEM = win
+LOCAL = web
+
 API_DEV = http://localhost:3000
-ENVIRONMENT = web
-DB_URL = "mongodb+srv://dbUser:iOWWpuwCT00D8Oic@cluster0.oyw5v.mongodb.net/Studium?retryWrites=true"
-APP_SECRET =
+APP_WEB_URL = https://studium.blog.br
 
-# ENVIRONMENT = web | web
-# NODE = production | development
+APP_SECRET = 
 
+MAIL_DRIVER = ses
+MAILGUN_API_KEY = 
+MAILGUN_DOMAIN = 
+MAILGUN_SMTP_LOGIN = 
+MAILGUN_SMTP_PASSWORD = 
+DB_WEB_URL = 
+DB_LOCAL_URL = 
+AWS_DEFAULT_REGION = 
+AWS_ACCESS_KEY_ID = 
+AWS_SECRET_ACCESS_KEY = 
+
+# LOCAL = web | local
+# NODE_ENV = production | development
+# MAIL_DRIVER = ethereal | mailgun |ses
+# LOCAL_SYSTEM = win | other
+# ENTITIES_LANGUAGE = js | ts
 
