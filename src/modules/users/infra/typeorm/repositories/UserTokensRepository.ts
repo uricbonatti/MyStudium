@@ -3,6 +3,7 @@ import { MongoRepository, getMongoRepository } from 'typeorm';
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UserToken from '../schemas/UserToken';
 import { ObjectId } from 'mongodb';
+import { v4 } from 'uuid';
 
 class UserTokensRepository implements IUserTokensRepository {
   private odmRepository: MongoRepository<UserToken>;
@@ -14,9 +15,9 @@ class UserTokensRepository implements IUserTokensRepository {
   public async generate(user_id: ObjectId): Promise<UserToken> {
     const userToken = this.odmRepository.create({
       user_id,
+      token: v4(),
     });
     await this.odmRepository.save(userToken);
-
     return userToken;
   }
 

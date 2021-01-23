@@ -26,7 +26,6 @@ class SendForgotPasswordEmailService {
     if (!user) {
       throw new ApolloError('User does not exist.');
     }
-    const { token } = await this.userTokensRepository.generate(user.id);
     const forgotPasswordTemplate =
       process.env.LOCAL_SYSTEM === 'win'
         ? 'src/modules/users/views/forgot_password.hbs'
@@ -37,6 +36,8 @@ class SendForgotPasswordEmailService {
             'views',
             'forgot_password.hbs',
           );
+
+    const { token } = await this.userTokensRepository.generate(user.id);
 
     await this.mailProvider.sendMail({
       to: { name: user.name, email: user.email },
@@ -50,7 +51,6 @@ class SendForgotPasswordEmailService {
         },
       },
     });
-    console.log('email enviado');
   }
 }
 
