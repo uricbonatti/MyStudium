@@ -5,6 +5,7 @@ import Category from '@modules/categories/infra/typeorm/schemas/Category';
 export default interface ICreatePostDTO {
   author: User;
   title: string;
+  resume: string;
   image_url: string;
   body: string;
   slug?: string;

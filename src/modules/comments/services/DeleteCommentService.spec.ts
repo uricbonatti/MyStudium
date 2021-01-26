@@ -33,12 +33,12 @@ describe('Delete Comment', () => {
     });
   });
   it('should be able to delete the comment', async () => {
-    const deletedComment = await deleteCommentService.execute({
-      user_id: user.id.toHexString(),
-      comment_id: comment.id.toHexString(),
-    });
-    expect(deletedComment).toHaveProperty('id');
-    expect(deletedComment).toBeInstanceOf(Comment);
+    await expect(
+      deleteCommentService.execute({
+        user_id: user.id.toHexString(),
+        comment_id: comment.id.toHexString(),
+      }),
+    ).resolves;
   });
   it('should not be able to delete comments without comment id', async () => {
     await expect(

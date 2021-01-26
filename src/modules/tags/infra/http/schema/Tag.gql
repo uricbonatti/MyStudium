@@ -1,5 +1,5 @@
 input TagFilter {
-  category_id: ObjectID
+  category_id: ObjectID!
 }
 input CreateTag {
   name: String!
@@ -9,14 +9,14 @@ input CreatePostTag {
   tag_id: ObjectID!
 }
 type Tag {
-  id: String
+  id: String!
   name: String!
   category: Category!
 }
 type Query {
-  getTag(id: ObjectID): Tag
-  listTags(filter: TagFilter): [Tag]
+  getTag(id: ObjectID!): Tag
+  listTags(filter: TagFilter): [Tag]!
 }
 type Mutation {
-  createTag(data: CreateTag): Tag
+  createTag(data: CreateTag!): Tag!
 }

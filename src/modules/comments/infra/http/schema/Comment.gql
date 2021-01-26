@@ -3,11 +3,11 @@ input CreateComment {
   body: String!
 }
 input UpdateComment {
-  comment_id: ObjectID!
+  id: ObjectID!
   body: String!
 }
 type Comment {
-  id: String
+  id: String!
   author: Author!
   created_at: Date!
   updated_at: Date!
@@ -15,8 +15,8 @@ type Comment {
   post_id: ObjectID!
 }
 type Mutation {
-  likeComment(comment_id: ObjectID): Int
-  createComment(data: CreateComment): Comment!
-  updateComment(id: String, data: UpdateComment): Comment
-  deleteComment(id: String): String
+  likeComment(comment_id: ObjectID!): Int
+  createComment(data: CreateComment!): Comment!
+  updateComment(data: UpdateComment!): Comment!
+  deleteComment(id: ObjectID!): Void
 }

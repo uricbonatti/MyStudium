@@ -62,16 +62,16 @@ type UserSummary {
 }
 type Query {
   getUser(id: ObjectID!): User
-  login(data: LoginData): AuthenticateUser
+  login(data: LoginData!): AuthenticateUser!
   userSummary(id: ObjectID!): UserSummary
 }
 input EmailInput {
   email: EmailAddress!
 }
 type Mutation {
-  createUser(data: CreateUser): User
-  updateUser(data: UpdateUser): User
-  deleteUser(data: DeleteUser): Void
-  forgotPassword(data: EmailInput): Void
-  resetPassword(data: ResetPassword): Void
+  createUser(data: CreateUser!): User!
+  updateUser(data: UpdateUser!): User!
+  deleteUser(data: DeleteUser!): Void
+  forgotPassword(data: EmailInput!): Void
+  resetPassword(data: ResetPassword!): Void
 }

@@ -2,12 +2,12 @@ input CreateCategory {
   name: String!
 }
 type Category {
-  id: ObjectID
+  id: ObjectID!
   name: String!
 }
 type Query {
-  listCategories: [Category]
+  listCategories: [Category!]
 }
 type Mutation {
-  createCategory(data: CreateCategory): Category
+  createCategory(data: CreateCategory!): Category!
 }

@@ -24,6 +24,9 @@ class Post {
   image_url: string;
 
   @Column()
+  resume: string;
+
+  @Column()
   body: string;
 
   @Column()

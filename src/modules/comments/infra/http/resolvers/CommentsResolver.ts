@@ -19,8 +19,8 @@ interface ICreateComment {
 interface IUpdateCommentDTO {
   data: {
     body: string;
+    id: string;
   };
-  id: string;
 }
 interface IDeleteComment {
   id: string;
@@ -55,11 +55,11 @@ export async function createComment(
 
 export async function updateComment(
   _: any,
-  { id, data }: IUpdateCommentDTO,
+  { data }: IUpdateCommentDTO,
   { token }: IContext,
 ): Promise<Comment> {
   const user_id = verifyToken(token);
-  const { body } = data;
+  const { id, body } = data;
   const updateCommentService = container.resolve(UpdateCommentService);
   const comment = await updateCommentService.execute({
     comment_id: id,
@@ -73,12 +73,11 @@ export async function deleteComment(
   _: any,
   { id }: IDeleteComment,
   { token }: IContext,
-): Promise<string> {
+): Promise<void> {
   const user_id = verifyToken(token);
   const deleteCommentService = container.resolve(DeleteCommentService);
   const comment = await deleteCommentService.execute({
     comment_id: id,
     user_id,
   });
-  return comment.id.toString();
 }

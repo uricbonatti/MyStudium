@@ -8,14 +8,15 @@ input CreatePost {
   image_url: URL
   body: String!
   category_id: ObjectID!
-  tag_ids: [CreatePostTag]
+  tag_ids: [CreatePostTag!]!
 }
 input UpdatePost {
+  id: ObjectID!
   title: String
   image_url: URL
+  resume: String
   body: String
-  category_id: ObjectID
-  tag_id: [String]
+  tag_id: [CreatePostTag!]
 }
 type Author {
   id: ObjectID!
@@ -23,24 +24,25 @@ type Author {
   avatar_url: URL
 }
 type Post {
-  id: String
+  id: ObjectID!
   author: Author!
   title: String!
   image_url: URL
+  resume: String!
   body: String!
-  category: Category
+  category: Category!
   created_at: Date!
   updated_at: Date!
-  comments: [Comment]
-  tags: [Tag]
+  comments: [Comment]!
+  tags: [Tag!]!
 }
 type Query {
-  getPost(id: ObjectID): Post!
+  getPost(id: ObjectID!): Post!
   listPosts(filter: PostFilter): [Post]
 }
 type Mutation {
-  likePost(post_id: ObjectID): Int
-  createPost(data: CreatePost): Post!
-  updatePost(id: String, data: UpdatePost): Post
-  deletePost(id: String): String
+  likePost(post_id: ObjectID!): Int
+  createPost(data: CreatePost!): Post!
+  updatePost(data: UpdatePost!): Post!
+  deletePost(id: ObjectID!): Void
 }

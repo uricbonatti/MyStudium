@@ -1,11 +1,11 @@
 input OpenPostReport {
   post_id: ObjectID!
-  body: String
+  body: String!
   title: String!
 }
 input ClosePostReport {
   id: ObjectID!
-  feedback: String
+  feedback: String!
   action: String!
 }
 type NewPostReport {
@@ -17,22 +17,22 @@ type NewPostReport {
   created_at: Date
 }
 type PostReport {
-  id: ObjectID
-  post_id: ObjectID
-  title: String
-  body: String
-  closed: Boolean
+  id: ObjectID!
+  post_id: ObjectID!
+  title: String!
+  body: String!
+  closed: Boolean!
   feedback: String
-  action: String!
-  created_at: Date
-  updated_at: Date
+  action: String
+  created_at: Date!
+  updated_at: Date!
 }
 type Query {
-  userPostReports: [PostReport]
-  openPostReports: [PostReport]
-  showPostReport(id: String): PostReport
+  userPostReports: [PostReport!]
+  openPostReports: [PostReport!]
+  showPostReport(id: ObjectID): PostReport!
 }
 type Mutation {
-  createPostReport(data: OpenPostReport): NewPostReport
-  closePostReport(data: ClosePostReport): PostReport
+  createPostReport(data: OpenPostReport!): NewPostReport!
+  closePostReport(data: ClosePostReport!): PostReport!
 }

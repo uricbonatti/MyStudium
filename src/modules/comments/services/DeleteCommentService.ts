@@ -20,7 +20,7 @@ class DeleteCommentService {
     private usersRepository: IUsersRepository,
   ) {}
 
-  public async execute({ user_id, comment_id }: IDelete): Promise<Comment> {
+  public async execute({ user_id, comment_id }: IDelete): Promise<void> {
     const user = await this.usersRepository.findById(user_id);
     if (!user) {
       throw new ApolloError('User cannot be found', '400');
@@ -39,7 +39,6 @@ class DeleteCommentService {
       );
     }
     await this.commentsRepository.delete(comment_id);
-    return comment;
   }
 }
 export default DeleteCommentService;

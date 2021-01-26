@@ -15,8 +15,9 @@ interface ITagId {
 }
 
 interface IUpdatePostDTO {
-  post_id: string;
+  id: string;
   user_id: string;
+  resume?: string;
   body?: string;
   image_url?: string;
   tag_ids?: ITagId[];
@@ -38,8 +39,9 @@ class UpdatePostService {
 
   public async execute({
     user_id,
-    post_id,
+    id,
     body,
+    resume,
     image_url,
     tag_ids,
     title,
@@ -48,7 +50,7 @@ class UpdatePostService {
     if (!checkUserExists) {
       throw new ApolloError('User not found.', '400');
     }
-    const post = await this.postsRepository.findByID(post_id);
+    const post = await this.postsRepository.findByID(id);
     if (!post) {
       throw new ApolloError('Post not found.', '400');
     }
@@ -75,6 +77,7 @@ class UpdatePostService {
     }
     if (image_url) post.image_url = image_url;
     if (body) post.body = body;
+    if (resume) post.resume = resume;
 
     if (tag_ids) {
       const extractedTags = tag_ids.map(tag => tag.tag_id);

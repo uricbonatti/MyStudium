@@ -50,6 +50,7 @@ describe('Update Post', () => {
     post = await fakePostsRepository.create({
       author: user,
       category,
+      resume: 'testing',
       body: 'Testes',
       image_url: 'url.com',
       tags: [tag1],
@@ -63,6 +64,7 @@ describe('Update Post', () => {
     await fakePostsRepository.create({
       author: user,
       category: category2,
+      resume: 'testing',
       body: 'Testes',
       image_url: 'url.com',
       slug: 'testes-atualizados',
@@ -72,8 +74,9 @@ describe('Update Post', () => {
   });
   it('should be update a post', async () => {
     const updatedPost = await updatePostService.execute({
-      post_id: post.id.toHexString(),
+      id: post.id.toHexString(),
       user_id: user.id.toHexString(),
+      resume: 'testing',
       body: 'Testes Atualizados',
       image_url: 'imagem.atualizada',
       tag_ids: [
@@ -90,6 +93,7 @@ describe('Update Post', () => {
     await fakePostsRepository.create({
       author: user,
       category,
+      resume: 'testing',
       body: 'Testes',
       image_url: 'url.com',
       slug: 'post-updated',
@@ -99,7 +103,7 @@ describe('Update Post', () => {
 
     await expect(
       updatePostService.execute({
-        post_id: post.id.toHexString(),
+        id: post.id.toHexString(),
         user_id: user.id.toHexString(),
         body: 'Testes Atualizados',
         image_url: 'imagem.atualizada',
@@ -121,7 +125,7 @@ describe('Update Post', () => {
     });
     await expect(
       updatePostService.execute({
-        post_id: post.id.toHexString(),
+        id: post.id.toHexString(),
         user_id: diffUser.id.toHexString(),
         title: 'Post Updated',
       }),
@@ -130,7 +134,7 @@ describe('Update Post', () => {
   it('should not be update a post with a non-existing tag', async () => {
     await expect(
       updatePostService.execute({
-        post_id: post.id.toHexString(),
+        id: post.id.toHexString(),
         user_id: user.id.toHexString(),
         tag_ids: [
           {
@@ -143,7 +147,7 @@ describe('Update Post', () => {
   it('should not be update a post with a non-existing user', async () => {
     await expect(
       updatePostService.execute({
-        post_id: post.id.toHexString(),
+        id: post.id.toHexString(),
         user_id: new ObjectId().toHexString(),
         title: 'Post Updated',
       }),
@@ -152,7 +156,7 @@ describe('Update Post', () => {
   it('should not be update a non-existing post', async () => {
     await expect(
       updatePostService.execute({
-        post_id: new ObjectId().toHexString(),
+        id: new ObjectId().toHexString(),
         user_id: user.id.toHexString(),
         title: 'Post Updated',
       }),

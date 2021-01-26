@@ -13,6 +13,7 @@ import Post from '../infra/typeorm/schemas/Post';
 interface ICreatePostDTO {
   author_id: string;
   body: string;
+  resume: string;
   category_id: string;
   image_url: string;
   tag_ids: { tag_id: string }[];
@@ -40,6 +41,7 @@ class CreatePostService {
     body,
     category_id,
     image_url,
+    resume,
     tag_ids,
     title,
   }: ICreatePostDTO): Promise<Post> {
@@ -86,6 +88,7 @@ class CreatePostService {
       author: user,
       body,
       slug,
+      resume,
       category,
       image_url,
       tags: stokedTags,

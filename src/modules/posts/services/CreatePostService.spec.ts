@@ -51,6 +51,7 @@ describe('Create Post', () => {
   it('should be able to create a new Post', async () => {
     const post = await createPostService.execute({
       author_id: user.id.toHexString(),
+      resume: 'testing',
       title: 'Post Teste',
       body: 'Loren Ypsolon',
       image_url: 'teste.com/teste.png',
@@ -68,6 +69,7 @@ describe('Create Post', () => {
     await expect(
       createPostService.execute({
         author_id: new ObjectId().toHexString(),
+        resume: 'testing',
         title: 'Post Teste',
         body: 'Loren Ypsolon',
         image_url: 'teste.com/teste.png',
@@ -85,6 +87,7 @@ describe('Create Post', () => {
     await expect(
       createPostService.execute({
         author_id: user.id.toHexString(),
+        resume: 'testing',
         title: 'Post Teste',
         body: 'Loren Ypsolon',
         image_url: 'teste.com/teste.png',
@@ -100,6 +103,7 @@ describe('Create Post', () => {
   it('should not be able to create two post with same slug by single user', async () => {
     await createPostService.execute({
       author_id: user.id.toHexString(),
+      resume: 'testing',
       title: 'Post Teste',
       body: 'Loren Ypsolon',
       image_url: 'teste.com/teste.png',
@@ -113,6 +117,7 @@ describe('Create Post', () => {
     await expect(
       createPostService.execute({
         author_id: user.id.toHexString(),
+        resume: 'testing',
         title: 'Post Teste',
         body: 'Loren Ypsolon',
         image_url: 'teste.com/teste.png',
@@ -129,6 +134,7 @@ describe('Create Post', () => {
     await expect(
       createPostService.execute({
         author_id: user.id.toHexString(),
+        resume: 'testing',
         title: 'Post Teste',
         body: 'Loren Ypsolon',
         image_url: 'teste.com/teste.png',
@@ -145,6 +151,7 @@ describe('Create Post', () => {
     await expect(
       createPostService.execute({
         author_id: user.id.toHexString(),
+        resume: 'testing',
         title: 'Post Teste',
         body: 'Loren Ypsolon',
         image_url: 'teste.com/teste.png',
@@ -161,6 +168,7 @@ describe('Create Post', () => {
     await expect(
       createPostService.execute({
         author_id: user.id.toHexString(),
+        resume: 'testing',
         title: 'Post Teste',
         body: 'Loren Ypsolon',
         image_url: 'teste.com/teste.png',

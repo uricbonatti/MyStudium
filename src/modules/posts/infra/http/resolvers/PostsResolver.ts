@@ -28,6 +28,7 @@ interface ILikePost {
 interface ICreatePost {
   data: {
     body: string;
+    resume: string;
     category_id: string;
     image_url: string;
     tag_ids: ITagID[];
@@ -36,9 +37,9 @@ interface ICreatePost {
 }
 
 interface IUpdatePost {
-  post_id: string;
+  id: string;
   body?: string;
-  category_id?: string;
+  resume?: string;
   image_url?: string;
   tag_ids?: ITagID[];
   title?: string;
@@ -69,7 +70,7 @@ export async function createPost(
   { data }: ICreatePost,
   { token }: IContext,
 ): Promise<Post> {
-  const { title, body, category_id, image_url, tag_ids } = data;
+  const { title, body, category_id, image_url, tag_ids, resume } = data;
   const createPostService = container.resolve(CreatePostService);
   const author_id = verifyToken(token);
   const post = await createPostService.execute({
@@ -77,6 +78,7 @@ export async function createPost(
     body,
     category_id,
     image_url,
+    resume,
     tag_ids,
     title,
   });
@@ -85,15 +87,16 @@ export async function createPost(
 
 export async function updatePost(
   _: any,
-  { post_id, body, category_id, image_url, tag_ids, title }: IUpdatePost,
+  { id, body, image_url, tag_ids, title, resume }: IUpdatePost,
   { token }: IContext,
 ): Promise<Post> {
   const updatePostService = container.resolve(UpdatePostService);
   const user_id = verifyToken(token);
   const post = await updatePostService.execute({
-    post_id,
+    id,
     body,
     image_url,
+    resume,
     tag_ids,
     title,
     user_id,
