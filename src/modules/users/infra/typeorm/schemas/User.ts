@@ -6,6 +6,7 @@ import {
   ObjectIdColumn,
   ObjectID,
   Unique,
+  BeforeInsert,
 } from 'typeorm';
 
 import { Exclude, Expose } from 'class-transformer';
@@ -41,7 +42,7 @@ class User {
   @Column()
   linkedin: string;
 
-  @Column()
+  @Column({ default: 2 })
   permission: number;
 
   @CreateDateColumn()

@@ -4,8 +4,9 @@ import './providers';
 import '@modules/users/providers';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
+
+import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
 
 import IPostsRepository from '@modules/posts/repositories/IPostsRepository';
@@ -22,6 +23,9 @@ import TagsRepository from '@modules/tags/infra/typeorm/repositories/TagsReposit
 
 import IPostReportsRepository from '@modules/postReports/repositories/IPostReportsRepository';
 import PostReportsRepository from '@modules/postReports/infra/typeorm/repositories/PostReportsRepository';
+
+import ICommentReportsRepository from '@modules/commentReports/repositories/ICommentReportsRepository';
+import CommentReportsRepository from '@modules/commentReports/infra/typeorm/repositories/CommentReportsRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -53,4 +57,9 @@ container.registerSingleton<ICommentsRepository>(
 container.registerSingleton<IPostReportsRepository>(
   'PostReportsRepository',
   PostReportsRepository,
+);
+
+container.registerSingleton<ICommentReportsRepository>(
+  'CommentReportsRepository',
+  CommentReportsRepository,
 );

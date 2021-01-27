@@ -1,0 +1,38 @@
+input OpenCommentReport {
+  comment_id: ObjectID!
+  body: String!
+  title: String!
+}
+input CloseCommentReport {
+  id: ObjectID!
+  feedback: String!
+  action: String!
+}
+type NewCommentReport {
+  id: ObjectID
+  comment_id: ObjectID
+  title: String
+  body: String
+  closed: Boolean
+  created_at: Date
+}
+type CommentReport {
+  id: ObjectID!
+  comment_id: ObjectID!
+  title: String!
+  body: String!
+  closed: Boolean!
+  feedback: String
+  action: String
+  created_at: Date!
+  updated_at: Date!
+}
+type Query {
+  userCommentReports: [CommentReport!]
+  openCommentReports: [CommentReport!]
+  showCommentReport(id: ObjectID!): CommentReport!
+}
+type Mutation {
+  createCommentReport(data: OpenCommentReport!): NewCommentReport!
+  closeCommentReport(data: CloseCommentReport!): CommentReport!
+}
