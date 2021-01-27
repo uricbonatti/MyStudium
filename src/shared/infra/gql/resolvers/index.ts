@@ -11,6 +11,10 @@ import {
   CommentsMutations,
   CommentsQuerys,
 } from '@modules/comments/infra/gql/resolvers';
+import {
+  PostReportMutations,
+  PostReportQuerys,
+} from '@modules/postReports/infra/gql/resolvers';
 
 const Query = {
   ...UserQuery,
@@ -18,6 +22,7 @@ const Query = {
   ...CommentsQuerys,
   ...CategoriesQuerys,
   ...TagsQuerys,
+  ...PostReportQuerys,
 };
 const Mutation = {
   ...UserMutation,
@@ -25,6 +30,7 @@ const Mutation = {
   ...CommentsMutations,
   ...CategoriesMutations,
   ...TagsMutations,
+  ...PostReportMutations,
 };
 
 export default {
