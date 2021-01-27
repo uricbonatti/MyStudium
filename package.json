@@ -5,13 +5,13 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && tscpaths -p tsconfig.build.json -s ./src -o ./dist",
-    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
-    "ts:start": "ts-node  -r tsconfig-paths/register src/shared/infra/http/server.ts",
+    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/gql/server.ts",
+    "ts:start": "ts-node  -r tsconfig-paths/register src/shared/infra/gql/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "jest",
     "js:build": "tsc --project tsconfig.build.json && tscpaths -p tsconfig.build.json -s ./src -o ./dist",
-    "start": "node dist/shared/infra/http/server.js",
-    "js:warn": "node --trace-warnings dist/shared/infra/http/server.js",
+    "start": "node dist/shared/infra/gql/server.js",
+    "js:warn": "node --trace-warnings dist/shared/infra/gql/server.js",
     "js:server": "yarn build && clear && yarn js:warn"
   },
   "dependencies": {
