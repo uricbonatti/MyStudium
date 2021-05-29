@@ -37,6 +37,7 @@ describe('User Summary Activity', () => {
       body: 'anything',
       category: new Category(),
       image_url: 'teste.use',
+      resume: 'resumo',
       tags: [new Tag()],
       title: 'Post Teste',
       slug: 'slug-teste',

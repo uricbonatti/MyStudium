@@ -39,6 +39,7 @@ describe('Delete User', () => {
       body: 'LorenYpsolon',
       category: new Category(),
       tags: [],
+      resume: 'resumo',
       image_url: 'teste.com/teste.png',
       title: 'Post Teste',
     });

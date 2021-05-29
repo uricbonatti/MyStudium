@@ -5,6 +5,7 @@ input PostFilter {
 }
 input CreatePost {
   title: String!
+  resume: String!
   image_url: URL
   body: String!
   category_id: ObjectID!
@@ -33,13 +34,28 @@ type Post {
   category: Category!
   created_at: Date!
   updated_at: Date!
-  comments: [Comment]!
+  comments: [Comment!]
+  tags: [Tag!]!
   likes: Int!
+  liked: Boolean
+}
+
+type ResumePost {
+  id: ObjectID!
+  author: Author!
+  title: String!
+  image_url: URL
+  resume: String!
+  body: String!
+  category: Category!
+  created_at: Date!
+  updated_at: Date!
+
   tags: [Tag!]!
 }
 type Query {
   getPost(id: ObjectID!): Post!
-  listPosts(filter: PostFilter): [Post]
+  listPosts(filter: PostFilter): [ResumePost]
 }
 type Mutation {
   likePost(post_id: ObjectID!): Int

@@ -8,13 +8,13 @@ import {
 
 import { ObjectId as MongoObjectID } from 'mongodb';
 
-@Entity('post_likes')
-class PostLikes {
+@Entity('comment_likes')
+class CommentLikes {
   @ObjectIdColumn()
   id: ObjectID;
 
   @Column()
-  post_id: MongoObjectID;
+  comment_id: MongoObjectID;
 
   @Column()
   users_liked: MongoObjectID[];
@@ -22,4 +22,4 @@ class PostLikes {
   @CreateDateColumn()
   created_at: Date;
 }
-export default PostLikes;
+export default CommentLikes;

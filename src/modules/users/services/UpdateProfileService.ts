@@ -30,6 +30,9 @@ class UpdateProfileService {
     if (!user) {
       throw new ApolloError('User not found.', '400');
     }
+    if (user.email === process.env.ADMIN_EMAIL && !!email) {
+      throw new ApolloError('User Target cant have email changed.', '403');
+    }
     const userWithUpdatedEmail = await this.usersRepository.findByEmail(email);
 
     if (
@@ -54,10 +57,10 @@ class UpdateProfileService {
       }
       user.password = await this.hashProvider.generateHash(password);
     }
-    user.name = name;
+    if (name) user.name = name;
     user.email = email;
     if (description) user.description = description;
-    if (avatar_url) user.avatar_url = avatar_url;
+    if (avatar_url) user.avatar_url = avatar_url.href;
     if (linkedin) user.linkedin = linkedin;
     if (github) user.github = github;
 

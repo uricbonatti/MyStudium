@@ -3,6 +3,7 @@ import { ObjectId } from 'mongodb';
 import ICreatePostDTO from '../dtos/ICreatePostDTO';
 import IPostLikeDTO from '../dtos/IPostLikeDTO';
 import Post from '../infra/typeorm/schemas/Post';
+import PostLikes from '../infra/typeorm/schemas/PostLikes';
 
 export default interface IPostsRepository {
   create(data: ICreatePostDTO): Promise<Post>;
@@ -17,7 +18,6 @@ export default interface IPostsRepository {
   findBySlug(slug: string): Promise<Post[]>;
   countPostsLikedByUser(liker_id: ObjectId, limitDate: Date): Promise<number>;
 
-  isLiked(data: IPostLikeDTO): Promise<boolean>;
   like(data: IPostLikeDTO): Promise<number>;
-  likesNumber(post_id: ObjectId): Promise<number>;
+  getLikes(post_id: ObjectId): Promise<PostLikes | undefined>;
 }

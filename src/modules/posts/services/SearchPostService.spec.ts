@@ -34,6 +34,7 @@ describe('Search Post', () => {
       body: 'Post Teste One',
       title: 'Post Teste One',
       tags: [],
+      resume: 'resumo',
       category: category_id1,
       image_url: 'image',
     });
@@ -42,6 +43,7 @@ describe('Search Post', () => {
       body: 'Post Teste One',
       title: 'Post Teste Two',
       tags: [],
+      resume: 'resumo',
       category: category_id2,
       image_url: 'image',
     });
@@ -49,6 +51,7 @@ describe('Search Post', () => {
       author: user_id2,
       body: 'Post Teste One',
       title: 'Post Teste Two',
+      resume: 'resumo',
       tags: [],
       category: category_id1,
       image_url: 'image',

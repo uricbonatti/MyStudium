@@ -1,0 +1,29 @@
+NODE_ENV = production
+
+ENTITIES_LANGUAGE = 'js'
+LOCAL_SYSTEM = win
+LOCAL = web
+
+API_DEV = http://localhost:3000
+APP_WEB_URL = https://studium.blog.br
+
+APP_SECRET = "cd3804f8-95bb-4cde-833c-1ce2ee91261b"
+
+MAIL_DRIVER = ses
+MAILGUN_API_KEY = 
+MAILGUN_DOMAIN = 
+MAILGUN_SMTP_LOGIN = 
+MAILGUN_SMTP_PASSWORD = 
+DB_WEB_URL = "mongodb+srv://dbUser:iOWWpuwCT00D8Oic@cluster0.oyw5v.mongodb.net/Studium?retryWrites=true"
+DB_LOCAL_URL = "mongodb://localhost:27017/Studium?retryWrites=true"
+AWS_DEFAULT_REGION = "us-east-2"
+AWS_ACCESS_KEY_ID = "AKIA5KX6PRVVIYXR26SE"
+AWS_SECRET_ACCESS_KEY = "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"
+
+ADMIN_EMAIL = "admin@test.io"
+DEFAULT_ADMIN_PASS = "default"
+
+# LOCAL = web | local
+# NODE_ENV = production | development
+# MAIL_DRIVER = ethereal | mailgun
+# LOCAL_SYSTEM = win | other

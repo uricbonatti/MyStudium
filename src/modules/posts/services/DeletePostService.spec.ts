@@ -33,6 +33,7 @@ describe('Delete Post', () => {
       body: 'LorenYpsolon',
       slug: 'teste-teste',
       category: new Category(),
+      resume: 'resumo',
       tags: [],
       image_url: 'teste.com/teste.png',
       title: 'Post Teste',

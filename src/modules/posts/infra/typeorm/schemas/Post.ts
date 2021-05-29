@@ -11,6 +11,7 @@ import Tag from '@modules/tags/infra/typeorm/schemas/Tag';
 import Category from '@modules/categories/infra/typeorm/schemas/Category';
 import { OmitedUser } from '@shared/utils/interfaces';
 import { Expose } from 'class-transformer';
+import Comment from '@modules/comments/infra/typeorm/schemas/Comment';
 
 @Entity('posts')
 class Post {
@@ -32,8 +33,7 @@ class Post {
   @Column()
   author: OmitedUser;
 
-  @Column()
-  users_liked: MongoObjectID[];
+  users_liked?: MongoObjectID[];
 
   @Column()
   category: Category;
@@ -50,10 +50,13 @@ class Post {
   @UpdateDateColumn()
   updated_at: Date;
 
+  comments?: Comment[];
+
+  liked?: boolean;
+
   @Expose({ name: 'likes' })
   getLikes(): number {
     if (this.users_liked && this.users_liked.length > 0) {
-      console.log(this.users_liked.length);
       return this.users_liked.length;
     }
     return 0;

@@ -21,6 +21,7 @@ import {
   CommentReportQuerys,
 } from '@modules/commentReports/infra/gql/resolvers';
 
+import { AdminMutation, AdminQuery } from '@modules/admin/infra/gql/resolvers';
 const Query = {
   ...UserQuery,
   ...PostQuerys,
@@ -29,6 +30,7 @@ const Query = {
   ...TagsQuerys,
   ...PostReportQuerys,
   ...CommentReportQuerys,
+  ...AdminQuery,
 };
 const Mutation = {
   ...UserMutation,
@@ -38,6 +40,7 @@ const Mutation = {
   ...TagsMutations,
   ...PostReportMutations,
   ...CommentReportMutations,
+  ...AdminMutation,
 };
 
 export default {

@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "3b54f6a5-47db-40be-94fc-f3d8451ab83c",
+		"name": "Not Implemented Yet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "(Q) List Open Post Reports",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n    openPostReports{\r\n        id\r\n        post_id\r\n        title\r\n        body\r\n        closed\r\n        feedback\r\n        action\r\n        created_at\r\n        updated_at\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(Q) Show Post Report",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query showPostReport($reportId: ObjectID!){\r\n    showPostReport(id: $reportId){\r\n        id\r\n        post_id\r\n        title\r\n        body\r\n        closed\r\n        feedback\r\n        action\r\n        created_at\r\n        updated_at\r\n    }\r\n}",
+						"variables": "{\r\n    \"reportId\": \"608049670a36c4497088e142\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(Q) List Open Comment Reports",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n    openCommentReports{\r\n        id\r\n        comment_id\r\n        title\r\n        body\r\n        closed\r\n        feedback\r\n        action\r\n        created_at\r\n        updated_at\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(Q) List User Comment Reports",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n    userCommentReports{\r\n        id\r\n        comment_id\r\n        title\r\n        body\r\n        closed\r\n        feedback\r\n        action\r\n        created_at\r\n        updated_at\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(Q) Show Comment Report",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query showCommentReport($reportId: ObjectID!){\r\n    showCommentReport(id: $reportId){\r\n        id\r\n        comment_id\r\n        title\r\n        body\r\n        closed\r\n        feedback\r\n        action\r\n        created_at\r\n        updated_at\r\n    }\r\n}",
+						"variables": "{\r\n    \"reportId\": \"608049670a36c4497088e142\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -35,6 +35,7 @@ describe('Like Post', () => {
       image_url: 'teste.com/test.png',
       tags: [],
       title: 'Post Teste',
+      resume: 'resumo',
     });
   });
   it('should be able to like a post', async () => {

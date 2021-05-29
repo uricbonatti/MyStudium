@@ -30,7 +30,7 @@ describe('UpdateProfile', () => {
       name: 'John Joe',
       email: 'johnjoe@example.com',
       description: 'description',
-      avatar_url: 'url',
+      avatar_url: { href: 'url' },
       github: 'github',
       linkedin: 'linkedin',
     });
