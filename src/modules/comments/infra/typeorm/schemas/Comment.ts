@@ -26,8 +26,9 @@ class Comment {
   @Column()
   post_id: MongoObjectID;
 
-  @Column()
   users_liked: MongoObjectID[];
+
+  liked?: boolean;
 
   @CreateDateColumn()
   created_at: Date;
@@ -47,7 +48,6 @@ class Comment {
   @BeforeInsert()
   solveBinaryBug() {
     this.post_id = new MongoObjectID(this.post_id);
-    this.users_liked = [];
   }
 
   @BeforeUpdate()

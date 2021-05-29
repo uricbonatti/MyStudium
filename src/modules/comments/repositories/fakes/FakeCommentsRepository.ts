@@ -5,12 +5,16 @@ import Comment from '@modules/comments/infra/typeorm/schemas/Comment';
 import ICommentLikeDTO from '@modules/comments/dtos/ICommentLikeDTO';
 import { isAfter } from 'date-fns';
 import ICommentsRepository from '../ICommentsRepository';
+import CommentLikes from '@modules/comments/infra/typeorm/schemas/CommentLikes';
 
 class FakeCommentsRepository implements ICommentsRepository {
   private comments: Comment[] = [];
+  private commentLikes: CommentLikes[] = [];
 
   public async create(data: ICreateCommentDTO): Promise<Comment> {
     const comment = new Comment();
+    const commentLike = new CommentLikes();
+
     Object.assign(
       comment,
       {
@@ -21,9 +25,24 @@ class FakeCommentsRepository implements ICommentsRepository {
       data,
     );
     this.comments.push(comment);
+
+    Object.assign(commentLike, {
+      id: new ObjectId(),
+      comment_id: comment.id,
+      users_liked: [],
+      created_at: commentLike.created_at,
+    });
+    this.commentLikes.push(commentLike);
     return comment;
   }
-
+  public async getLikes(
+    comment_id: ObjectId,
+  ): Promise<CommentLikes | undefined> {
+    const likes = this.commentLikes.find(commentLike =>
+      commentLike.comment_id.equals(comment_id),
+    );
+    return likes;
+  }
   public async delete(comment_id: string): Promise<void> {
     const findIndex = this.comments.findIndex(
       comment => comment.id.toHexString() === comment_id,

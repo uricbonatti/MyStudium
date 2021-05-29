@@ -32,6 +32,7 @@ class LikePostService {
       post_id: post.id,
       user_id: user.id,
     });
+
     return likes;
   }
 }

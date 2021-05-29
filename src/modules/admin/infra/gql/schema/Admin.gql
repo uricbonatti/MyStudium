@@ -1,0 +1,4 @@
+type Mutation {
+  changeUserPermission(userId: ObjectID, permissionLevel: String): Boolean # permissionLevel: 'admin' | 'moderator' | 'user';
+  firstRun: Void
+}

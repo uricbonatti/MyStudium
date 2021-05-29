@@ -11,7 +11,7 @@ interface IRequest {
 @injectable()
 class ListOpenCommentReportsService {
   constructor(
-    @inject('UsersReppository')
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
     @inject('CommentReportsRepository')
     private reportsRepository: ICommentReportsRepository,

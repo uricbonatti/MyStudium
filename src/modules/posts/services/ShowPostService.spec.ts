@@ -4,14 +4,21 @@ import User from '@modules/users/infra/typeorm/schemas/User';
 import Category from '@modules/categories/infra/typeorm/schemas/Category';
 import FakePostsRepository from '../repositories/fakes/FakePostsRepository';
 import ShowPostService from './ShowPostService';
+import FakeCommentsRepository from '@modules/comments/repositories/fakes/FakeCommentsRepository';
 
 let fakePostsRepository: FakePostsRepository;
+let fakeCommentsRepository: FakeCommentsRepository;
 let showPostService: ShowPostService;
 
 describe('Show Post', () => {
   beforeEach(async () => {
     fakePostsRepository = new FakePostsRepository();
-    showPostService = new ShowPostService(fakePostsRepository);
+    fakeCommentsRepository = new FakeCommentsRepository();
+
+    showPostService = new ShowPostService(
+      fakePostsRepository,
+      fakeCommentsRepository,
+    );
   });
   it('should be able to show a post', async () => {
     const user = new User();
@@ -25,6 +32,7 @@ describe('Show Post', () => {
       image_url: 'any',
       body: 'body',
       title: 'Teste',
+      resume: 'resumo',
       tags: [],
     });
     const listedPost = await showPostService.execute({

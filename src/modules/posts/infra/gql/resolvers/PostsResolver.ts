@@ -13,10 +13,16 @@ import Post from '../../typeorm/schemas/Post';
 interface IGetPost {
   id: string;
 }
+
+interface Url {
+  href: string;
+}
 interface IPostFilter {
-  category_id?: string;
-  part_of_title?: string;
-  author_id?: string;
+  filter: {
+    category_id?: string;
+    part_of_title?: string;
+    author_id?: string;
+  };
 }
 interface ITagID {
   tag_id: string;
@@ -30,32 +36,46 @@ interface ICreatePost {
     body: string;
     resume: string;
     category_id: string;
-    image_url: string;
+    image_url: Url;
     tag_ids: ITagID[];
     title: string;
   };
 }
 
 interface IUpdatePost {
-  id: string;
-  body?: string;
-  resume?: string;
-  image_url?: string;
-  tag_ids?: ITagID[];
-  title?: string;
+  data: {
+    id: string;
+    body?: string;
+    resume?: string;
+    image_url?: Url;
+    tag_ids?: ITagID[];
+    title?: string;
+  };
 }
 
-export async function getPost(_: any, { id }: IGetPost): Promise<Post> {
+export async function getPost(
+  _: any,
+  { id }: IGetPost,
+  { token }: IContext,
+): Promise<Post> {
   const showPostService = container.resolve(ShowPostService);
-  const post = await showPostService.execute({ post_id: id });
-
+  let user_id: string | undefined;
+  console.log(id);
+  try {
+    user_id = verifyToken(token);
+  } catch {
+    const post = await showPostService.execute({ post_id: id });
+    return classToClass(post);
+  }
+  const post = await showPostService.execute({ post_id: id, user_id });
   return classToClass(post);
 }
 
 export async function listPosts(
   _: any,
-  { author_id, category_id, part_of_title }: IPostFilter,
+  { filter }: IPostFilter,
 ): Promise<Post[]> {
+  const { author_id, category_id, part_of_title } = filter;
   const searchPostService = container.resolve(SearchPostService);
   const posts = await searchPostService.execute({
     author_id,
@@ -77,7 +97,7 @@ export async function createPost(
     author_id,
     body,
     category_id,
-    image_url,
+    image_url: image_url.href,
     resume,
     tag_ids,
     title,
@@ -87,15 +107,16 @@ export async function createPost(
 
 export async function updatePost(
   _: any,
-  { id, body, image_url, tag_ids, title, resume }: IUpdatePost,
+  { data }: IUpdatePost,
   { token }: IContext,
 ): Promise<Post> {
+  const { id, body, image_url, tag_ids, title, resume } = data;
   const updatePostService = container.resolve(UpdatePostService);
   const user_id = verifyToken(token);
   const post = await updatePostService.execute({
     id,
     body,
-    image_url,
+    image_url: image_url ? image_url.href : undefined,
     resume,
     tag_ids,
     title,

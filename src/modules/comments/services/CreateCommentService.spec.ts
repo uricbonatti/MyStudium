@@ -54,6 +54,7 @@ describe('Create Comment', () => {
       title: 'Post Teste',
       body: 'Lorem Ipsolon',
       image_url: 'teste.com/teste.png',
+      resume: 'resume',
     });
   });
   it('should be able to create a new Comment', async () => {

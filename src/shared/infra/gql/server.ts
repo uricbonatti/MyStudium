@@ -2,13 +2,13 @@ import dotenv from 'dotenv';
 import 'reflect-metadata';
 
 dotenv.config();
+import '@shared/infra/typeorm';
+import '@shared/container';
 import { ApolloServer } from 'apollo-server';
 import apolloConfig from '@config/apollo';
 import corsConfig from '@config/cors';
 import Schema from './schema';
 import resolvers from './resolvers';
-import '@shared/infra/typeorm';
-import '@shared/container';
 
 const server = new ApolloServer({
   typeDefs: Schema,

@@ -39,6 +39,7 @@ describe('Create Post Report', () => {
       body: 'Loren Ypsolon',
       title: 'Teste Post',
       category: new Category(),
+      resume: 'resumo',
       tags: [new Tag()],
       author: postAuthor,
       image_url: 'img',

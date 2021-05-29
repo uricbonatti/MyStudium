@@ -4,6 +4,7 @@ import {
   getPost,
   listPosts,
   updatePost,
+  likePost,
 } from './PostsResolver';
 
 export const PostQuerys = {
@@ -15,4 +16,5 @@ export const PostMutations = {
   createPost,
   deletePost,
   updatePost,
+  likePost,
 };

@@ -14,7 +14,7 @@ interface IRequest {
 @injectable()
 class CloseCommentReportService {
   constructor(
-    @inject('UsersReppository')
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
     @inject('CommentReportsRepository')
     private reportsRepository: ICommentReportsRepository,

@@ -6,12 +6,15 @@ import ICommentsRepository from '@modules/comments/repositories/ICommentsReposit
 import ICommentLikeDTO from '@modules/comments/dtos/ICommentLikeDTO';
 import Comment from '../schemas/Comment';
 import { ApolloError } from 'apollo-server';
+import CommentLikes from '../schemas/CommentLikes';
 
 class CommentsRepository implements ICommentsRepository {
   private odmRepository: MongoRepository<Comment>;
+  private odmLikeRepository: MongoRepository<CommentLikes>;
 
   constructor() {
     this.odmRepository = getMongoRepository(Comment);
+    this.odmLikeRepository = getMongoRepository(CommentLikes);
   }
 
   public async countCommentsLikedByUser(
@@ -19,7 +22,7 @@ class CommentsRepository implements ICommentsRepository {
     limitDate: Date,
   ): Promise<number> {
     try {
-      const commentLikes = await this.odmRepository.count({
+      const commentLikes = await this.odmLikeRepository.count({
         where: {
           users_liked: [liker_id],
           created_at: MoreThan(limitDate),
@@ -45,6 +48,11 @@ class CommentsRepository implements ICommentsRepository {
         users_liked: [],
       });
       await this.odmRepository.save(comment);
+      const users_liked = this.odmLikeRepository.create({
+        users_liked: [],
+        comment_id: comment.id,
+      });
+      await this.odmLikeRepository.save(users_liked);
       return comment;
     } catch (err) {
       throw new ApolloError('Database Timeout');
@@ -54,6 +62,9 @@ class CommentsRepository implements ICommentsRepository {
   public async delete(comment_id: string): Promise<void> {
     try {
       await this.odmRepository.delete(comment_id);
+      await this.odmLikeRepository.findOneAndDelete({
+        where: { post_id: new ObjectId(comment_id) },
+      });
     } catch (err) {
       throw new ApolloError('Database Timeout');
     }
@@ -94,24 +105,19 @@ class CommentsRepository implements ICommentsRepository {
       const comments = await this.odmRepository.find({
         post_id,
       });
-      return comments;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
-  }
-
-  public async isLiked({
-    comment_id,
-    user_id,
-  }: ICommentLikeDTO): Promise<boolean> {
-    try {
-      const findComment = await this.odmRepository.findOne(
-        comment_id.toHexString(),
+      const commentsWithLikes = await Promise.all(
+        comments.map(async comment => {
+          const likes = await this.odmLikeRepository.findOne({
+            where: { comment_id: comment.id },
+          });
+          comment.users_liked = [];
+          if (!!likes) {
+            comment.users_liked = likes.users_liked;
+          }
+          return comment;
+        }),
       );
-      if (findComment && findComment.users_liked.indexOf(user_id) >= 0) {
-        return true;
-      }
-      return false;
+      return commentsWithLikes;
     } catch (err) {
       throw new ApolloError('Database Timeout');
     }
@@ -119,24 +125,25 @@ class CommentsRepository implements ICommentsRepository {
 
   public async like({ comment_id, user_id }: ICommentLikeDTO): Promise<number> {
     try {
-      const findComment = await this.odmRepository.findOne(
-        comment_id.toHexString(),
-      );
+      const findComment = await this.odmLikeRepository.findOne({ comment_id });
       if (findComment) {
-        const index = findComment.users_liked.indexOf(user_id);
+        const { users_liked } = findComment;
+        let usersLikedString = users_liked.map(liked => liked.toHexString());
+        const index = usersLikedString.indexOf(user_id.toHexString());
         if (index >= 0) {
-          if (findComment.users_liked.length > 1) {
-            findComment.users_liked = [
-              ...findComment.users_liked.slice(index, 1),
-            ];
+          if (usersLikedString.length === 1) {
+            usersLikedString = [];
           } else {
-            findComment.users_liked = [];
+            usersLikedString = [...usersLikedString.slice(index, 1)];
           }
         } else {
-          findComment.users_liked.push(user_id);
+          usersLikedString.push(user_id.toHexString());
         }
-        await this.odmRepository.save(findComment);
-        return findComment.getLikes();
+        findComment.users_liked = [
+          ...usersLikedString.map(user => new ObjectId(user)),
+        ];
+        await this.odmLikeRepository.save(findComment);
+        return findComment.users_liked.length;
       }
       return 0;
     } catch (err) {
@@ -144,17 +151,17 @@ class CommentsRepository implements ICommentsRepository {
     }
   }
 
-  public async likesNumber(comment_id: ObjectId): Promise<number> {
+  public async getLikes(comment_id: ObjectId): Promise<CommentLikes> {
     try {
-      const findComment = await this.odmRepository.findOne(
-        comment_id.toHexString(),
-      );
-      if (!findComment) {
-        return 0;
+      const commentLikes = await this.odmLikeRepository.findOne({
+        where: { comment_id },
+      });
+      if (!commentLikes) {
+        throw new ApolloError('Database Timeout');
       }
-      return findComment.getLikes();
+      return commentLikes;
     } catch (err) {
-      throw new ApolloError('Database Timeout');
+      throw err;
     }
   }
 }

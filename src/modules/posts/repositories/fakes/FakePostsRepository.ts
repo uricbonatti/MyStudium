@@ -5,12 +5,15 @@ import { ObjectId } from 'mongodb';
 import removeAccents from 'remove-accents';
 import { isAfter } from 'date-fns';
 import IPostsRepository from '../IPostsRepository';
+import PostLikes from '@modules/posts/infra/typeorm/schemas/PostLikes';
 
 class FakePostsRepository implements IPostsRepository {
   private posts: Post[] = [];
+  private postLikes: PostLikes[] = [];
 
   public async create({ title, ...rest }: ICreatePostDTO): Promise<Post> {
     const post = new Post();
+    const postLike = new PostLikes();
 
     Object.assign(
       post,
@@ -18,12 +21,19 @@ class FakePostsRepository implements IPostsRepository {
         id: new ObjectId(),
         title,
         slug: removeAccents(title).toLowerCase().replace(/\s/g, '-'),
-        users_liked: [],
         created_at: new Date(),
       },
       rest,
     );
     this.posts.push(post);
+
+    Object.assign(postLike, {
+      id: new ObjectId(),
+      post_id: post.id,
+      users_liked: [],
+      created_at: postLike.created_at,
+    });
+    this.postLikes.push(postLike);
 
     return post;
   }
@@ -46,9 +56,21 @@ class FakePostsRepository implements IPostsRepository {
       this.posts = [];
     }
   }
-
+  public async getLikes(post_id: ObjectId): Promise<PostLikes | undefined> {
+    const likes = this.postLikes.find(postLike =>
+      postLike.post_id.equals(post_id),
+    );
+    return likes;
+  }
   public async findByID(post_id: string): Promise<Post | undefined> {
     const findPost = this.posts.find(post => post.id.toHexString() === post_id);
+    if (!findPost) {
+      return findPost;
+    }
+    const findLikes = await this.getLikes(findPost.id);
+    findPost.users_liked = findLikes?.users_liked
+      ? [...findLikes.users_liked]
+      : [];
     return findPost;
   }
 
@@ -87,48 +109,38 @@ class FakePostsRepository implements IPostsRepository {
     return findPosts;
   }
 
-  public async isLiked({ user_id, post_id }: IPostLikeDTO): Promise<boolean> {
-    const findIndex = this.posts.findIndex(post => post_id.equals(post.id));
-    const user = this.posts[findIndex].users_liked.find(user_like =>
-      user_id.equals(user_like),
-    );
-    return !!user;
-  }
-
   public async like({ user_id, post_id }: IPostLikeDTO): Promise<number> {
-    const findIndex = this.posts.findIndex(post => post_id.equals(post.id));
+    const findIndex = this.postLikes.findIndex(
+      pLikes => post_id.toHexString() === pLikes.post_id.toHexString(),
+    );
     if (findIndex >= 0) {
-      const likesStored = this.posts[findIndex].users_liked;
+      const likesStored = this.postLikes[findIndex].users_liked;
+
       const userLikeIndex = likesStored.findIndex(user_like =>
         user_id.equals(user_like),
       );
 
       if (userLikeIndex >= 0) {
-        if (this.posts[findIndex].users_liked.length === 1) {
-          this.posts[findIndex].users_liked = [];
+        if (this.postLikes[findIndex].users_liked.length === 1) {
+          this.postLikes[findIndex].users_liked = [];
         } else {
-          this.posts[findIndex].users_liked = [
+          this.postLikes[findIndex].users_liked = [
             ...likesStored.slice(userLikeIndex, 1),
           ];
         }
       } else {
-        this.posts[findIndex].users_liked.push(user_id);
+        this.postLikes[findIndex].users_liked.push(user_id);
       }
-      return this.posts[findIndex].users_liked.length;
+      return this.postLikes[findIndex].users_liked.length;
     }
     return 0;
-  }
-
-  public async likesNumber(post_id: ObjectId): Promise<number> {
-    const findIndex = this.posts.findIndex(post => post_id.equals(post.id));
-    return this.posts[findIndex].getLikes();
   }
 
   public async countPostsLikedByUser(
     liker_id: ObjectId,
     limitDate: Date,
   ): Promise<number> {
-    const postIsLiked = await this.posts.map(
+    const postIsLiked = await this.postLikes.map(
       post =>
         post.users_liked.includes(liker_id) &&
         isAfter(post.created_at, limitDate),

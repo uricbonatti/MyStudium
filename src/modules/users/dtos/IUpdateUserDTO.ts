@@ -1,3 +1,6 @@
+interface Url {
+  href: string;
+}
 export default interface IUpdateUserDTO {
   id: string;
   email: string;
@@ -7,5 +10,5 @@ export default interface IUpdateUserDTO {
   password?: string;
   github?: string;
   linkedin?: string;
-  avatar_url?: string;
+  avatar_url?: Url;
 }

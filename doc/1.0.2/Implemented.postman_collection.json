@@ -1,0 +1,2201 @@
+{
+	"info": {
+		"_postman_id": "b1da2023-5537-40b8-a3d0-965ab2d23124",
+		"name": "Implemented",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "(Q) List Posts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query listPosts( $part_of_title: String, $category_id: ObjectID, $author_id: ObjectID){\r\n    listPosts(\r\n        filter:{\r\n            part_of_title: $part_of_title\r\n            category_id: $category_id\r\n            author_id: $author_id\r\n        }\r\n    ){\r\n        author{\r\n            name\r\n        }\r\n        resume\r\n        title\r\n        id\r\n        image_url\r\n    }\r\n\r\n\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(Q) List Posts",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query listPosts( $part_of_title: String, $category_id: ObjectID, $author_id: ObjectID){\r\n    listPosts(\r\n        filter:{\r\n            part_of_title: $part_of_title\r\n            category_id: $category_id\r\n            author_id: $author_id\r\n        }\r\n    ){\r\n        author{\r\n            name\r\n        }\r\n        resume\r\n        title\r\n        id\r\n        image_url\r\n    }\r\n\r\n\r\n}",
+										"variables": "{\r\n  \"category_id\":\"608443599e168c14649ee8da\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "528"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"210-g2WjCNDi5FrjG8rFfvLQ2l6DvI8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:11:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"listPosts\": [\n            {\n                \"author\": {\n                    \"name\": \"Uric\"\n                },\n                \"resume\": \"Resumo do post para um preview ou coisa do tipo\",\n                \"title\": \"Post Testing to validate changes\",\n                \"id\": \"6084450d9e168c14649ee8dc\",\n                \"image_url\": \"https://i.pinimg.com/474x/f1/9f/0c/f19f0cf72c8487c89083f54cc303ba48.jpg\"\n            },\n            {\n                \"author\": {\n                    \"name\": \"Uric\"\n                },\n                \"resume\": \"Resumo do post para um preview ou coisa do tipo\",\n                \"title\": \"Post Testing to validate changes on likes\",\n                \"id\": \"6084a35931e3264f2c978195\",\n                \"image_url\": \"https://i.pinimg.com/474x/f1/9f/0c/f19f0cf72c8487c89083f54cc303ba48.jpg\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "(Q) List Posts",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query listPosts( $part_of_title: String, $category_id: ObjectID, $author_id: ObjectID){\r\n    listPosts(\r\n        filter:{\r\n            part_of_title: $part_of_title\r\n            category_id: $category_id\r\n            author_id: $author_id\r\n        }\r\n    ){\r\n        author{\r\n            name\r\n        }\r\n        resume\r\n        title\r\n        id\r\n        image_url\r\n    }\r\n\r\n\r\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "289"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"121-ml9kckbP2XeXOGw7pUsnc6AFsLA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:36:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"listPosts\": [\n            {\n                \"author\": {\n                    \"name\": \"Uric Bonatti\"\n                },\n                \"resume\": \"Resumo do post para um preview ou coisa do tipo\",\n                \"title\": \"Post Testing to validate changes on likes\",\n                \"id\": \"60929e346158033664737d19\",\n                \"image_url\": \"https://i.pinimg.com/474x/f1/9f/0c/f19f0cf72c8487c89083f54cc303ba48.jpg\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(Q) Get Post",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getPost($id: ObjectID!){\r\n    getPost(id: $id){\r\n        author{\r\n            id\r\n            avatar_url\r\n            name\r\n        }\r\n        category{\r\n            name\r\n        }\r\n        tags{\r\n            name\r\n        }\r\n        title\r\n        body\r\n        resume\r\n        image_url\r\n        updated_at\r\n        comments{\r\n            author{\r\n                id\r\n                name\r\n                avatar_url\r\n            }\r\n            created_at\r\n            body\r\n            likes\r\n            liked\r\n\r\n        }\r\n        likes\r\n        liked\r\n    }\r\n}",
+								"variables": "{\r\n    \"id\": \"60929e346158033664737d19\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(Q) Get Post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query getPost($id: ObjectID!){\r\n    getPost(id: $id){\r\n        author{\r\n            id\r\n            avatar_url\r\n            name\r\n        }\r\n        category{\r\n            name\r\n        }\r\n        tags{\r\n            name\r\n        }\r\n        title\r\n        body\r\n        resume\r\n        image_url\r\n        updated_at\r\n        comments{\r\n            author{\r\n                id\r\n                name\r\n                avatar_url\r\n            }\r\n            created_at\r\n            body\r\n            likes\r\n            liked\r\n\r\n        }\r\n        likes\r\n        liked\r\n    }\r\n}",
+										"variables": "{\r\n    \"id\": \"6084a35931e3264f2c978195\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "608"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"260-zeFixRnoiKPYmn3fLFEioYBHRCo\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:13:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"getPost\": {\n            \"author\": {\n                \"id\": \"60802b74137d3d1fb466ce6f\",\n                \"avatar_url\": null,\n                \"name\": \"Uric\"\n            },\n            \"category\": {\n                \"name\": \"DevOps\"\n            },\n            \"tags\": [\n                {\n                    \"name\": \"Docker\"\n                }\n            ],\n            \"title\": \"Post Testing to validate changes on likes\",\n            \"body\": \"Qualquer String adicionada aqui, no front estaremos enviando 255+ usando algum rich text editor - ainda indefinido e pode ocorrer mudanças para a interpretação dessa variavel string\",\n            \"resume\": \"Resumo do post para um preview ou coisa do tipo\",\n            \"image_url\": \"https://i.pinimg.com/474x/f1/9f/0c/f19f0cf72c8487c89083f54cc303ba48.jpg\",\n            \"updated_at\": \"2021-04-24\",\n            \"comments\": [],\n            \"likes\": 0,\n            \"liked\": null\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(Q) Like Post",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation likePost($id: ObjectID!){\r\n    likePost(post_id: $id)            \r\n}",
+								"variables": "{\r\n    \"id\": \"60929e346158033664737d19\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(Q) Like Post",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation likePost($id: ObjectID!){\r\n    likePost(post_id: $id)            \r\n}",
+										"variables": "{\r\n    \"id\": \"6084a35931e3264f2c978195\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-aDdV9ATS4AucutKfkvBgt9Y5SS0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:14:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"likePost\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(M) updatePost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updatePost($id: ObjectID!, $body: String, $tag_ids: [CreatePostTag!], $resume: String, $title: String, $image_url: URL){\r\n    updatePost(data:{\r\n        id: $id\r\n        body: $body\r\n        tag_id: $tag_ids\r\n        resume: $resume  \r\n        title: $title\r\n        image_url: $image_url\r\n    }){\r\n        author{\r\n            id\r\n            name\r\n        }\r\n        body\r\n        category{\r\n            id\r\n            name\r\n        }\r\n        tags{\r\n            id\r\n            name\r\n        }\r\n        id\r\n        \r\n    }\r\n}",
+								"variables": "{\r\n    \"id\":\"60929e346158033664737d19\",\r\n     \"body\": \"Qualquer String adicionada aqui, no front estaremos enviando 255+ usando algum rich text editor - ainda indefinido e pode ocorrer mudanças para a interpretação dessa variavel string\",\r\n    \"tag_ids\":[{\r\n            \"tag_id\": \"608444af9e168c14649ee8db\"\r\n    }],\r\n    \"resume\": \"Resumo do post para um preview ou coisa do tipo\" ,     \r\n    \"title\": \"Post Testing to validate changes on likes\",\r\n    \"image_url\": \"https://i.pinimg.com/474x/f1/9f/0c/f19f0cf72c8487c89083f54cc303ba48.jpg\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(M) updatePost",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation updatePost($id: ObjectID!, $body: String, $tag_ids: [CreatePostTag!], $resume: String, $title: String, $image_url: URL){\r\n    updatePost(data:{\r\n        id: $id\r\n        body: $body\r\n        tag_id: $tag_ids\r\n        resume: $resume  \r\n        title: $title\r\n        image_url: $image_url\r\n    }){\r\n        author{\r\n            id\r\n            name\r\n        }\r\n        body\r\n        category{\r\n            id\r\n            name\r\n        }\r\n        tags{\r\n            id\r\n            name\r\n        }\r\n        id\r\n        \r\n    }\r\n}",
+										"variables": "{\r\n    \"id\":\"60929e346158033664737d19\",\r\n     \"body\": \"Qualquer String adicionada aqui, no front estaremos enviando 255+ usando algum rich text editor - ainda indefinido e pode ocorrer mudanças para a interpretação dessa variavel string\",\r\n    \"tag_ids\":[{\r\n            \"tag_id\": \"608444af9e168c14649ee8db\"\r\n    }],\r\n    \"resume\": \"Resumo do post para um preview ou coisa do tipo\" ,     \r\n    \"title\": \"Post Testing to validate changes on likes\",\r\n    \"image_url\": \"https://i.pinimg.com/474x/f1/9f/0c/f19f0cf72c8487c89083f54cc303ba48.jpg\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "437"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b5-tIIxAWrj0vWWkV4N0QTp65D+7ZE\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:46:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"updatePost\": {\n            \"author\": {\n                \"id\": \"60802b74137d3d1fb466ce6f\",\n                \"name\": \"Uric Bonatti\"\n            },\n            \"body\": \"Qualquer String adicionada aqui, no front estaremos enviando 255+ usando algum rich text editor - ainda indefinido e pode ocorrer mudanças para a interpretação dessa variavel string\",\n            \"category\": {\n                \"id\": \"608443599e168c14649ee8da\",\n                \"name\": \"DevOps\"\n            },\n            \"tags\": [\n                {\n                    \"id\": \"608444af9e168c14649ee8db\",\n                    \"name\": \"Docker\"\n                }\n            ],\n            \"id\": \"60929e346158033664737d19\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(M) createPost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"pm.test(\"Success createPost\",()=>{\r",
+									"    pm.response.to.be.ok\r",
+									"})\r",
+									"pm.globals.set(\"postId\",response.data.createPost.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createPost($body: String!, $category_id: ObjectID!, $tag_ids: [CreatePostTag!]!, $resume: String!, $title: String!, $image_url: URL){\r\n    createPost(data:{\r\n        body: $body\r\n        category_id: $category_id\r\n        tag_ids: $tag_ids\r\n        resume: $resume  \r\n        title: $title\r\n        image_url: $image_url\r\n    }){\r\n        author{\r\n            id\r\n            name\r\n        }\r\n        body\r\n        category{\r\n            id\r\n            name\r\n        }\r\n        tags{\r\n            id\r\n            name\r\n        }\r\n        id\r\n        \r\n    }\r\n}",
+								"variables": "{\r\n     \"body\": \"Qualquer String adicionada aqui, no front estaremos enviando 255+ usando algum rich text editor - ainda indefinido e pode ocorrer mudanças para a interpretação dessa variavel string\",\r\n    \"category_id\": \"608443599e168c14649ee8da\",\r\n    \"tag_ids\":[{\r\n            \"tag_id\": \"608444af9e168c14649ee8db\"\r\n    }],\r\n    \"resume\": \"Resumo do post para um preview ou coisa do tipo\" ,     \r\n    \"title\": \"Post Testing to validate changes on likes\",\r\n    \"image_url\": \"https://i.pinimg.com/474x/f1/9f/0c/f19f0cf72c8487c89083f54cc303ba48.jpg\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(M) createPost",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql"
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "437"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b5-KqB09l/rHv57RePTeKmSen8aemY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:31:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"createPost\": {\n            \"author\": {\n                \"id\": \"60802b74137d3d1fb466ce6f\",\n                \"name\": \"Uric Bonatti\"\n            },\n            \"body\": \"Qualquer String adicionada aqui, no front estaremos enviando 255+ usando algum rich text editor - ainda indefinido e pode ocorrer mudanças para a interpretação dessa variavel string\",\n            \"category\": {\n                \"id\": \"608443599e168c14649ee8da\",\n                \"name\": \"DevOps\"\n            },\n            \"tags\": [\n                {\n                    \"id\": \"608444af9e168c14649ee8db\",\n                    \"name\": \"Docker\"\n                }\n            ],\n            \"id\": \"60929e346158033664737d19\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "(M) Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createUser($email: EmailAddress!, $name: String!, $password: String!){\r\n    createUser(\r\n        data:{\r\n            email: $email\r\n            name: $name\r\n            password: $password\r\n    }){\r\n        id\r\n    }\r\n}",
+								"variables": "{\r\n    \"email\": \"uricbonatti.eng2@gmail.com\",\r\n    \"name\": \"Uric\",\r\n    \"password\": \"123456\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(M) Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createUser($email: EmailAddress!, $name: String!, $password: String!){\r\n    createUser(\r\n        data:{\r\n            email: $email\r\n            name: $name\r\n            password: $password\r\n    }){\r\n        id\r\n    }\r\n}",
+										"variables": "{\r\n    \"email\": \"uricbonatti.eng2@gmail.com\",\r\n    \"name\": \"Uric\",\r\n    \"password\": \"123456\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a-RBQpTaptPX+yjyRSvHVFhFx+JxA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:56:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"createUser\": {\n            \"id\": \"6092a400f0b4350340b19dd0\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(M) Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateUser($email: EmailAddress!, $password: String, $old_password: String, $avatar_url: URL, $name: String){\r\n    updateUser(\r\n        data:{\r\n            name: $name\r\n            email: $email\r\n            password: $password\r\n            old_password: $old_password\r\n            avatar_url: $avatar_url\r\n    }){\r\n        access_level\r\n        avatar_url\r\n        created_at\r\n        id\r\n        exp_percent\r\n        name\r\n    }\r\n}",
+								"variables": "{\r\n    \"email\": \"uricbonatti.eng@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"old_password\": \"123456\",\r\n    \"avatar_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png\",\r\n    \"name\": \"Uric Bonatti\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(M) Update User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation updateUser($email: EmailAddress!, $password: String, $old_password: String, $avatar_url: URL, $name: String){\r\n    updateUser(\r\n        data:{\r\n            name: $name\r\n            email: $email\r\n            password: $password\r\n            old_password: $old_password\r\n            avatar_url: $avatar_url\r\n    }){\r\n        access_level\r\n        avatar_url\r\n        created_at\r\n        id\r\n        exp_percent\r\n        name\r\n    }\r\n}",
+										"variables": "{\r\n    \"email\": \"uricbonatti.eng@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"old_password\": \"123456\",\r\n    \"avatar_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png\",\r\n    \"name\": \"Uric Bonatti\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "262"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"106-RT4aQeKN2xsuUnt/DMlXxMBb80A\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 12:55:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"updateUser\": {\n            \"access_level\": \"user\",\n            \"avatar_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png\",\n            \"created_at\": \"2021-04-21\",\n            \"id\": \"60802b74137d3d1fb466ce6f\",\n            \"exp_percent\": 0,\n            \"name\": \"Uric Bonatti\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(Q) Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"pm.test(\"Success Login\",()=>{\r",
+									"    pm.response.to.be.ok\r",
+									"})\r",
+									"pm.globals.set(\"token\",response.data.login.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query login($email: EmailAddress!, $password: String!){\r\n    login(\r\n        data:{\r\n            email: $email\r\n            password: $password\r\n        }\r\n    ){\r\n        token\r\n        user{\r\n            id\r\n            avatar_url\r\n            name\r\n            access_level\r\n        }\r\n    }\r\n}",
+								"variables": "{\r\n    \"email\": \"uricbonatti.eng@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(Q) Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query login($email: EmailAddress!, $password: String!){\r\n    login(\r\n        data:{\r\n            email: $email\r\n            password: $password\r\n        }\r\n    ){\r\n        token\r\n        user{\r\n            id\r\n            avatar_url\r\n            name\r\n            access_level\r\n        }\r\n    }\r\n}",
+										"variables": "{\r\n    \"email\": \"uricbonatti.eng@gmail.com\",\r\n    \"password\": \"123456\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "407"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"197-/vVwXSkrlcLkuAPLRrtqzIlldWw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:55:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"login\": {\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2MjAyMjI5NDksImV4cCI6MTYyMDMwOTM0OSwic3ViIjoiNjA4MDJiNzQxMzdkM2QxZmI0NjZjZTZmIn0.rHtyBjF4JdM7ZfFVxb1iNT39rbcKJ2LSHZ4axyfY2Pw\",\n            \"user\": {\n                \"id\": \"60802b74137d3d1fb466ce6f\",\n                \"avatar_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png\",\n                \"name\": \"Uric Bonatti\",\n                \"access_level\": \"user\"\n            }\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(Q) Get User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getUser($userId: ObjectID!){\r\n    getUser(id: $userId){\r\n\r\n        id\r\n        name\r\n        email\r\n        description\r\n        avatar_url\r\n        github\r\n        linkedin\r\n        created_at\r\n        updated_at\r\n        level\r\n        exp_percent\r\n        access_level\r\n    }\r\n}",
+								"variables": "{\r\n    \"userId\":\"60802b74137d3d1fb466ce6f\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(Q) Get User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query getUser($userId: ObjectID!){\r\n    getUser(id: $userId){\r\n\r\n        id\r\n        name\r\n        email\r\n        description\r\n        avatar_url\r\n        github\r\n        linkedin\r\n        created_at\r\n        updated_at\r\n        level\r\n        exp_percent\r\n        access_level\r\n    }\r\n}",
+										"variables": "{\r\n    \"userId\":\"60802b74137d3d1fb466ce6f\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "380"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"17c-id+wVThqrsO9aKzjHfff2racwGg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 12:55:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"getUser\": {\n            \"id\": \"60802b74137d3d1fb466ce6f\",\n            \"name\": \"Uric Bonatti\",\n            \"email\": \"uricbonatti.eng@gmail.com\",\n            \"description\": null,\n            \"avatar_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png\",\n            \"github\": null,\n            \"linkedin\": null,\n            \"created_at\": \"2021-04-21\",\n            \"updated_at\": \"2021-05-05\",\n            \"level\": 0,\n            \"exp_percent\": 0,\n            \"access_level\": \"user\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(Q) Get User Summary",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query userSummary($userId: ObjectID!){\r\n    userSummary(id: $userId){\r\n        all {\r\n            commentsCreated\r\n            commentsLiked\r\n            postsCreated\r\n            postsLiked\r\n        }\r\n        lastMonth {\r\n            commentsCreated\r\n            commentsLiked\r\n            postsCreated\r\n            postsLiked\r\n        }\r\n        lastWeek {\r\n            commentsCreated\r\n            commentsLiked\r\n            postsCreated\r\n            postsLiked\r\n        }\r\n        weekExp\r\n        lastWeekPosts{\r\n            id\r\n            title\r\n            created_at\r\n        }\r\n      \r\n    }\r\n}",
+								"variables": "{\r\n    \"userId\":\"60802b74137d3d1fb466ce6f\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(Q) Get User Summary",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query userSummary($userId: ObjectID!){\r\n    userSummary(id: $userId){\r\n        all {\r\n            commentsCreated\r\n            commentsLiked\r\n            postsCreated\r\n            postsLiked\r\n        }\r\n        lastMonth {\r\n            commentsCreated\r\n            commentsLiked\r\n            postsCreated\r\n            postsLiked\r\n        }\r\n        lastWeek {\r\n            commentsCreated\r\n            commentsLiked\r\n            postsCreated\r\n            postsLiked\r\n        }\r\n        weekExp\r\n        lastWeekPosts{\r\n            id\r\n            title\r\n            created_at\r\n        }\r\n      \r\n    }\r\n}",
+										"variables": "{\r\n    \"userId\":\"60802b74137d3d1fb466ce6f\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "303"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12f-VEHTEYoGPnksWHyhd8B6Ih/XFVk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 12:56:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"userSummary\": {\n            \"all\": {\n                \"commentsCreated\": 1,\n                \"commentsLiked\": 0,\n                \"postsCreated\": 3,\n                \"postsLiked\": 0\n            },\n            \"lastMonth\": {\n                \"commentsCreated\": 1,\n                \"commentsLiked\": 0,\n                \"postsCreated\": 3,\n                \"postsLiked\": 0\n            },\n            \"lastWeek\": {\n                \"commentsCreated\": 0,\n                \"commentsLiked\": 0,\n                \"postsCreated\": 0,\n                \"postsLiked\": 0\n            },\n            \"weekExp\": 0,\n            \"lastWeekPosts\": []\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "(M) Create Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createComment($post_id: ObjectID!, $body: String!){\r\n    createComment( data:{\r\n        post_id: $post_id\r\n        body: $body\r\n    })\r\n    {\r\n        id\r\n        author{\r\n            id\r\n            name\r\n            avatar_url\r\n        }\r\n        body\r\n        created_at\r\n        post_id\r\n        updated_at\r\n    }\r\n}",
+								"variables": "{\r\n    \"post_id\":\"60929e346158033664737d19\",\r\n    \"body\": \"Primeiro Comentario\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(M) Create Comment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createComment($post_id: ObjectID!, $body: String!){\r\n    createComment( data:{\r\n        post_id: $post_id\r\n        body: $body\r\n    })\r\n    {\r\n        id\r\n        author{\r\n            id\r\n            name\r\n            avatar_url\r\n        }\r\n        body\r\n        created_at\r\n        post_id\r\n        updated_at\r\n    }\r\n}",
+										"variables": "{\r\n    \"post_id\":\"60929e346158033664737d19\",\r\n    \"body\": \"Primeiro Comentario\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "362"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16a-2myfkVqyBRHH2MYPDgpvhKLlKRw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:56:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"createComment\": {\n            \"id\": \"6092a418f0b4350340b19dd2\",\n            \"author\": {\n                \"id\": \"60802b74137d3d1fb466ce6f\",\n                \"name\": \"Uric Bonatti\",\n                \"avatar_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png\"\n            },\n            \"body\": \"Primeiro Comentario\",\n            \"created_at\": \"2021-05-05\",\n            \"post_id\": \"60929e346158033664737d19\",\n            \"updated_at\": \"2021-05-05\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(M) Update Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateComment($comment_id: ObjectID!, $body: String!){\r\n    updateComment( data:{\r\n        id: $comment_id\r\n        body: $body\r\n    })\r\n    {\r\n        id\r\n        author{\r\n            id\r\n            name\r\n            avatar_url\r\n        }\r\n        body\r\n        created_at\r\n        post_id\r\n        updated_at\r\n    }\r\n}",
+								"variables": "{\r\n    \"comment_id\":\"6092a4e7649a922d40438df9\",\r\n    \"body\": \"Primeiro Comentario Editado\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(M) Create Comment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql"
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "362"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"16a-2myfkVqyBRHH2MYPDgpvhKLlKRw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 13:56:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"createComment\": {\n            \"id\": \"6092a418f0b4350340b19dd2\",\n            \"author\": {\n                \"id\": \"60802b74137d3d1fb466ce6f\",\n                \"name\": \"Uric Bonatti\",\n                \"avatar_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png\"\n            },\n            \"body\": \"Primeiro Comentario\",\n            \"created_at\": \"2021-05-05\",\n            \"post_id\": \"60929e346158033664737d19\",\n            \"updated_at\": \"2021-05-05\"\n        }\n    }\n}"
+						},
+						{
+							"name": "(M) Update Comment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation updateComment($comment_id: ObjectID!, $body: String!){\r\n    updateComment( data:{\r\n        id: $comment_id\r\n        body: $body\r\n    })\r\n    {\r\n        id\r\n        author{\r\n            id\r\n            name\r\n            avatar_url\r\n        }\r\n        body\r\n        created_at\r\n        post_id\r\n        updated_at\r\n    }\r\n}",
+										"variables": "{\r\n    \"comment_id\":\"6092a4e7649a922d40438df9\",\r\n    \"body\": \"Primeiro Comentario Editado\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "370"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"172-G2JXP0Jlserd2w55RmzhvuIwniQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 14:03:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"updateComment\": {\n            \"id\": \"6092a4e7649a922d40438df9\",\n            \"author\": {\n                \"id\": \"60802b74137d3d1fb466ce6f\",\n                \"name\": \"Uric Bonatti\",\n                \"avatar_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png\"\n            },\n            \"body\": \"Primeiro Comentario Editado\",\n            \"created_at\": \"2021-05-05\",\n            \"post_id\": \"60929e346158033664737d19\",\n            \"updated_at\": \"2021-05-05\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(M) Like Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation likeComment($id: ObjectID!){\r\n    likeComment(comment_id:$id)\r\n}",
+								"variables": "{\r\n    \"id\":\"6092a4e7649a922d40438df9\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(M) Like Comment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation likeComment($id: ObjectID!){\r\n    likeComment(comment_id:$id)\r\n}",
+										"variables": "{\r\n    \"id\":\"6092a4e7649a922d40438df9\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b-0JNg072t23Xb8zcXhl0viBUL/Kc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 14:00:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"likeComment\": 1\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Post Report",
+					"item": [
+						{
+							"name": "Open Post Reports",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query{\r\n    openPostReports{\r\n        id\r\n        action\r\n        body\r\n        closed\r\n        created_at\r\n        feedback\r\n        title\r\n        title\r\n    }\r\n}\r\n\r\n#Para realizar essa operação o usuario precisa ter nivel moderador ou administrador\r\n#Na maior parte dos casos irá retornar um erro",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Post Reports",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query{\r\n    userPostReports{\r\n        id\r\n        action\r\n        body\r\n        closed\r\n        created_at\r\n        feedback\r\n        title\r\n        title\r\n    }\r\n}\r\n\r\n#Esta retorna os reports que o usuario realizou para posts",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Post Report",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createPostReport($body: String!,$post_id: ObjectID!,$title: String!){\r\n    createPostReport(data:{\r\n        body: $body\r\n        post_id: $post_id\r\n        title: $title\r\n    }){\r\n        body\r\n        closed\r\n        post_id\r\n        created_at\r\n        id\r\n        title\r\n    }\r\n}",
+										"variables": "{\r\n    \"body\": \"Só pra ver o que acontece\",\r\n    \"title\": \"Tá ai guri\",\r\n    \"post_id\": \"60929e346158033664737d19\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Post Report",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation createPostReport($body: String!,$post_id: ObjectID!,$title: String!){\r\n    createPostReport(data:{\r\n        body: $body\r\n        post_id: $post_id\r\n        title: $title\r\n    }){\r\n        body\r\n        closed\r\n        post_id\r\n        created_at\r\n        id\r\n        title\r\n    }\r\n}",
+												"variables": "{\r\n    \"body\": \"Só pra ver o que acontece\",\r\n    \"title\": \"Tá ai guri\",\r\n    \"post_id\": \"60929e346158033664737d19\"\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}",
+											"host": [
+												"{{baseUrl}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "200"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"c8-hujNqm4sJ5xYOcd2B/Uq8n679JY\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 05 May 2021 16:25:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"createPostReport\": {\n            \"body\": \"Só pra ver o que acontece\",\n            \"closed\": false,\n            \"post_id\": \"60929e346158033664737d19\",\n            \"created_at\": \"2021-05-05\",\n            \"id\": \"6092c6e0c8de3e3a440efc74\",\n            \"title\": \"Tá ai guri\"\n        }\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Comment Report",
+					"item": [
+						{
+							"name": "Create Comment Report",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createCommentReport($body: String!,$comment_id: ObjectID!,$title: String!){\r\n    createCommentReport(data:{\r\n        body: $body\r\n        comment_id: $comment_id\r\n        title: $title\r\n    }){\r\n        body\r\n        closed\r\n        comment_id\r\n        created_at\r\n        id\r\n        title\r\n    }\r\n}\r\n\r\n",
+										"variables": "{\r\n    \"body\": \"Só pra ver o que acontece\",\r\n    \"title\": \"Tá ai guri\",\r\n    \"comment_id\": \"6092a418f0b4350340b19dd2\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Comment Report",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation createCommentReport($body: String!,$comment_id: ObjectID!,$title: String!){\r\n    createCommentReport(data:{\r\n        body: $body\r\n        comment_id: $comment_id\r\n        title: $title\r\n    }){\r\n        body\r\n        closed\r\n        comment_id\r\n        created_at\r\n        id\r\n        title\r\n    }\r\n}\r\n\r\n#Esta retorna os reports que o usuario realizou para posts",
+												"variables": "{\r\n    \"body\": \"Só pra ver o que acontece\",\r\n    \"title\": \"Tá ai guri\",\r\n    \"comment_id\": \"6092a418f0b4350340b19dd2\"\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}",
+											"host": [
+												"{{baseUrl}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "206"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"ce-jSe7GGKpAoJ75uKgT432RlTTifM\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 05 May 2021 14:48:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"createCommentReport\": {\n            \"body\": \"Só pra ver o que acontece\",\n            \"closed\": false,\n            \"comment_id\": \"6092a418f0b4350340b19dd2\",\n            \"created_at\": \"2021-05-05\",\n            \"id\": \"6092b053c8de3e3a440efc73\",\n            \"title\": \"Tá ai guri\"\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Create Comment Report Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createCommentReport($body: String!,$comment_id: ObjectID!,$title: String!){\r\n    createCommentReport(data:{\r\n        body: $body\r\n        comment_id: $comment_id\r\n        title: $title\r\n    }){\r\n        body\r\n        closed\r\n        comment_id\r\n        created_at\r\n        id\r\n        title\r\n    }\r\n}\r\n\r\n#Esta retorna os reports que o usuario realizou para posts",
+										"variables": "{\r\n    \"body\": \"Só pra ver o que acontece\",\r\n    \"title\": \"Tá ai guri\",\r\n    \"comment_id\": \"6092a418f0b4350340b19dd2\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Comment Report",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql"
+										},
+										"url": {
+											"raw": "{{baseUrl}}",
+											"host": [
+												"{{baseUrl}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "206"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"ce-jSe7GGKpAoJ75uKgT432RlTTifM\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 05 May 2021 14:48:51 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"createCommentReport\": {\n            \"body\": \"Só pra ver o que acontece\",\n            \"closed\": false,\n            \"comment_id\": \"6092a418f0b4350340b19dd2\",\n            \"created_at\": \"2021-05-05\",\n            \"id\": \"6092b053c8de3e3a440efc73\",\n            \"title\": \"Tá ai guri\"\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "User Comment Reports",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query{\r\n    userCommentReports{\r\n        id\r\n        action\r\n        body\r\n        closed\r\n        created_at\r\n        feedback\r\n        title\r\n        title\r\n    }\r\n}\r\n\r\n#Esta retorna os reports que o usuario realizou para posts",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "User Comment Reports",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query{\r\n    userCommentReports{\r\n        id\r\n        action\r\n        body\r\n        closed\r\n        created_at\r\n        feedback\r\n        title\r\n        title\r\n    }\r\n}\r\n\r\n#Esta retorna os reports que o usuario realizou para posts",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}",
+											"host": [
+												"{{baseUrl}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "197"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"c5-IZmGh6dQEuoHdMl8I7LEKehUuT0\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 05 May 2021 14:49:21 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"userCommentReports\": [\n            {\n                \"id\": \"6092b053c8de3e3a440efc73\",\n                \"action\": null,\n                \"body\": \"Só pra ver o que acontece\",\n                \"closed\": false,\n                \"created_at\": \"2021-05-05\",\n                \"feedback\": null,\n                \"title\": \"Tá ai guri\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Open Comment Reports",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query{\r\n    openCommentReports{\r\n        id\r\n        action\r\n        body\r\n        closed\r\n        created_at\r\n        feedback\r\n        title\r\n        title\r\n    }\r\n}\r\n\r\n#Para realizar essa operação o usuario precisa ter nivel moderador ou administrador\r\n#Na maior parte dos casos irá retornar um erro",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Categories & Tags",
+			"item": [
+				{
+					"name": "(M) createCategory",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"pm.test(\"Success createPost\",()=>{\r",
+									"    pm.response.to.be.ok\r",
+									"    pm.globals.set(\"category_id\",`${response.data.createCategory.id}`)\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createCategory($name: String!){\r\n    createCategory(data:{\r\n        name: $name\r\n    }){\r\n        id\r\n        name\r\n    }\r\n}",
+								"variables": "{\r\n    \"name\":\"DevOps\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(M) createTag",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json()\r",
+									"pm.test(\"Success createPost\",()=>{\r",
+									"    pm.response.to.be.ok\r",
+									"})\r",
+									"pm.globals.set(\"tagId\",response.data.createTag.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createTag($categoryId: ObjectID!, $name: String!){\r\n    createTag(data:{\r\n        category_id: $categoryId\r\n        name: $name\r\n        }\r\n    ){\r\n        category{\r\n            id\r\n            name\r\n        }\r\n        id\r\n        name\r\n    }\r\n}",
+								"variables": "{\r\n    \"categoryId\": \"608443599e168c14649ee8da\",\r\n    \"name\": \"Docker\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(Q) List Categories",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n    listCategories{\r\n        id\r\n        name\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(Q) Get Tag",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getTag($tagId: ObjectID!){\r\n    getTag(id: $tagId){\r\n        id\r\n        name\r\n        category{\r\n            id\r\n            name\r\n        }\r\n    }\r\n}",
+								"variables": "{\r\n    \"tagId\":\"608444af9e168c14649ee8db\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "(Q) List Tags (with Filter)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query listTags($category_id: ObjectID!){\r\n    listTags(filter: {\r\n        category_id: $category_id\r\n    }){\r\n        id\r\n        name\r\n        category{\r\n            id\r\n            name\r\n        }\r\n    }\r\n}",
+								"variables": "{\r\n\"category_id\": \"608443599e168c14649ee8da\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Password",
+			"item": [
+				{
+					"name": "(M) Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation forgotPassword($email: EmailAddress!){\r\n    forgotPassword(data: {email: $email})\r\n}\r\n# É preciso verificar o email, já que envia um email de confirmação para o email se estiver cadastrado (no gemail leva-se apenas alguns minutos)",
+								"variables": "{\r\n    \"email\": \"uricbonatti@gmail.com\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forgot Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation forgotPassword($email: EmailAddress!){\r\n    forgotPassword(data: {email: $email})\r\n}\r\n# É preciso verificar o email, já que envia um email de confirmação para o email se estiver cadastrado (no gemail leva-se apenas alguns minutos)",
+										"variables": "{\r\n    \"email\": \"uricbonatti@gmail.com\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-wLPjttI9p+z3Wmgjudn15nYTtr8\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 12:13:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"forgotPassword\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "(M) Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation resetPassword($token: UUID!, $password: String!, $password_confirmation: String!){\r\n    resetPassword(\r\n        data: {\r\n            token: $token\r\n            password: $password\r\n            password_confirmation: $password_confirmation\r\n        }\r\n    )\r\n}\r\n#o token é parte do link enviado no email de forgot password\r\n# Exemplo: https://studium.blog.br/reset-password?token=8f9e18ab-4af0-461b-a9d7-e1b0662e4171\r\n# A validade é de apenas 2 horas",
+								"variables": "{\r\n    \"token\": \"8f9e18ab-4af0-461b-a9d7-e1b0662e4171\",\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "(M) Reset Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation resetPassword($token: UUID!, $password: String!, $password_confirmation: String!){\r\n    resetPassword(\r\n        data: {\r\n            token: $token\r\n            password: $password\r\n            password_confirmation: $password_confirmation\r\n        }\r\n    )\r\n}\r\n#o token é parte do link enviado no email de forgot password\r\n# Exemplo: https://studium.blog.br/reset-password?token=8f9e18ab-4af0-461b-a9d7-e1b0662e4171",
+										"variables": "{\r\n    \"token\": \"8f9e18ab-4af0-461b-a9d7-e1b0662e4171\",\r\n    \"password\": \"123456\",\r\n    \"password_confirmation\": \"123456\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}",
+									"host": [
+										"{{baseUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-nZiwgu5H0sSk96PE6enDzGde2R4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 05 May 2021 12:20:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"resetPassword\": null\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -20,6 +20,9 @@ AWS_DEFAULT_REGION =
 AWS_ACCESS_KEY_ID = 
 AWS_SECRET_ACCESS_KEY = 
 
+ADMIN_EMAIL = 
+DEFAULT_ADMIN_PASS = 
+
 # LOCAL = web | local
 # NODE_ENV = production | development
 # MAIL_DRIVER = ethereal | mailgun |ses
