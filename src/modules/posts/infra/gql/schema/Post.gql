@@ -50,6 +50,7 @@ type ResumePost {
   category: Category!
   created_at: Date!
   updated_at: Date!
+
   tags: [Tag!]!
 }
 type Query {

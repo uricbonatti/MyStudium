@@ -51,7 +51,7 @@ class Comment {
   }
 
   @BeforeUpdate()
-  solvBinaryBugAgain() {
+  solveBinaryBugAgain() {
     this.post_id = new MongoObjectID(this.post_id);
   }
 }
