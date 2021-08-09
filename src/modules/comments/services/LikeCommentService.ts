@@ -23,21 +23,20 @@ class LikeCommentService {
   public async execute({ user_id, comment_id }: ILikeComment): Promise<number> {
     const user = await this.usersRepository.findById(user_id);
     if (!user) {
-      throw new ApolloError('User not found.', '400');
+      throw new ApolloError('User not found.', 'BAD_USER_INPUT');
     }
     if (ObjectId.isValid(comment_id)) {
       const comment = await this.commentsRepository.findByID(comment_id);
       if (comment !== undefined) {
-        const likes = this.commentsRepository.like({
+        return this.commentsRepository.like({
           comment_id: comment.id,
           user_id: user.id,
         });
-        return likes;
       }
 
-      throw new ApolloError('Comment not found.', '400');
+      throw new ApolloError('Comment not found.', 'BAD_USER_INPUT');
     }
-    throw new ApolloError('Comment Id invalid', '400');
+    throw new ApolloError('Comment Id invalid', 'BAD_USER_INPUT');
   }
 }
 export default LikeCommentService;

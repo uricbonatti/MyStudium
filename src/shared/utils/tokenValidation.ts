@@ -8,12 +8,12 @@ interface ITokenPayload {
   sub: string;
 }
 
-export default function verifyToken(token: string): string {
+export default function tokenValidation(token: string): string {
   try {
     const decoded = verify(token, authConfig.jwt.secret);
     const { sub } = decoded as ITokenPayload;
     return sub;
   } catch (err) {
-    throw new ApolloError('Invalid JWT token.', '401');
+    throw new ApolloError('Invalid JWT token.', 'UNAUTHENTICATED');
   }
 }

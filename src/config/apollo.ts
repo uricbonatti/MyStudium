@@ -3,7 +3,6 @@ import { ApolloError, Config } from 'apollo-server';
 export default {
   formatError: err => {
     if (err.message) {
-      let code = '400';
       if (err.extensions && err.extensions.code) {
         if (err.extensions.code === 'INTERNAL_SERVER_ERROR') {
           return new ApolloError(err.message, '400');
@@ -11,7 +10,7 @@ export default {
         return new ApolloError(err.message, err.extensions.code);
       }
     }
-    return new ApolloError('Internal Server Error', '500');
+    return new ApolloError('Internal Server Error', 'INTERNAL_SERVER_ERROR');
   },
   context: ({ req }) => {
     const authHeader = req.headers.authorization;

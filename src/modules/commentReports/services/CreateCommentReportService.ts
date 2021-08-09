@@ -39,13 +39,12 @@ class CreateCommentReportService {
     if (!comment) {
       throw new ApolloError('Comment not found.', '400');
     }
-    const report = await this.commentReportRepository.create({
+    return this.commentReportRepository.create({
       body,
       comment_id: comment.id,
       title,
       user_id: user.id,
     });
-    return report;
   }
 }
 

@@ -21,17 +21,12 @@ class CommentsRepository implements ICommentsRepository {
     liker_id: MongoObjectID,
     limitDate: Date,
   ): Promise<number> {
-    try {
-      const commentLikes = await this.odmLikeRepository.count({
-        where: {
-          users_liked: [liker_id],
-          created_at: MoreThan(limitDate),
-        },
-      });
-      return commentLikes;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmLikeRepository.count({
+      where: {
+        users_liked: [liker_id],
+        created_at: MoreThan(limitDate),
+      },
+    });
   }
 
   public async create({
@@ -39,130 +34,95 @@ class CommentsRepository implements ICommentsRepository {
     body,
     post_id,
   }: ICreateCommentDTO): Promise<Comment> {
-    try {
-      const { avatar_url, id, name } = author;
-      const comment = this.odmRepository.create({
-        author: { id, name, avatar_url },
-        body,
-        post_id: new MongoObjectID(post_id),
-        users_liked: [],
-      });
-      await this.odmRepository.save(comment);
-      const users_liked = this.odmLikeRepository.create({
-        users_liked: [],
-        comment_id: comment.id,
-      });
-      await this.odmLikeRepository.save(users_liked);
-      return comment;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    const { avatar_url, id, name } = author;
+    const comment = this.odmRepository.create({
+      author: { id, name, avatar_url },
+      body,
+      post_id: new MongoObjectID(post_id),
+      users_liked: [],
+    });
+    await this.odmRepository.save(comment);
+    const users_liked = this.odmLikeRepository.create({
+      users_liked: [],
+      comment_id: comment.id,
+    });
+    await this.odmLikeRepository.save(users_liked);
+    return comment;
   }
 
   public async delete(comment_id: string): Promise<void> {
-    try {
-      await this.odmRepository.delete(comment_id);
-      await this.odmLikeRepository.findOneAndDelete({
-        where: { post_id: new ObjectId(comment_id) },
-      });
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    await this.odmRepository.delete(comment_id);
+    await this.odmLikeRepository.findOneAndDelete({
+      where: { post_id: new ObjectId(comment_id) },
+    });
   }
 
   public async save(comment: Comment): Promise<Comment> {
-    try {
-      return this.odmRepository.save(comment);
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmRepository.save(comment);
   }
 
   public async findByID(comment_id: string): Promise<Comment | undefined> {
-    try {
-      const comment = await this.odmRepository.findOne(comment_id);
-      return comment;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmRepository.findOne(comment_id);
   }
 
   public async findByAuthorId(author_id: ObjectId): Promise<Comment[]> {
-    try {
-      const comments = await this.odmRepository.find({
-        where: {
-          'author.id': author_id,
-        },
-      });
-      return comments;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmRepository.find({
+      where: {
+        'author.id': author_id,
+      },
+    });
   }
 
   public async findByPostId(post_id: ObjectId): Promise<Comment[]> {
-    try {
-      const comments = await this.odmRepository.find({
-        post_id,
-      });
-      const commentsWithLikes = await Promise.all(
-        comments.map(async comment => {
-          const likes = await this.odmLikeRepository.findOne({
-            where: { comment_id: comment.id },
-          });
-          comment.users_liked = [];
-          if (!!likes) {
-            comment.users_liked = likes.users_liked;
-          }
-          return comment;
-        }),
-      );
-      return commentsWithLikes;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    const comments = await this.odmRepository.find({
+      post_id,
+    });
+    return Promise.all(
+      comments.map(async comment => {
+        const likes = await this.odmLikeRepository.findOne({
+          where: { comment_id: comment.id },
+        });
+        comment.users_liked = [];
+        if (!!likes) {
+          comment.users_liked = likes.users_liked;
+        }
+        return comment;
+      }),
+    );
   }
 
   public async like({ comment_id, user_id }: ICommentLikeDTO): Promise<number> {
-    try {
-      const findComment = await this.odmLikeRepository.findOne({ comment_id });
-      if (findComment) {
-        const { users_liked } = findComment;
-        let usersLikedString = users_liked.map(liked => liked.toHexString());
-        const index = usersLikedString.indexOf(user_id.toHexString());
-        if (index >= 0) {
-          if (usersLikedString.length === 1) {
-            usersLikedString = [];
-          } else {
-            usersLikedString = [...usersLikedString.slice(index, 1)];
-          }
+    const findComment = await this.odmLikeRepository.findOne({ comment_id });
+    if (findComment) {
+      const { users_liked } = findComment;
+      let usersLikedString = users_liked.map(liked => liked.toHexString());
+      const index = usersLikedString.indexOf(user_id.toHexString());
+      if (index >= 0) {
+        if (usersLikedString.length === 1) {
+          usersLikedString = [];
         } else {
-          usersLikedString.push(user_id.toHexString());
+          usersLikedString = [...usersLikedString.slice(index, 1)];
         }
-        findComment.users_liked = [
-          ...usersLikedString.map(user => new ObjectId(user)),
-        ];
-        await this.odmLikeRepository.save(findComment);
-        return findComment.users_liked.length;
+      } else {
+        usersLikedString.push(user_id.toHexString());
       }
-      return 0;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
+      findComment.users_liked = [
+        ...usersLikedString.map(user => new ObjectId(user)),
+      ];
+      await this.odmLikeRepository.save(findComment);
+      return findComment.users_liked.length;
     }
+    return 0;
   }
 
   public async getLikes(comment_id: ObjectId): Promise<CommentLikes> {
-    try {
-      const commentLikes = await this.odmLikeRepository.findOne({
-        where: { comment_id },
-      });
-      if (!commentLikes) {
-        throw new ApolloError('Database Timeout');
-      }
-      return commentLikes;
-    } catch (err) {
-      throw err;
+    const commentLikes = await this.odmLikeRepository.findOne({
+      where: { comment_id },
+    });
+    if (!commentLikes) {
+      throw new ApolloError("Comment Likes can't be found");
     }
+    return commentLikes;
   }
 }
 export default CommentsRepository;

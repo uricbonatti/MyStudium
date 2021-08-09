@@ -28,12 +28,10 @@ class LikePostService {
     if (!post) {
       throw new ApolloError('Post not found.', '400');
     }
-    const likes = await this.postsRepository.like({
+    return this.postsRepository.like({
       post_id: post.id,
       user_id: user.id,
     });
-
-    return likes;
   }
 }
 export default LikePostService;

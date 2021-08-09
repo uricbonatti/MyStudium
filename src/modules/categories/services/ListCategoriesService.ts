@@ -10,8 +10,7 @@ class ListCategoriesService {
   ) {}
 
   public async execute(): Promise<Category[]> {
-    const categories = await this.categoriesRepository.findAll();
-    return categories;
+    return this.categoriesRepository.findAll();
   }
 }
 export default ListCategoriesService;

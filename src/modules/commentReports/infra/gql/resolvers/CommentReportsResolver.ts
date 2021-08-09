@@ -29,18 +29,16 @@ export async function userCommentReports(_: any, __: any, { token }: IContext) {
   const listUserCommentReportsService = container.resolve(
     ListUserCommentReportsService,
   );
-  const listReports = await listUserCommentReportsService.execute({ user_id });
-  return listReports;
+  return listUserCommentReportsService.execute({ user_id });
 }
 export async function openCommentReports(_: any, __: any, { token }: IContext) {
   const user_id = verifyToken(token);
   const listOpenCommentReportsService = container.resolve(
     ListOpenCommentReportsService,
   );
-  const listReports = await listOpenCommentReportsService.execute({
+  return listOpenCommentReportsService.execute({
     user_id,
   });
-  return listReports;
 }
 export async function showCommentReport(
   _: any,
@@ -49,8 +47,7 @@ export async function showCommentReport(
 ) {
   const user_id = verifyToken(token);
   const showCommentReportService = container.resolve(ShowCommentReportService);
-  const report = await showCommentReportService.execute({ id, user_id });
-  return report;
+  return showCommentReportService.execute({ id, user_id });
 }
 
 export async function createCommentReport(
@@ -61,13 +58,12 @@ export async function createCommentReport(
   const user_id = verifyToken(token);
   const { comment_id, body, title } = data;
   const createReport = container.resolve(CreateCommentReportService);
-  const report = await createReport.execute({
+  return createReport.execute({
     body,
     comment_id,
     title,
     user_id,
   });
-  return report;
 }
 export async function closeCommentReport(
   _: any,
@@ -77,11 +73,10 @@ export async function closeCommentReport(
   const user_id = verifyToken(token);
   const { action, feedback, id } = data;
   const closeReport = container.resolve(CloseCommentReportService);
-  const report = await closeReport.execute({
+  return closeReport.execute({
     action,
     feedback,
     id,
     user_id,
   });
-  return report;
 }

@@ -26,8 +26,7 @@ interface ID {
 export async function listTags(_: any, { filter }: IFilterTag): Promise<Tag[]> {
   const { category_id } = filter;
   const searchTagsService = container.resolve(SearchTagsService);
-  const tags = await searchTagsService.execute({ category_id });
-  return tags;
+  return searchTagsService.execute({ category_id });
 }
 
 export async function createTag(
@@ -38,16 +37,14 @@ export async function createTag(
   const { category_id, name } = data;
   const user_id = verifyToken(token);
   const createTagService = container.resolve(CreateTagService);
-  const tag = await createTagService.execute({
+  return createTagService.execute({
     user_id,
     name,
     category_id,
   });
-  return tag;
 }
 
 export async function getTag(_: any, { id }: ID): Promise<Tag> {
   const showTagService = container.resolve(ShowTagService);
-  const tag = await showTagService.execute(id);
-  return tag;
+  return showTagService.execute(id);
 }

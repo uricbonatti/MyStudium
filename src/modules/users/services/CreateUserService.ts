@@ -28,7 +28,7 @@ class CreateUserService {
       throw new ApolloError('Email address already used.', '400');
     }
     const hashedPassword = await this.hashProvider.generateHash(password);
-    const user = await this.usersRepository.create({
+    return this.usersRepository.create({
       email,
       password: hashedPassword,
       name,
@@ -36,7 +36,6 @@ class CreateUserService {
       github,
       linkedin,
     });
-    return user;
   }
 }
 

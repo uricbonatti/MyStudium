@@ -1,6 +1,5 @@
 import { injectable, inject } from 'tsyringe';
 import { ApolloError } from 'apollo-server';
-import { ObjectId } from 'mongodb';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
@@ -35,11 +34,11 @@ class CreateCommentService {
   }: ICreateCommentDTO): Promise<Comment> {
     const user = await this.usersRepository.findById(author_id);
     if (!user) {
-      throw new ApolloError('Author/User not found.', '400');
+      throw new ApolloError('Author/User not found.', 'UNAUTHENTICATED');
     }
     const post = await this.postsRepository.findByID(post_id);
     if (!post) {
-      throw new ApolloError('Post not found.', '400');
+      throw new ApolloError('Post not found.', 'BAD_USER_INPUT');
     }
 
     const comment = await this.commentsRepository.create({

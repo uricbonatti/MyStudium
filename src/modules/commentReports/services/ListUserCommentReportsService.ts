@@ -22,8 +22,7 @@ class ListUserCommentReportsService {
     if (!user) {
       throw new ApolloError('User not found', '400');
     }
-    const reports = await this.reportsRepository.findByUserId(user_id);
-    return reports;
+    return this.reportsRepository.findByUserId(user_id);
   }
 }
 export default ListUserCommentReportsService;

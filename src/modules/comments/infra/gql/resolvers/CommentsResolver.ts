@@ -33,8 +33,7 @@ export async function likeComment(
 ): Promise<number> {
   const user_id = verifyToken(token);
   const likeCommentService = container.resolve(LikeCommentService);
-  const likes = await likeCommentService.execute({ user_id, comment_id });
-  return likes;
+  return likeCommentService.execute({ user_id, comment_id });
 }
 
 export async function createComment(
@@ -45,12 +44,11 @@ export async function createComment(
   const author_id = verifyToken(token);
   const { body, post_id } = data;
   const createCommentService = container.resolve(CreateCommentService);
-  const comment = await createCommentService.execute({
+  return createCommentService.execute({
     author_id,
     body,
     post_id,
   });
-  return comment;
 }
 
 export async function updateComment(
@@ -61,12 +59,11 @@ export async function updateComment(
   const user_id = verifyToken(token);
   const { id, body } = data;
   const updateCommentService = container.resolve(UpdateCommentService);
-  const comment = await updateCommentService.execute({
+  return updateCommentService.execute({
     comment_id: id,
     body,
     user_id,
   });
-  return comment;
 }
 
 export async function deleteComment(
@@ -76,7 +73,7 @@ export async function deleteComment(
 ): Promise<void> {
   const user_id = verifyToken(token);
   const deleteCommentService = container.resolve(DeleteCommentService);
-  const comment = await deleteCommentService.execute({
+  await deleteCommentService.execute({
     comment_id: id,
     user_id,
   });

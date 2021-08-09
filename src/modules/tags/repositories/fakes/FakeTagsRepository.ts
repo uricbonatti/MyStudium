@@ -18,20 +18,17 @@ class FakeTagsRepository implements ITagsRepository {
   }
 
   public async findById(tag_id: string): Promise<Tag | undefined> {
-    const findTag = this.tags.find(tag => tag.id.toHexString() === tag_id);
-    return findTag;
+    return this.tags.find(tag => tag.id.toHexString() === tag_id);
   }
 
   public async findByCategory(category_id: string): Promise<Tag[]> {
-    const findTags = this.tags.filter(
+    return this.tags.filter(
       tag => tag.category.id.toHexString() === category_id,
     );
-    return findTags;
   }
 
   public async findByName(name: string): Promise<Tag | undefined> {
-    const findTag = this.tags.find(tag => tag.name === name);
-    return findTag;
+    return this.tags.find(tag => tag.name === name);
   }
 
   public async findAll(): Promise<Tag[]> {

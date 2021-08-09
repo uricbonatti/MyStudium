@@ -38,10 +38,9 @@ class FakeCommentsRepository implements ICommentsRepository {
   public async getLikes(
     comment_id: ObjectId,
   ): Promise<CommentLikes | undefined> {
-    const likes = this.commentLikes.find(commentLike =>
+    return this.commentLikes.find(commentLike =>
       commentLike.comment_id.equals(comment_id),
     );
-    return likes;
   }
   public async delete(comment_id: string): Promise<void> {
     const findIndex = this.comments.findIndex(
@@ -65,24 +64,17 @@ class FakeCommentsRepository implements ICommentsRepository {
   }
 
   public async findByID(comment_id: string): Promise<Comment | undefined> {
-    const findComment = await this.comments.find(
+    return this.comments.find(
       comment => comment.id.toHexString() === comment_id,
     );
-    return findComment;
   }
 
   public async findByAuthorId(author_id: ObjectId): Promise<Comment[]> {
-    const findComments = this.comments.filter(comment =>
-      author_id.equals(comment.author.id),
-    );
-    return findComments;
+    return this.comments.filter(comment => author_id.equals(comment.author.id));
   }
 
   public async findByPostId(post_id: ObjectId): Promise<Comment[]> {
-    const findComments = this.comments.filter(comment =>
-      comment.post_id.equals(post_id),
-    );
-    return findComments;
+    return this.comments.filter(comment => comment.post_id.equals(post_id));
   }
 
   public async isLiked({
@@ -135,7 +127,7 @@ class FakeCommentsRepository implements ICommentsRepository {
     liker_id: ObjectId,
     limitDate: Date,
   ): Promise<number> {
-    const commentIsLiked = await this.comments.map(
+    const commentIsLiked = this.comments.map(
       comment =>
         comment.users_liked.includes(liker_id) &&
         isAfter(comment.created_at, limitDate),

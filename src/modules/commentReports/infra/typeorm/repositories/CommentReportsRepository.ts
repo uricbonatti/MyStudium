@@ -36,27 +36,24 @@ class CommentReportsRepository implements ICommentReportsRepository {
   }
 
   public async findById(id: string): Promise<CommentReport | undefined> {
-    const report = await this.odmRepository.findOne(id);
-    return report;
+    return this.odmRepository.findOne(id);
   }
 
   public async findByUserId(id: string): Promise<CommentReport[]> {
     const user_id = new ObjectId(id);
-    const reports = await this.odmRepository.find({
+    return this.odmRepository.find({
       where: {
         user_id,
       },
     });
-    return reports;
   }
 
   public async findOpenReports(): Promise<CommentReport[]> {
-    const reports = await this.odmRepository.find({
+    return this.odmRepository.find({
       where: {
         closed: false,
       },
     });
-    return reports;
   }
 }
 export default CommentReportsRepository;

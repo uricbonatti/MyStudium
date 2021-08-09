@@ -17,16 +17,14 @@ export async function changeUserPermission(
 ) {
   const id = verifyToken(token);
   const service = container.resolve(ChangeUserPermissionService);
-  const isPermissionChanged = await service.execute({
+  return service.execute({
     id,
     permissionLevel,
     targetUserId: userId,
   });
-  return isPermissionChanged;
 }
 
 export async function firstRun() {
   const service = container.resolve(GenerateAdminOnFirstRunService);
   await service.execute();
-  return;
 }

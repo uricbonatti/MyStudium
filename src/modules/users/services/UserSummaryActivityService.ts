@@ -94,7 +94,7 @@ class UserSummaryActivityService {
       num_posts: countWeekPosts,
       num_liked_posts: weekPostLiked,
     });
-    const summary: ISummary = {
+    return {
       all: {
         commentsCreated: countAllComments,
         postsCreated: countAllPosts,
@@ -115,8 +115,7 @@ class UserSummaryActivityService {
       },
       lastWeekPosts: weekPosts,
       weekExp,
-    };
-    return summary;
+    } as ISummary;
   }
 }
 export default UserSummaryActivityService;

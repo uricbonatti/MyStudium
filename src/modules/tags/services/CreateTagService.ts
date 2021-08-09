@@ -43,11 +43,10 @@ class CreateTagService {
     if (checkTagExist) {
       throw new ApolloError('This Tag already exist');
     }
-    const tag = await this.tagsRepository.create({
+    return this.tagsRepository.create({
       category,
       name,
     });
-    return tag;
   }
 }
 export default CreateTagService;

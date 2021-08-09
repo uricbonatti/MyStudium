@@ -5,11 +5,7 @@ import { DocumentNode } from 'graphql';
 import { mergeTypeDefs } from 'graphql-tools';
 
 export function loadFile(pathFile: string): string {
-  const fileString = fs.readFileSync(
-    path.join(process.cwd(), pathFile),
-    'utf8',
-  );
-  return fileString;
+  return fs.readFileSync(path.join(process.cwd(), pathFile), 'utf8');
 }
 
 export function loadFiles(pathFiles: string): DocumentNode {

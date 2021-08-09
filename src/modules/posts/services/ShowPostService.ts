@@ -31,7 +31,7 @@ class ShowPostService {
 
     post.users_liked = users_liked;
     let isLiked: boolean | undefined;
-    if (!!user_id) {
+    if (user_id) {
       const isLikeFound = post.users_liked.filter(
         like => like.toHexString() === user_id,
       );

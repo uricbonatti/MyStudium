@@ -25,22 +25,15 @@ class FakeCommentReportsRepository implements ICommentReportsRepository {
   }
 
   public async findById(id: string): Promise<CommentReport | undefined> {
-    const findReport = this.reports.find(
-      report => report.id.toHexString() === id,
-    );
-    return findReport;
+    return this.reports.find(report => report.id.toHexString() === id);
   }
 
   public async findByUserId(id: string): Promise<CommentReport[]> {
-    const findReports = this.reports.filter(
-      report => report.user_id.toHexString() === id,
-    );
-    return findReports;
+    return this.reports.filter(report => report.user_id.toHexString() === id);
   }
 
   public async findOpenReports(): Promise<CommentReport[]> {
-    const findReports = this.reports.filter(report => !report.closed);
-    return findReports;
+    return this.reports.filter(report => !report.closed);
   }
 }
 export default FakeCommentReportsRepository;

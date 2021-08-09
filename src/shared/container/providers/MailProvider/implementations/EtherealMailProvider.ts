@@ -1,4 +1,9 @@
-import nodemailer, { Transporter } from 'nodemailer';
+import {
+  Transporter,
+  createTransport,
+  createTestAccount,
+  getTestMessageUrl,
+} from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 
 import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
@@ -13,8 +18,8 @@ export default class EtherealMailProvider implements IEmailProvider {
     @inject('MailTemplateProvider')
     private mailTemplateProvider: IMailTemplateProvider,
   ) {
-    nodemailer.createTestAccount().then(account => {
-      const transporter = nodemailer.createTransport({
+    createTestAccount().then(account => {
+      const transporter = createTransport({
         host: account.smtp.host,
         port: account.smtp.port,
         secure: account.smtp.secure,
@@ -50,6 +55,6 @@ export default class EtherealMailProvider implements IEmailProvider {
     });
 
     console.log('Message sent: %s', message.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
+    console.log('Preview URL: %s', getTestMessageUrl(message));
   }
 }

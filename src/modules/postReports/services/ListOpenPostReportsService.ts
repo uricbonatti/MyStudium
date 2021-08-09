@@ -25,8 +25,7 @@ class ListOpenPostReportsService {
     if (user.permission === 2) {
       throw new ApolloError('User without permission', '401');
     }
-    const reports = await this.reportsRepository.findOpenReports();
-    return reports;
+    return this.reportsRepository.findOpenReports();
   }
 }
 export default ListOpenPostReportsService;

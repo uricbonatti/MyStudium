@@ -2,7 +2,6 @@ import { getMongoRepository, MongoRepository } from 'typeorm';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import User from '../schemas/User';
-import { ApolloError } from 'apollo-server';
 
 class UsersRepository implements IUsersRepository {
   private odmRepository: MongoRepository<User>;
@@ -34,16 +33,13 @@ class UsersRepository implements IUsersRepository {
   }
 
   public async findById(id: string): Promise<User | undefined> {
-    const findUser = await this.odmRepository.findOne(id);
-
-    return findUser;
+    return this.odmRepository.findOne(id);
   }
 
   public async findByEmail(userMail: string): Promise<User | undefined> {
-    const findUser = await this.odmRepository.findOne({
+    return this.odmRepository.findOne({
       email: `${userMail}`,
     });
-    return findUser;
   }
 
   public async save(user: User): Promise<User> {

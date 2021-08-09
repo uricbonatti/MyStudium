@@ -1,5 +1,5 @@
-import nodemailer, { Transporter } from 'nodemailer';
-import MailGun, { Options } from 'nodemailer-mailgun-transport';
+import { Transporter, createTransport } from 'nodemailer';
+import MailGun from 'nodemailer-mailgun-transport';
 import { inject, injectable } from 'tsyringe';
 
 import mailConfig from '@config/mail';
@@ -23,7 +23,7 @@ export default class MailGunMailProvider implements IEmailProvider {
       },
     };
 
-    this.client = nodemailer.createTransport(MailGun(authOptions));
+    this.client = createTransport(MailGun(authOptions));
   }
 
   public async sendMail({

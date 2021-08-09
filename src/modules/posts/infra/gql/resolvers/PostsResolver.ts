@@ -60,15 +60,14 @@ export async function getPost(
 ): Promise<Post> {
   const showPostService = container.resolve(ShowPostService);
   let user_id: string | undefined;
-  console.log(id);
   try {
     user_id = verifyToken(token);
   } catch {
     const post = await showPostService.execute({ post_id: id });
     return classToClass(post);
   }
-  const post = await showPostService.execute({ post_id: id, user_id });
-  return classToClass(post);
+  const postFound = await showPostService.execute({ post_id: id, user_id });
+  return classToClass(postFound);
 }
 
 export async function listPosts(
@@ -77,12 +76,11 @@ export async function listPosts(
 ): Promise<Post[]> {
   const { author_id, category_id, part_of_title } = filter;
   const searchPostService = container.resolve(SearchPostService);
-  const posts = await searchPostService.execute({
+  return searchPostService.execute({
     author_id,
     category_id,
     title: part_of_title,
   });
-  return posts;
 }
 
 export async function createPost(
@@ -143,6 +141,5 @@ export async function likePost(
 ): Promise<number> {
   const user_id = verifyToken(token);
   const likePostService = container.resolve(LikePostService);
-  const likes = await likePostService.execute({ user_id, post_id });
-  return likes;
+  return likePostService.execute({ user_id, post_id });
 }

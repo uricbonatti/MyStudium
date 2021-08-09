@@ -57,10 +57,7 @@ class FakePostsRepository implements IPostsRepository {
     }
   }
   public async getLikes(post_id: ObjectId): Promise<PostLikes | undefined> {
-    const likes = this.postLikes.find(postLike =>
-      postLike.post_id.equals(post_id),
-    );
-    return likes;
+    return this.postLikes.find(postLike => postLike.post_id.equals(post_id));
   }
   public async findByID(post_id: string): Promise<Post | undefined> {
     const findPost = this.posts.find(post => post.id.toHexString() === post_id);
@@ -79,23 +76,15 @@ class FakePostsRepository implements IPostsRepository {
   }
 
   public async findByTitle(title: string): Promise<Post[]> {
-    const findPosts = this.posts.filter(post => post.title.indexOf(title) > -1);
-
-    return findPosts;
+    return this.posts.filter(post => post.title.indexOf(title) > -1);
   }
 
   public async findByAuthor(author_id: ObjectId): Promise<Post[]> {
-    const findPosts = this.posts.filter(post =>
-      post.author.id.equals(author_id),
-    );
-    return findPosts;
+    return this.posts.filter(post => post.author.id.equals(author_id));
   }
 
   public async findByCategory(category_id: ObjectId): Promise<Post[]> {
-    const findPosts = this.posts.filter(post =>
-      category_id.equals(post.category.id),
-    );
-    return findPosts;
+    return this.posts.filter(post => category_id.equals(post.category.id));
   }
 
   public async findBySlug(slug: string): Promise<Post[]> {
@@ -140,10 +129,12 @@ class FakePostsRepository implements IPostsRepository {
     liker_id: ObjectId,
     limitDate: Date,
   ): Promise<number> {
-    const postIsLiked = await this.postLikes.map(
-      post =>
-        post.users_liked.includes(liker_id) &&
-        isAfter(post.created_at, limitDate),
+    const postIsLiked = await Promise.all(
+      this.postLikes.map(
+        post =>
+          post.users_liked.includes(liker_id) &&
+          isAfter(post.created_at, limitDate),
+      ),
     );
     return postIsLiked.filter(liked => liked).length;
   }

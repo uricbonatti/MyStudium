@@ -30,8 +30,7 @@ class CreateCategoryService {
     if (checkCategoryExists) {
       throw new ApolloError('Category already exist', '400');
     }
-    const category = await this.categoriesRepository.create({ name });
-    return category;
+    return this.categoriesRepository.create({ name });
   }
 }
 export default CreateCategoryService;

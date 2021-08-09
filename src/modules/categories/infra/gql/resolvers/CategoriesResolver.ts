@@ -18,12 +18,10 @@ export async function createCategory(
   const user_id = verifyToken(token);
   const { name } = data;
   const createCategoryService = container.resolve(CreateCategoryService);
-  const category = await createCategoryService.execute({ name, user_id });
-  return category;
+  return createCategoryService.execute({ name, user_id });
 }
 
 export async function listCategories() {
   const listCategoriesService = container.resolve(ListCategoriesService);
-  const categories = await listCategoriesService.execute();
-  return categories;
+  return listCategoriesService.execute();
 }

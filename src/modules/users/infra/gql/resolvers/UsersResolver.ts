@@ -92,7 +92,5 @@ export async function userSummary(_: any, { id }: IGetUser): Promise<ISummary> {
   const userSummaryActivityService = container.resolve(
     UserSummaryActivityService,
   );
-  const summary = await userSummaryActivityService.execute({ user_id: id });
-
-  return summary;
+  return userSummaryActivityService.execute({ user_id: id });
 }

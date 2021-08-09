@@ -1,7 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
 import { ApolloError } from 'apollo-server';
-import { ObjectId as MongoObjectID } from 'mongodb';
 import removeAccents from 'remove-accents';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
@@ -60,7 +59,7 @@ class UpdatePostService {
     if (title) {
       const slug = removeAccents(title).toLowerCase().replace(' ', '-');
       const checkSlugExist = await this.postsRepository.findBySlug(slug);
-      const checkAuthorSlugExists = await checkSlugExist.filter(
+      const checkAuthorSlugExists = checkSlugExist.filter(
         postFind =>
           postFind.author.id.equals(post.author.id) &&
           !postFind.id.equals(post.id),
@@ -97,8 +96,7 @@ class UpdatePostService {
       post.tags = [...foundTags];
     }
 
-    const updatedPost = await this.postsRepository.save(post);
-    return updatedPost;
+    return this.postsRepository.save(post);
   }
 }
 export default UpdatePostService;

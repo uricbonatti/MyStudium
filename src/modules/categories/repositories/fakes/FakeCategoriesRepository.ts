@@ -18,10 +18,9 @@ class FakeCategoriesRepository implements ICategoriesRepository {
   }
 
   public async findById(category_id: string): Promise<Category | undefined> {
-    const findCategory = this.categories.find(
+    return this.categories.find(
       category => category.id.toHexString() === category_id,
     );
-    return findCategory;
   }
 
   public async findAll(): Promise<Category[]> {
@@ -38,10 +37,7 @@ class FakeCategoriesRepository implements ICategoriesRepository {
   public async findByName({
     name,
   }: ICreateCategoryDTO): Promise<Category | undefined> {
-    const findCategory = this.categories.find(
-      category => category.name === name,
-    );
-    return findCategory;
+    return this.categories.find(category => category.name === name);
   }
 }
 export default FakeCategoriesRepository;

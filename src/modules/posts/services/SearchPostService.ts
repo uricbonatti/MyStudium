@@ -34,36 +34,32 @@ class SearchPostService {
         post.author.id.equals(new MongoObjectID(author_id)),
       );
 
-      const categoryPosts = authorPosts.filter(post =>
+      return authorPosts.filter(post =>
         MongoObjectID.createFromHexString(category_id).equals(post.category.id),
       );
-      return categoryPosts;
     }
 
     if (category_id && title) {
       const titlePosts = await this.postsRepository.findByTitle(title);
-      const categoryPosts = titlePosts.filter(post =>
+      return titlePosts.filter(post =>
         MongoObjectID.createFromHexString(category_id).equals(post.category.id),
       );
-      return categoryPosts;
     }
 
     if (author_id && title) {
       const titlePosts = await this.postsRepository.findByTitle(title);
-      const authorPosts = titlePosts.filter(post =>
+      return titlePosts.filter(post =>
         post.author.id.equals(new MongoObjectID(author_id)),
       );
-      return authorPosts;
     }
 
     if (author_id && category_id) {
       const authorPosts = await this.postsRepository.findByAuthor(
         new MongoObjectID(author_id),
       );
-      const categoryPosts = authorPosts.filter(post =>
+      return authorPosts.filter(post =>
         MongoObjectID.createFromHexString(category_id).equals(post.category.id),
       );
-      return categoryPosts;
     }
 
     if (category_id) {

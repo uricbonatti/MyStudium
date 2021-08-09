@@ -1,7 +1,4 @@
-import { ApolloError } from 'apollo-server';
 import { inject, injectable } from 'tsyringe';
-import ICategoriesRepository from '@modules/categories/repositories/ICategoriesRepository';
-import { FullTag } from '@shared/utils/interfaces';
 import Tag from '../infra/typeorm/schemas/Tag';
 import ITagsRepository from '../repositories/ITagsRepository';
 

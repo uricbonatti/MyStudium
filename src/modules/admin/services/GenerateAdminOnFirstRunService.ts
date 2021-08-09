@@ -1,7 +1,6 @@
 import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import { ApolloError } from 'apollo-server';
-import { classToClass } from 'class-transformer';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()
@@ -22,6 +21,7 @@ class GenerateAdminOnFirstRunService {
     }
     const admin = await this.usersRepository.findByEmail(administrativeEmail);
     if (!!admin) {
+      return;
     }
     const password = process.env.DEFAULT_ADMIN_PASS || 'default';
     const hashedPassword = await this.hashProvider.generateHash(password);
@@ -36,7 +36,6 @@ class GenerateAdminOnFirstRunService {
     newAdmin.avatar_url =
       'https://www.clipartmax.com/png/middle/319-3191274_male-avatar-admin-profile.png';
     await this.usersRepository.save(newAdmin);
-    return;
   }
 }
 export default GenerateAdminOnFirstRunService;

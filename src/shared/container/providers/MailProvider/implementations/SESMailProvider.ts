@@ -1,4 +1,4 @@
-import nodemailer, { Transporter } from 'nodemailer';
+import { Transporter, createTransport } from 'nodemailer';
 import { injectable, inject } from 'tsyringe';
 import aws from 'aws-sdk';
 
@@ -16,7 +16,7 @@ export default class SESMailProvider implements IEmailProvider {
     @inject('MailTemplateProvider')
     private mailTemplateProvider: IMailTemplateProvider,
   ) {
-    this.client = nodemailer.createTransport({
+    this.client = createTransport({
       SES: new aws.SES({
         apiVersion: '2010-12-01',
         region: 'us-east-2',

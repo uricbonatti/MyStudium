@@ -35,13 +35,12 @@ export async function createPostReport(
   const user_id = verifyToken(token);
   const { post_id, body, title } = data;
   const createPostReportService = container.resolve(CreatePostReportService);
-  const report = await createPostReportService.execute({
+  return createPostReportService.execute({
     body,
     post_id,
     title,
     user_id,
   });
-  return report;
 }
 
 export async function closePostReport(
@@ -52,25 +51,22 @@ export async function closePostReport(
   const user_id = verifyToken(token);
   const { id, feedback, action } = data;
   const closePostReportService = container.resolve(ClosePostReportService);
-  const report = await closePostReportService.execute({
+  return closePostReportService.execute({
     action,
     feedback,
     id,
     user_id,
   });
-  return report;
 }
 export async function userPostReports(_: any, __: any, { token }: IContext) {
   const user_id = verifyToken(token);
   const listUserPostReports = container.resolve(ListUserPostReportsService);
-  const reports = await listUserPostReports.execute({ user_id });
-  return reports;
+  return listUserPostReports.execute({ user_id });
 }
 export async function openPostReports(_: any, __: any, { token }: IContext) {
   const user_id = verifyToken(token);
   const listOpenPostReports = container.resolve(ListOpenPostReportsService);
-  const reports = await listOpenPostReports.execute({ user_id });
-  return reports;
+  return listOpenPostReports.execute({ user_id });
 }
 export async function showPostReport(
   _: any,
@@ -79,6 +75,5 @@ export async function showPostReport(
 ) {
   const user_id = verifyToken(token);
   const showPostReportService = container.resolve(ShowPostReportService);
-  const report = await showPostReportService.execute({ user_id, id });
-  return report;
+  return showPostReportService.execute({ user_id, id });
 }

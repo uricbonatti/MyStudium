@@ -14,12 +14,7 @@ class CategoriesRepository implements ICategoriesRepository {
   public async findByName({
     name,
   }: ICreateCategoryDTO): Promise<Category | undefined> {
-    try {
-      const category = await this.odmRepository.findOne({ name });
-      return category;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmRepository.findOne({ name });
   }
 
   public async create({ name }: ICreateCategoryDTO): Promise<Category> {
@@ -35,21 +30,11 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   public async findById(category_id: string): Promise<Category | undefined> {
-    try {
-      const category = await this.odmRepository.findOne(category_id);
-      return category;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmRepository.findOne(category_id);
   }
 
   public async findAll(): Promise<Category[]> {
-    try {
-      const categories = await this.odmRepository.find();
-      return categories;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmRepository.find();
   }
 
   public async delete(category_id: string): Promise<void> {

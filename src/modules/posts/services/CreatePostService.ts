@@ -52,7 +52,7 @@ class CreatePostService {
     const slug = removeAccents(title).toLowerCase().replace(' ', '-');
     const checkSlugExist = await this.postsRepository.findBySlug(slug);
 
-    const checkAuthorSlugExists = await checkSlugExist.filter(postFind =>
+    const checkAuthorSlugExists = checkSlugExist.filter(postFind =>
       postFind.author.id.equals(new MongoObjectID(author_id)),
     );
     if (checkAuthorSlugExists.length > 0) {

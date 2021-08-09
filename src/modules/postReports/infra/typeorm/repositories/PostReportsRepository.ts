@@ -34,49 +34,30 @@ class PostReportsRepository implements IPostReportsRepository {
   }
 
   public async close(report: PostReport): Promise<PostReport> {
-    try {
-      // eslint-disable-next-line no-param-reassign
-      report.closed = true;
-      return this.odmRepository.save(report);
-    } catch {
-      throw new ApolloError('Database Timeout');
-    }
+    // eslint-disable-next-line no-param-reassign
+    report.closed = true;
+    return this.odmRepository.save(report);
   }
 
   public async findById(id: string): Promise<PostReport | undefined> {
-    try {
-      const report = await this.odmRepository.findOne(id);
-      return report;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmRepository.findOne(id);
   }
 
   public async findByUserId(id: string): Promise<PostReport[]> {
-    try {
-      const user_id = new ObjectId(id);
-      const reports = await this.odmRepository.find({
-        where: {
-          user_id,
-        },
-      });
-      return reports;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    const user_id = new ObjectId(id);
+    return this.odmRepository.find({
+      where: {
+        user_id,
+      },
+    });
   }
 
   public async findOpenReports(): Promise<PostReport[]> {
-    try {
-      const reports = await this.odmRepository.find({
-        where: {
-          closed: false,
-        },
-      });
-      return reports;
-    } catch (err) {
-      throw new ApolloError('Database Timeout');
-    }
+    return this.odmRepository.find({
+      where: {
+        closed: false,
+      },
+    });
   }
 }
 export default PostReportsRepository;

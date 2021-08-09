@@ -39,13 +39,12 @@ class CreatePostReportService {
     if (!post) {
       throw new ApolloError('Post not found.', '400');
     }
-    const report = await this.postReportRepository.create({
+    return this.postReportRepository.create({
       body,
       post_id: post.id,
       title,
       user_id: user.id,
     });
-    return report;
   }
 }
 

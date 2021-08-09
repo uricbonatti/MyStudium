@@ -5,8 +5,6 @@ import {
   UpdateDateColumn,
   ObjectIdColumn,
   ObjectID,
-  Unique,
-  BeforeInsert,
 } from 'typeorm';
 
 import { Exclude, Expose } from 'class-transformer';
